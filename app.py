@@ -60,25 +60,25 @@ with tab2:
 p_bronch = st.checkbox("Acute Exacerbation of Bronchiectasis", key="chk_p_bronch")
 bronch_type = ""
 bronch_detail = ""
-        if p_bronch:
-            bronch_type = st.selectbox("Bronchiectasis Status", ["Infective Exacerbation", "Non-Infective Exacerbation"], key="sel_bronch_type")
-            bronch_detail = st.text_input("Organism / Sputum / Details", value="", key="txt_bronch_detail")
+    if p_bronch:
+        bronch_type = st.selectbox("Bronchiectasis Status", ["Infective Exacerbation", "Non-Infective Exacerbation"], key="sel_bronch_type")
+        bronch_detail = st.text_input("Organism / Sputum / Details", value="", key="txt_bronch_detail")
 
-        p_ild = st.checkbox("Acute Exacerbation of Interstitial Lung Disease (ILD)", key="chk_p_ild")
-        ild_type = ""
+p_ild = st.checkbox("Acute Exacerbation of Interstitial Lung Disease (ILD)", key="chk_p_ild")
+ild_type = ""
         ild_detail = ""
         if p_ild:
-            ild_type = st.selectbox("ILD Status", ["Infective Exacerbation", "Non-Infective Exacerbation / Flare"], key="sel_ild_type")
-            ild_detail = st.text_input("Subtype / HRCT / Details (e.g. IPF / CTD-ILD)", value="", key="txt_ild_detail")
+        ild_type = st.selectbox("ILD Status", ["Infective Exacerbation", "Non-Infective Exacerbation / Flare"], key="sel_ild_type")
+        ild_detail = st.text_input("Subtype / HRCT / Details (e.g. IPF / CTD-ILD)", value="", key="txt_ild_detail")
         
-    p_sepsis = st.checkbox("Severe Sepsis", key="chk_p_sepsis")
-        sepsis_source = ""
-        if p_sepsis:
-            sepsis_source = st.text_input("Specify Sepsis Source", value="", key="txt_sepsis_source")
-        p_poisoning = st.checkbox("Poisoning", key="chk_p_poisoning")
-        poisoning_detail = ""
-        if p_poisoning:
-            poisoning_detail = st.text_input("Specify Poisoning Details / Agent", value="", key="txt_poisoning_detail")
+p_sepsis = st.checkbox("Severe Sepsis", key="chk_p_sepsis")
+    sepsis_source = ""
+    if p_sepsis:
+        sepsis_source = st.text_input("Specify Sepsis Source", value="", key="txt_sepsis_source")
+p_poisoning = st.checkbox("Poisoning", key="chk_p_poisoning")
+poisoning_detail = ""
+    if p_poisoning:
+        poisoning_detail = st.text_input("Specify Poisoning Details / Agent", value="", key="txt_poisoning_detail")
 
    with col_p2:
         p_pneu = st.checkbox("Severe Pneumonia", key="chk_p_pneu")
