@@ -160,7 +160,7 @@ if p_stroke_pri:
       key="sel_stroke_type_pri",
   )
 if p_stroke_pri:
-    stroke_nihss = st.text_input ("nihss/weakness", value = "", key=txt_stroke_nihss")
+    stroke_nihss = st.text_input ("nihss/weakness", value = "", key=txt_stroke_nihss"),
   if stroke_type == "Ischemic":
     stroke_subtype = st.selectbox(
         "Ischemic Subtype",
