@@ -21,8 +21,8 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "1. Demographics",
     "2. Problem List & Comorbidities",
     "3. Progress, POCUS & Resuscitation",
-    "4. Lab & Imaging Trends (3-Point)",
-    "5. Medications & Steroid Taper",
+    "4. Lab & Imaging Trends",
+    "5. Medications",
     "6. Review & Export"
 ])
 
@@ -117,14 +117,14 @@ col_s1, col_s2 = st.columns(2)
 with col_s1:
         s_aki = st.checkbox("Acute Kidney Injury (AKI)")
         aki_cause = st.text_input("AKI Etiology", value="")
-        s_ards = st.checkbox("ARDS")
+        s_ards = st.checkbox("Acute Respiratory Distress Syndrome (ARDS)")
         ards_severity = st.selectbox("ARDS Severity", ["Mild", "Moderate", "Severe"])
         s_rv_dys = st.checkbox("Right Ventricular Dysfunction / Failure")
 with col_s2:
-        s_arrhythmia = st.checkbox("Cardiac Arrhythmia (AF/VT/SVT/etc.)")
+        s_arrhythmia = st.checkbox("Cardiac Arrhythmia")
         arrhythmia_detail = st.text_input("Arrhythmia Details", value="")
         s_stroke = st.checkbox("Stroke (Ischemic/Hemorrhagic)")
-        s_pe_sec = st.checkbox("Pulmonary Embolism (Secondary)")
+        s_pe_sec = st.checkbox("Pulmonary Embolism")
 other_secondary = st.text_area("Additional Secondary Problems", value="")
 
 st.subheader("Comorbidities")
@@ -134,8 +134,8 @@ with col_c1:
         ckd_stage = st.text_input("CKD Stage & Baseline Creatinine", value="")
         c_hf = st.checkbox("HFrEF / HFpEF")
         hf_detail = st.text_input("LVEF % & Etiology (Ischemic/Non-Ischemic)", value="")
-        c_cad = st.checkbox("Coronary Artery Disease (ASCVD)")
-        cad_detail = st.text_input("CAD / ASCVD Details", value="")
+        c_cad = st.checkbox("Coronary Artery Disease")
+        cad_detail = st.text_input("3VD/CAD / ASCVD Details", value="")
 with col_c2:
         c_dm = st.checkbox("Diabetes Mellitus")
         dm_detail = st.text_input("HbA1c % & Target Organ Damage", value="")
