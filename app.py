@@ -193,6 +193,8 @@ if p_seizure:
       key="txt_seizure_detail",
   )
 
+other_primary = st.text_area("Others", value="")
+
 
 st.subheader("Secondary Problems")
 col_s1, col_s2 = st.columns(2)
