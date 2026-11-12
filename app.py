@@ -115,11 +115,12 @@ if p_pe:
   pe_category = st.selectbox(
       "2026 Acute PE Clinical Category (A–E)",
       [
-          "Category A (Subclinical / Asymptomatic)",
-          "Category B (Low Risk)",
-          "Category C1 (Low-Intermediate Risk - Normal Biomarkers & No RV Dysfunction)",
-          "Category C2 (Intermediate-High Risk - Elevated Cardiac Biomarkers)",
-          "Category C3 (Intermediate-High Risk - RV Dysfunction Present)",
+          "Category A: (Low Risk - Subclinical / Asymptomatic)",
+          "Category B1: Symptomatic — Subsegmental (Single/multiple)",
+          "Category B2: Symptomatic — Non-subsegmental",
+          "Category C1:(Low-Intermediate Risk - Normal Biomarkers & No RV Dysfunction)",
+          "Category C2: (Intermediate-High Risk - Elevated Cardiac Biomarkers)",
+          "Category C3: (Intermediate-High Risk - RV Dysfunction Present)",
           "Category D (Incipient Cardiopulmonary Failure/Normotensive Shock)",
           "Category E (Cardiopulmonary Failure/Shock)",
       ],
