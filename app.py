@@ -127,7 +127,7 @@ with col_s2:
         s_pe_sec = st.checkbox("Pulmonary Embolism (Secondary)")
 other_secondary = st.text_area("Additional Secondary Problems", value="")
 
-    st.subheader("Comorbidities")
+st.subheader("Comorbidities")
     col_c1, col_c2 = st.columns(2)
 with col_c1:
         c_ckd = st.checkbox("CKD / ESRF")
