@@ -100,7 +100,7 @@ if p_poisoning:
             acs_type = st.selectbox("ACS Type", ["UA", "NSTEMI", "STEMI / MI"], key="sel_acs_type")
             acs_timi = st.text_input("TIMI Score & Details", value="", key="txt_acs_timi")
 
-   s_acs = st.checkbox(
+s_acs = st.checkbox(
     "Secondary Acute Coronary Syndrome (Secondary ACS / Type 2 MI)",
     key="chk_s_acs",)
 
