@@ -48,22 +48,31 @@ with tab1:
 
 with tab2:
     st.header("2. Problem List & Clinical Diagnoses")
-    st.subheader("Primary Diagnosis/Problems")
-    
+    st.info("💡 Sub-options appear dynamically ONLY when a problem is checked.")
+    st.subheader("Primary Diagnosis/Peoblems")
     col_p1, col_p2 = st.columns(2)
     with col_p1:
-        p_ccf = st.checkbox("Decompensated CCF")
-        p_apo = st.checkbox("Acute Pulmonary Edema")
-        p_copd = st.checkbox("Acute Exacerbation of COPD / Asthma")
-        p_bronchiec = st.checkbox("Acute Exacerbation of bronchiectasis")
+    
+    p_ccf = st.checkbox("Decompensated Heart Failure", key="chk_p_ccf")
+        p_apo = st.checkbox("Acute Pulmonary Edema", key="chk_p_apo")
+        p_copd = st.checkbox("Acute Exacerbation of COPD / Asthma", key="chk_p_copd")
+    p_bronchiec = st.checkbox("Acute Exacerbation of bronchiectasis")
         bronchiec_source = st.selectbox ("type (if checked)", ["Infective", "Non-Infective"], key="infective_type2")
         p_ILD = st.checkbox("Acute Exacerbation of ILD")
         ILD_source = st.selectbox ("type", ["Infective", "Non-Infective"], key="infection_type1")
-        p_sepsis = st.checkbox("Severe Sepsis")
-        sepsis_source = st.text_input("Sepsis Source (if checked)", value="")
-        p_poisoning = st.checkbox("Poisoning")
-        poisoning_source = st.text_input(" Type (if checked)", value="")
-        
+    p_sepsis = st.checkbox("Severe Sepsis", key="chk_p_sepsis")
+        sepsis_source = ""
+        if p_sepsis:
+            sepsis_source = st.text_input("Specify Sepsis Source", value="", key="txt_sepsis_source")
+        p_poisoning = st.checkbox("Poisoning", key="chk_p_poisoning")
+        poisoning_detail = ""
+        if p_poisoning:
+            poisoning_detail = st.text_input("Specify Poisoning Details / Agent", value="", key="txt_poisoning_detail")
+
+
+
+
+   
     with col_p2:
         p_pneu = st.checkbox("Severe Pneumonia")
         pneu_type = st.selectbox("Pneumonia Etiology", ["Not Specified", "Viral", "Bacterial", "Atypical / Others"])
