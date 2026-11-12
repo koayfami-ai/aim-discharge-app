@@ -66,10 +66,10 @@ if p_bronch:
 
 p_ild = st.checkbox("Acute Exacerbation of Interstitial Lung Disease (ILD)", key="chk_p_ild")
 ild_type = ""
-        ild_detail = ""
-        if p_ild:
-        ild_type = st.selectbox("ILD Status", ["Infective Exacerbation", "Non-Infective Exacerbation / Flare"], key="sel_ild_type")
-        ild_detail = st.text_input("Subtype / HRCT / Details (e.g. IPF / CTD-ILD)", value="", key="txt_ild_detail")
+ild_detail = ""
+if p_ild:
+    ild_type = st.selectbox("ILD Status", ["Infective Exacerbation", "Non-Infective Exacerbation / Flare"], key="sel_ild_type")
+    ild_detail = st.text_input("Subtype / HRCT / Details (e.g. IPF / CTD-ILD)", value="", key="txt_ild_detail")
         
 p_sepsis = st.checkbox("Severe Sepsis", key="chk_p_sepsis")
     sepsis_source = ""
