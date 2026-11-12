@@ -152,7 +152,7 @@ if p_pe:
 p_stroke_pri = st.checkbox("Acute Stroke", key="chk_p_stroke_pri")
 stroke_type = ""
 stroke_subtype = ""
-stroke_detail = ""
+stroke_nihss = ""
 if p_stroke_pri:
   stroke_type = st.selectbox(
       "Stroke Classification",
