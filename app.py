@@ -39,7 +39,7 @@ with tab1:
     with col2:
         adm_date = st.date_input("Admission Date")
         dis_date = st.date_input("Date of Discharge")
-        referral_place = st.selectbox("Referral Source", ["ED", "Private Hospital/Private Clinic, "Klinik Kesihatan (KK)", "Ambulance", "Transfer from Other Wards HBM", " Transfer from Hospitals Cluster Perai", " Transfer from Hospitals of different Clusters", "Others"])
+        referral_place = st.selectbox("Referral Source", ["ED", "Private Hospital/Private Clinic", "Klinik Kesihatan (KK)", "Ambulance", "Transfer from Other Wards HBM", " Transfer from Hospitals Cluster Perai", " Transfer from Hospitals of different Clusters", "Others"])
         referral_other = st.text_input("Specify Source", value="")
         ward_bed = st.text_input("Ward / Bed No.", value="")
         attending_dr = st.text_input("Attending Doctor / Team", value="")
