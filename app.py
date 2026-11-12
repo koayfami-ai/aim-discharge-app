@@ -172,14 +172,14 @@ if stroke_type == "Ischemic":
         ],
         key="sel_stroke_ischemic_sub",
     )
-  else:
+else:
     stroke_subtype = st.text_input ("Hemorrhagic Subtype", [intracerebral/ ivh/sah, value= ""], key="sel_stroke_hem_sub",)
  
 p_seizure = st.checkbox("Seizures / Status Epilepticus", key="chk_p_seizure")
 seizure_type = ""
 seizure_detail = ""
 if p_seizure:
-  seizure_type = st.selectbox(
+    seizure_type = st.selectbox(
       "Seizure Type",
       [
           "Generalized Tonic-Clonic (GTC)",
@@ -187,12 +187,11 @@ if p_seizure:
       ],
       key="sel_seizure_type",
   )
-  seizure_detail = st.text_input(
+    seizure_detail = st.text_input(
       "Seizure type/ absences/myoclonus/cardiac seizure/metabolic",
       value="",
       key="txt_seizure_detail",
   )
-
 
 
 st.subheader("Secondary Problems")
