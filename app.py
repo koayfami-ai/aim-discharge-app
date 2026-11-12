@@ -132,24 +132,11 @@ if p_pe:
       "Respiratory Modifier (+/- R)",
       [
           "None / Not Applicable",
-          (
-              "Modifier R (Category C: SpO2 <90%, RR ≥30, need supplemental O2)"
-          ),
+          "Modifier R (Category C: SpO2 <90%, RR ≥30, need supplemental O2)",
           "Modifier R (Category D: >6L NC or NRB mask)",
           "Modifier R (Category E: Hypoxemic or ventilatory failure)",
       ],
       key="sel_pe_resp_mod_2026",
-  )
-
-
-
-          
-          "Category C3: Intermediate-High Risk - RV Dysfunction Present ",
-          "Category D1: (Incipient Cardiopulmonary Failure/Normotensive Shock)",
-          "Category D2: 
-          "Category E (Cardiopulmonary Failure/Shock)",
-      ],
-      key="sel_pe_category_2026",
   )
 
 
@@ -163,7 +150,7 @@ with col_s1:
         s_rv_dys = st.checkbox("Right Ventricular Dysfunction / Failure")
 with col_s2:
         s_arrhythmia = st.checkbox("Cardiac Arrhythmia")
-        arrhythmia_detail = st.text_input("Arrhythmia Details", value="")
+        arrhythmia_detail = st.text_input("Arrhythmia type", value="")
         s_stroke = st.checkbox("Stroke (Ischemic/Hemorrhagic)")
         s_pe_sec = st.checkbox("Pulmonary Embolism")
 other_secondary = st.text_area("Additional Secondary Problems", value="")
