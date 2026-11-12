@@ -128,7 +128,7 @@ with col_s2:
 other_secondary = st.text_area("Additional Secondary Problems", value="")
 
 st.subheader("Comorbidities")
-    col_c1, col_c2 = st.columns(2)
+col_c1, col_c2 = st.columns(2)
 with col_c1:
         c_ckd = st.checkbox("CKD / ESRF")
         ckd_stage = st.text_input("CKD Stage & Baseline Creatinine", value="")
@@ -148,7 +148,7 @@ with tab3:
     st.subheader("Main Presentation & Acute Interventions")
     presentation = st.text_area("Main Presentation & Associated Symptoms/Signs", value="")
     
-    col_int1, col_int2 = st.columns(2)
+col_int1, col_int2 = st.columns(2)
     with col_int1:
         int_o2 = st.text_input("Acute Oxygen Therapy Given", value="")
         int_fluid = st.text_input("Fluid Resuscitation / Restriction", value="")
@@ -157,18 +157,18 @@ with tab3:
         int_scan_by = st.text_input("Bedside Scan Performed By", value="")
         int_scan_findings = st.text_area("Initial Scan Findings", value="")
 
-    st.subheader("Ward Progress & Respiratory Support")
-    col_prog1, col_prog2 = st.columns(2)
-    with col_prog1:
+st.subheader("Ward Progress & Respiratory Support")
+col_prog1, col_prog2 = st.columns(2)
+with col_prog1:
         max_o2_modality = st.selectbox("Highest Oxygen Modality Required", ["Room Air", "Nasal Cannula", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"])
         max_fio2 = st.text_input("Highest FiO2 / Flow Rate (%)", value="")
         o2_duration = st.text_input("Duration of Advanced Oxygen Support", value="")
-    with col_prog2:
+with col_prog2:
         o2_conc_dis = st.selectbox("Need Temporary Oxygen Concentrator at Discharge?", ["No", "Yes"])
         o2_conc_duration = st.text_input("If Yes, Duration Needed", value="")
         inotropes_ward = st.text_input("Ward Inotropic Support Details", value="")
 
-    st.subheader("POCUS & Diagnostic Investigations")
+st.subheader("POCUS & Diagnostic Investigations")
     pocus_lung = st.text_input("POCUS Lung (e.g. B-lines, pleural effusion, sliding)", value="")
     pocus_heart = st.text_input("POCUS Heart (EF, RV strain, pericardial fluid)", value="")
     pocus_plr = st.text_input("POCUS Passive Leg Raise (PLR) / Fluid Responsiveness", value="")
