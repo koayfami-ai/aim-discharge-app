@@ -8,13 +8,13 @@ from docx.oxml.ns import qn, nsdecls
 import io
 
 st.set_page_config(
-    page_title="AIM Rapid Discharge Summary Generator",
+    page_title="AIM Rapid Review Clinic Discharge Summary",
     page_icon="🏥",
     layout="wide"
 )
 
-st.title("🏥 Acute Internal Medicine — Rapid Discharge Summary Generator")
-st.caption("Customized for AIM Ward & Rapid Review Clinic | Fast, Structured & HIPAA/PDPA Offline Ready")
+st.title("🏥 Acute Internal Medicine — Rapid Review Clinic Discharge Summary")
+st.caption("Customized for AIM patients & Rapid Review Clinic | Fast, Structured & HIPAA/PDPA Offline Ready")
 
 # Tabs for input
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
