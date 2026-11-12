@@ -33,7 +33,7 @@ with tab1:
         patient_name = st.text_input("Patient Full Name", value="")
         rn_mrn = st.text_input("RN / MRN", value="")
         ic_passport = st.text_input("NRIC / Passport No.", value="")
-        age_sex = st.text_input ("age/sex, value="")
+        age_sex = st.text_input("age/sex, value="")
         contact_num = st.text_input("Patient/Caretaker Contact No.", value="")
         caretaker = st.text_input("Caretaker Name & Relationship", value="")
     with col2:
