@@ -53,7 +53,7 @@ with tab2:
     col_p1, col_p2 = st.columns(2)
     with col_p1:
     
-    p_ccf = st.checkbox("Decompensated Heart Failure", key="chk_p_ccf")
+        p_ccf = st.checkbox("Decompensated Heart Failure", key="chk_p_ccf")
         p_apo = st.checkbox("Acute Pulmonary Edema", key="chk_p_apo")
         p_copd = st.checkbox("Acute Exacerbation of COPD / Asthma", key="chk_p_copd")
     
