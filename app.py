@@ -128,7 +128,7 @@ if p_pe:
           "Category B1: Symptomatic — Subsegmental (Single/multiple)",
           "Category B2: Symptomatic — Non-subsegmental",
           "Category C1: Low-Intermediate Risk - Normal Biomarkers & No RV Dysfunction",
-          "Category C2: Intermediate-High Risk - Elevated Cardiac  
+          "Category C2: Intermediate-High Risk - Elevated Cardiac",
           "Category D1: Incipient Cardiopulmonary Failure — Transient hypotension",
           "Category D2: Incipient Cardiopulmonary Failure — Normotensive shock",
           "Category E1: Cardiopulmonary Failure — Recurrent/persistent hypotension with cardiogenic shock",
