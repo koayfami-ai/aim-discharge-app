@@ -27,7 +27,7 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
 ])
 
 with tab1:
-    st.header("1. Patient Demographics & Ward Metadata")
+    st.header("1. Patient Demographics")
     col1, col2 = st.columns(2)
     with col1:
         patient_name = st.text_input("Patient Full Name", value="")
@@ -48,17 +48,22 @@ with tab1:
 
 with tab2:
     st.header("2. Problem List & Clinical Diagnoses")
-    st.subheader("Primary / Acute Discharge Diagnoses")
+    st.subheader("Primary Diagnosis/Problems")
     
     col_p1, col_p2 = st.columns(2)
     with col_p1:
         p_ccf = st.checkbox("Decompensated CCF")
         p_apo = st.checkbox("Acute Pulmonary Edema")
         p_copd = st.checkbox("Acute Exacerbation of COPD / Asthma")
+        p_bronchiec = st.checkbox("Acute Exacerbation of bronchiectasis")
+        bronchiec_source = st.selectbox ("Infective", "Non-Infective")
+        p_ILD = st.checkbox("Acute Exacerbation of ILD")
+        ILD_source = st.selectbox ("Infective", "Non-Infective")
         p_sepsis = st.checkbox("Severe Sepsis")
         sepsis_source = st.text_input("Sepsis Source (if checked)", value="")
         p_poisoning = st.checkbox("Poisoning")
-        poisoning_detail = st.text_input("Poisoning Details (if checked)", value="")
+        poisoning_source = st.text_input(" Type (if checked)", value="")
+        
     with col_p2:
         p_pneu = st.checkbox("Severe Pneumonia")
         pneu_type = st.selectbox("Pneumonia Etiology", ["Not Specified", "Viral", "Bacterial", "Atypical / Others"])
