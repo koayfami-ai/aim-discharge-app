@@ -56,7 +56,7 @@ with tab2:
         p_apo = st.checkbox("Acute Pulmonary Edema")
         p_copd = st.checkbox("Acute Exacerbation of COPD / Asthma")
         p_bronchiec = st.checkbox("Acute Exacerbation of bronchiectasis")
-        bronchiec_source = st.selectbox ("type", ["Infective", "Non-Infective"], key="infective_type2")
+        bronchiec_source = st.selectbox ("type (if checked)", ["Infective", "Non-Infective"], key="infective_type2")
         p_ILD = st.checkbox("Acute Exacerbation of ILD")
         ILD_source = st.selectbox ("type", ["Infective", "Non-Infective"], key="infection_type1")
         p_sepsis = st.checkbox("Severe Sepsis")
