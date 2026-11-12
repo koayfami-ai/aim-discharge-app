@@ -193,8 +193,8 @@ with col_proc2:
         renal_recovery = st.text_input("Renal Recovery Status at Discharge", value="")
 
 st.subheader("Resuscitation Status & Ceiling of Care Directive")
-    resus_status = st.radio("Resuscitation Code", ["Full Code", "Do-Not-Intubate (DNI)", "Full Comfort / Palliative Care"])
-    resus_notes = st.text_area("Resuscitation Details (e.g. Continue HD/inotropes, Highest NIV/HFNC ceiling, Future direction discussed with family)", value="")
+resus_status = st.radio("Resuscitation Code", ["Full Code", "Do-Not-Intubate (DNI)", "Full Comfort / Palliative Care"])
+resus_notes = st.text_area("Resuscitation Details (e.g. Continue HD/inotropes, Highest NIV/HFNC ceiling, Future direction discussed with family)", value="")
 
 with tab4:
     st.header("4. Key Diagnostic & Laboratory Trends (3-Point Comparison)")
