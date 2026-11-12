@@ -154,11 +154,13 @@ stroke_type = ""
 stroke_subtype = ""
 stroke_nihss = ""
 if p_stroke_pri:
-    stroke_type = st.selectbox(
+  # First dropdown: Ischemic vs Hemorrhagic
+  stroke_type = st.selectbox(
       "Stroke Classification",
       ["Ischemic", "Hemorrhagic"],
-      key="sel_stroke_type_pri",
+      key="sel_stroke_type",
   )
+
 if p_stroke_pri:
     stroke_nihss = st.text_input ("NIHSS/Neurological Deficit", value = "", key="txt_stroke_nihss"),
 if stroke_type == "Ischemic":
