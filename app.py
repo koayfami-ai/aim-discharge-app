@@ -173,7 +173,7 @@ if stroke_type == "Ischemic":
         key="sel_stroke_ischemic_sub",
     )
 else:
-    stroke_subtype = st.text_input ("Hemorrhagic Subtype", [intracerebral/ ivh/sah, value= ""], key="sel_stroke_hem_sub",)
+    stroke_subtype = st.text_input ("Hemorrhagic Subtype", ["intracerebral/ ivh/sah", value= ""], key="sel_stroke_hem_sub",)
  
 p_seizure = st.checkbox("Seizures / Status Epilepticus", key="chk_p_seizure")
 seizure_type = ""
