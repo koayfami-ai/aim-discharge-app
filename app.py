@@ -103,15 +103,30 @@ if p_poisoning:
 s_acs = st.checkbox(
     "Secondary Acute Coronary Syndrome (Secondary ACS / Type 2 MI)",
     key="chk_s_acs",)
+p_pe = st.checkbox(
+    "Pulmonary Embolism (PE) [2026 AHA/ACC Framework]", key="chk_p_pe"
+)
+pe_category = ""
+pe_pert = False
+pe_anticoag = ""
+pe_details = ""
 
 if p_pe:
-  summary_text += (
-      f"• Pulmonary Embolism ({pe_risk_cat}):"
-      f" {pe_details if pe_details else 'CTPA confirmed / Anticoagulation started'}\n"
+  pe_category = st.selectbox(
+      "2026 Acute PE Clinical Category (A–E)",
+      [
+          "Category A (Subclinical / Asymptomatic - ED Discharge)",
+          "Category B (Low Clinical Severity - Low PESI/Hestia / Outpatient)",
+          "Category C1 (Elevated Severity - Normal Biomarkers & No RV Dysfx)",
+          "Category C2 (Elevated Severity - Elevated Cardiac Biomarkers)",
+          "Category C3 (Elevated Severity - RV Dysfunction Present)",
+          "Category D (Incipient Cardiopulmonary Failure - PERT Indicated)",
+          "Category E (Cardiopulmonary Failure - Shock / Arrest / ICU Escalation)",
+      ],
+      key="sel_pe_category_2026",
   )
-  has_primary = True  # or has_sec = True depending on section
 
-        
+
 st.subheader("Secondary Problems")
 col_s1, col_s2 = st.columns(2)
 with col_s1:
