@@ -125,7 +125,7 @@ with col_s2:
         arrhythmia_detail = st.text_input("Arrhythmia Details", value="")
         s_stroke = st.checkbox("Stroke (Ischemic/Hemorrhagic)")
         s_pe_sec = st.checkbox("Pulmonary Embolism (Secondary)")
-    other_secondary = st.text_area("Additional Secondary Problems", value="")
+other_secondary = st.text_area("Additional Secondary Problems", value="")
 
     st.subheader("Comorbidities")
     col_c1, col_c2 = st.columns(2)
@@ -141,7 +141,7 @@ with col_c2:
         dm_detail = st.text_input("HbA1c % & Target Organ Damage", value="")
         c_htn = st.checkbox("Hypertension")
         c_frailty = st.selectbox("Baseline Mobility & Frailty", ["Independent", "Wheelchair-bound", "Bedridden"])
-    other_comorb = st.text_area("Other Comorbidities", value="")
+other_comorb = st.text_area("Other Comorbidities", value="")
 
 with tab3:
     st.header("3. Clinical Progress, POCUS & Resuscitation Directives")
