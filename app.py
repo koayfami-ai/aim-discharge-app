@@ -120,7 +120,7 @@ with col_s1:
         s_ards = st.checkbox("ARDS")
         ards_severity = st.selectbox("ARDS Severity", ["Mild", "Moderate", "Severe"])
         s_rv_dys = st.checkbox("Right Ventricular Dysfunction / Failure")
-    with col_s2:
+with col_s2:
         s_arrhythmia = st.checkbox("Cardiac Arrhythmia (AF/VT/SVT/etc.)")
         arrhythmia_detail = st.text_input("Arrhythmia Details", value="")
         s_stroke = st.checkbox("Stroke (Ischemic/Hemorrhagic)")
@@ -129,14 +129,14 @@ with col_s1:
 
     st.subheader("Comorbidities")
     col_c1, col_c2 = st.columns(2)
-    with col_c1:
+with col_c1:
         c_ckd = st.checkbox("CKD / ESRF")
         ckd_stage = st.text_input("CKD Stage & Baseline Creatinine", value="")
         c_hf = st.checkbox("HFrEF / HFpEF")
         hf_detail = st.text_input("LVEF % & Etiology (Ischemic/Non-Ischemic)", value="")
         c_cad = st.checkbox("Coronary Artery Disease (ASCVD)")
         cad_detail = st.text_input("CAD / ASCVD Details", value="")
-    with col_c2:
+with col_c2:
         c_dm = st.checkbox("Diabetes Mellitus")
         dm_detail = st.text_input("HbA1c % & Target Organ Damage", value="")
         c_htn = st.checkbox("Hypertension")
