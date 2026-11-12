@@ -18,7 +18,7 @@ st.caption("Customized for AIM patients & Rapid Review Clinic | Fast, Structured
 
 # Tabs for input
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-    "1. Demographics & Admin",
+    "1. Demographics",
     "2. Problem List & Comorbidities",
     "3. Progress, POCUS & Resuscitation",
     "4. Lab & Imaging Trends (3-Point)",
@@ -33,14 +33,14 @@ with tab1:
         patient_name = st.text_input("Patient Full Name", value="")
         rn_mrn = st.text_input("RN / MRN", value="")
         ic_passport = st.text_input("NRIC / Passport No.", value="")
-        age_sex = st.text_input("Age / Sex (e.g., 64 Y / Female)", value="")
+        age_sex = st.text_input ("age/sex, value="")
         contact_num = st.text_input("Patient/Caretaker Contact No.", value="")
         caretaker = st.text_input("Caretaker Name & Relationship", value="")
     with col2:
         adm_date = st.date_input("Admission Date")
         dis_date = st.date_input("Date of Discharge")
-        referral_place = st.selectbox("Referral Source", ["ED", "GP", "Klinik Kesihatan (KK)", "Ambulance", "Transfer from Other Ward", "Others"])
-        referral_other = st.text_input("Specify if Other Referral Source", value="")
+        referral_place = st.selectbox("Referral Source", ["ED", "Private Hospital/Private Clinic, "Klinik Kesihatan (KK)", "Ambulance", "Transfer from Other Wards HBM", " Transfer from Hospitals Cluster Perai", " Transfer from Hospitals of different Clusters", "Others"])
+        referral_other = st.text_input("Specify Source", value="")
         ward_bed = st.text_input("Ward / Bed No.", value="")
         attending_dr = st.text_input("Attending Doctor / Team", value="")
         subspec_team = st.text_input("Subspecialty Team(s) Involved", value="")
