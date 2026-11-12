@@ -58,7 +58,7 @@ with tab2:
         p_bronchiec = st.checkbox("Acute Exacerbation of bronchiectasis")
         bronchiec_source = st.selectbox ("Infective", "Non-Infective")
         p_ILD = st.checkbox("Acute Exacerbation of ILD")
-        ILD_source = st.selectbox ("Infective", "Non-Infective")
+        ILD_source = st.selectbox("Infective", "Non-Infective")
         p_sepsis = st.checkbox("Severe Sepsis")
         sepsis_source = st.text_input("Sepsis Source (if checked)", value="")
         p_poisoning = st.checkbox("Poisoning")
