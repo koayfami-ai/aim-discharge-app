@@ -100,12 +100,18 @@ p_bronch = st.checkbox("Acute Exacerbation of Bronchiectasis", key="chk_p_bronch
             acs_type = st.selectbox("ACS Type", ["UA", "NSTEMI", "STEMI / MI"], key="sel_acs_type")
             acs_timi = st.text_input("TIMI Score & Details", value="", key="txt_acs_timi")
 
-   
-        p_pe_primary = st.checkbox("Pulmonary Embolism (Primary)")
-        pe_risk = st.text_input("PE Risk Stratification (e.g. High/Int/Low)", value="")
-    
-    other_primary = st.text_area("Other Primary Diagnoses", value="")
+   s_acs = st.checkbox(
+    "Secondary Acute Coronary Syndrome (Secondary ACS / Type 2 MI)",
+    key="chk_s_acs",)
 
+if p_pe:
+  summary_text += (
+      f"• Pulmonary Embolism ({pe_risk_cat}):"
+      f" {pe_details if pe_details else 'CTPA confirmed / Anticoagulation started'}\n"
+  )
+  has_primary = True  # or has_sec = True depending on section
+
+        
     st.subheader("Secondary Problems")
     col_s1, col_s2 = st.columns(2)
     with col_s1:
