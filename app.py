@@ -56,55 +56,54 @@ with tab2:
         p_ccf = st.checkbox("Decompensated Heart Failure", key="chk_p_ccf")
         p_apo = st.checkbox("Acute Pulmonary Edema", key="chk_p_apo")
         p_copd = st.checkbox("Acute Exacerbation of COPD / Asthma", key="chk_p_copd")
-    
 p_bronch = st.checkbox("Acute Exacerbation of Bronchiectasis", key="chk_p_bronch")
 bronch_type = ""
 bronch_detail = ""
 if p_bronch:
-        bronch_type = st.selectbox("Bronchiectasis Status", ["Infective Exacerbation", "Non-Infective Exacerbation"], key="sel_bronch_type")
-        bronch_detail = st.text_input("Organism / Sputum / Details", value="", key="txt_bronch_detail")
+        bronch_type = st.selectbox("Bronchiectasis Status", ["Infective", "Non-Infective"], key="sel_bronch_type")
+        bronch_detail = st.text_input("Organism/source", value="", key="txt_bronch_detail")
 
 p_ild = st.checkbox("Acute Exacerbation of Interstitial Lung Disease (ILD)", key="chk_p_ild")
 ild_type = ""
 ild_detail = ""
 if p_ild:
-    ild_type = st.selectbox("ILD Status", ["Infective Exacerbation", "Non-Infective Exacerbation / Flare"], key="sel_ild_type")
-    ild_detail = st.text_input("Subtype / HRCT / Details (e.g. IPF / CTD-ILD)", value="", key="txt_ild_detail")
+    ild_type = st.selectbox("ILD Status", ["Infective", "Non-Infective/Acute Flare"], key="sel_ild_type")
+    ild_detail = st.text_input("Subtype (e.g. post infectious/IPF / CTD-ILD)", value="", key="txt_ild_detail")
         
-p_sepsis = st.checkbox("Severe Sepsis", key="chk_p_sepsis")
+p_sepsis = st.checkbox("Severe Sepsis/septic shock", key="chk_p_sepsis")
 sepsis_source = ""
 if p_sepsis:
-    sepsis_source = st.text_input("Specify Sepsis Source", value="", key="txt_sepsis_source")
-p_poisoning = st.checkbox("Poisoning", key="chk_p_poisoning")
+    sepsis_source = st.text_input("Sepsis Source", value="", key="txt_sepsis_source")
+p_poisoning = st.checkbox("Acute Poisoning", key="chk_p_poisoning")
 poisoning_detail = ""
 if p_poisoning:
-    poisoning_detail = st.text_input("Specify Poisoning Details / Agent", value="", key="txt_poisoning_detail")
+    poisoning_detail = st.text_input("Specify Agent/Poisoning Details", value="", key="txt_poisoning_detail")
 
     with col_p2:
         p_pneu = st.checkbox("Severe Pneumonia", key="chk_p_pneu")
         pneu_type = ""
         pneu_detail = ""
         if p_pneu:
-            pneu_type = st.selectbox("Pneumonia Etiology", ["Not Specified", "Viral", "Bacterial", "Atypical / Others"], key="sel_pneu_type")
-            pneu_detail = st.text_input("Organism / Details", value="", key="txt_pneu_detail")
+            pneu_type = st.selectbox("Pneumonia Etiology", ["Not Specified", "Viral", "Bacterial", "fungi", "tuberculosis", "Atypical", "Others"], key="sel_pneu_type")
+            pneu_detail = st.text_input("Organism / source", value="", key="txt_pneu_detail")
 
         p_snake = st.checkbox("Snake Bite with Envenomation", key="chk_p_snake")
         snake_detail = ""
         if p_snake:
-            snake_detail = st.text_input("Local / Systemic Envenomation Details", value="", key="txt_snake_detail")
+            snake_detail = st.text_input ("Snake type/Local or Systemic Envenomation", value="", key="txt_snake_detail")
 
         p_acs = st.checkbox("Acute Coronary Syndrome (ACS)", key="chk_p_acs")
         acs_type = ""
         acs_timi = ""
         if p_acs:
-            acs_type = st.selectbox("ACS Type", ["UA", "NSTEMI", "STEMI / MI"], key="sel_acs_type")
-            acs_timi = st.text_input("TIMI Score & Details", value="", key="txt_acs_timi")
+            acs_type = st.selectbox("ACS Type", ["UA", "NSTEMI", "STEMI"], key="sel_acs_type")
+            acs_timi = st.text_input("TIMI Score", value="", key="txt_acs_timi")
 
 s_acs = st.checkbox(
-    "Secondary Acute Coronary Syndrome (Secondary ACS / Type 2 MI)",
+    "Secondary Acute Coronary Syndrome )",
     key="chk_s_acs",)
 p_pe = st.checkbox(
-    "Pulmonary Embolism (PE) [2026 AHA/ACC Framework]", key="chk_p_pe"
+    "Pulmonary Embolism (PE)", key="chk_p_pe"
 )
 pe_category = ""
 pe_pert = False
@@ -115,7 +114,7 @@ if p_pe:
   pe_category = st.selectbox(
       "2026 Acute PE Clinical Category (A–E)",
       [
-          "Category A: (Low Risk - Subclinical / Asymptomatic)",
+          "Category A: Low Risk - Subclinical / Asymptomatic)",
           "Category B1: Symptomatic — Subsegmental (Single/multiple)",
           "Category B2: Symptomatic — Non-subsegmental",
           "Category C1:(Low-Intermediate Risk - Normal Biomarkers & No RV Dysfunction)",
