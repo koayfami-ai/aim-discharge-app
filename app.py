@@ -160,8 +160,8 @@ col_c1, col_c2 = st.columns(2)
 with col_c1:
         c_ckd = st.checkbox("CKD / ESRF")
         ckd_stage = st.text_input("CKD Stage & Baseline Creatinine", value="")
-        c_hf = st.checkbox("HFrEF / HFpEF")
-        hf_detail = st.text_input("LVEF % & Etiology (Ischemic/Non-Ischemic)", value="")
+        c_hf = st.checkbox("HFrEF / HFpEF/HFimpEF")
+        hf_detail = st.text_input("LVEF % & Etiology (Ischemic/Non-Ischemic/htn)", value="")
         c_cad = st.checkbox("Coronary Artery Disease")
         cad_detail = st.text_input("3VD/CAD / ASCVD Details", value="")
 with col_c2:
