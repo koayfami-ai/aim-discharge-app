@@ -149,11 +149,11 @@ with tab3:
     presentation = st.text_area("Main Presentation & Associated Symptoms/Signs", value="")
     
 col_int1, col_int2 = st.columns(2)
-    with col_int1:
+with col_int1:
         int_o2 = st.text_input("Acute Oxygen Therapy Given", value="")
         int_fluid = st.text_input("Fluid Resuscitation / Restriction", value="")
         int_inotropes = st.text_input("Inotropic Support Given", value="")
-    with col_int2:
+with col_int2:
         int_scan_by = st.text_input("Bedside Scan Performed By", value="")
         int_scan_findings = st.text_area("Initial Scan Findings", value="")
 
@@ -177,22 +177,22 @@ st.subheader("POCUS & Diagnostic Investigations")
     pocus_interp = st.text_area("Overall POCUS & Clinical Interpretation", value="")
     ecg_findings = st.text_area("ECG Findings & Evolution", value="")
 
-    st.subheader("Inpatient Procedures Performed")
-    col_proc1, col_proc2 = st.columns(2)
-    with col_proc1:
+st.subheader("Inpatient Procedures Performed")
+col_proc1, col_proc2 = st.columns(2)
+with col_proc1:
         proc_pleural = st.checkbox("Pleural Aspiration / Drainage")
         proc_ascites = st.checkbox("Peritoneal Aspiration / Paracentesis")
         proc_lp = st.checkbox("Lumbar Puncture")
-    with col_proc2:
+with col_proc2:
         proc_cvl = st.checkbox("Central Venous Line (CVL)")
         proc_hd_cath = st.checkbox("Acute Dialysis Catheter (VasCath)")
         proc_others = st.text_input("Other Procedures", value="")
     
-    dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"])
-    dialysis_duration = st.text_input("If Yes, Dialysis Duration & Sessions", value="")
-    renal_recovery = st.text_input("Renal Recovery Status at Discharge", value="")
+        dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"])
+        dialysis_duration = st.text_input("If Yes, Dialysis Duration & Sessions", value="")
+        renal_recovery = st.text_input("Renal Recovery Status at Discharge", value="")
 
-    st.subheader("Resuscitation Status & Ceiling of Care Directive")
+st.subheader("Resuscitation Status & Ceiling of Care Directive")
     resus_status = st.radio("Resuscitation Code", ["Full Code", "Do-Not-Intubate (DNI)", "Full Comfort / Palliative Care"])
     resus_notes = st.text_area("Resuscitation Details (e.g. Continue HD/inotropes, Highest NIV/HFNC ceiling, Future direction discussed with family)", value="")
 
