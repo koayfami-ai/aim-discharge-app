@@ -188,7 +188,7 @@ if p_seizure:
       key="sel_seizure_type",
   )
     seizure_detail = st.text_input(
-      "Seizure type/ absences/myoclonus/cardiac seizure/metabolic",
+      "Seizure Type",
       value="",
       key="txt_seizure_detail",
   )
