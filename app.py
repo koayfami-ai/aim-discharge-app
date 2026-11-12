@@ -74,10 +74,20 @@ p_sepsis = st.checkbox("Severe Sepsis/septic shock", key="chk_p_sepsis")
 sepsis_source = ""
 if p_sepsis:
     sepsis_source = st.text_input("Sepsis Source", value="", key="txt_sepsis_source")
+
 p_poisoning = st.checkbox("Acute Poisoning", key="chk_p_poisoning")
 poisoning_detail = ""
 if p_poisoning:
     poisoning_detail = st.text_input("Specify Agent/Poisoning Details", value="", key="txt_poisoning_detail")
+
+p_withdrawal = st.checkbox(
+    "Drug / Substance Withdrawal", key="chk_p_withdrawal"
+)
+withdrawal_type = ""
+withdrawal_toxidrome = ""
+withdrawal_detail = ""
+if p_withdrawal:
+  withdrawal_type = st.text_input ("substance type/amphetamine/opiod/toxidromes", value="", key="sel_withdrawal_type")
 
     with col_p2:
         p_pneu = st.checkbox("Severe Pneumonia", key="chk_p_pneu")
