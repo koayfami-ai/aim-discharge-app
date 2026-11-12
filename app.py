@@ -160,7 +160,7 @@ if p_stroke_pri:
       key="sel_stroke_type_pri",
   )
 if p_stroke_pri:
-    stroke_nihss = st.text_input ("nihss/weakness", value = "", key="txt_stroke_nihss"),
+    stroke_nihss = st.text_input ("NIHSS/Neurological Deficit", value = "", key="txt_stroke_nihss"),
 if stroke_type == "Ischemic":
     stroke_subtype = st.selectbox(
         "Ischemic Subtype",
@@ -173,7 +173,7 @@ if stroke_type == "Ischemic":
         key="sel_stroke_ischemic_sub",
     )
 else:
-    stroke_subtype = st.text_input ("intracerebral/ ivh/sah", value= "", key="sel_stroke_hem_sub"),
+    stroke_subtype = st.text_input ("Type", value= "", key="sel_stroke_hem_sub"),
  
 p_seizure = st.checkbox("Seizures / Status Epilepticus", key="chk_p_seizure")
 seizure_type = ""
