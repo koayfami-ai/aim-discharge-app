@@ -60,7 +60,7 @@ with tab2:
 p_bronch = st.checkbox("Acute Exacerbation of Bronchiectasis", key="chk_p_bronch")
 bronch_type = ""
 bronch_detail = ""
-    if p_bronch:
+if p_bronch:
         bronch_type = st.selectbox("Bronchiectasis Status", ["Infective Exacerbation", "Non-Infective Exacerbation"], key="sel_bronch_type")
         bronch_detail = st.text_input("Organism / Sputum / Details", value="", key="txt_bronch_detail")
 
