@@ -80,10 +80,10 @@ poisoning_detail = ""
 if p_poisoning:
     poisoning_detail = st.text_input("Specify Poisoning Details / Agent", value="", key="txt_poisoning_detail")
 
-   with col_p2:
-        p_pneu = st.checkbox("Severe Pneumonia", key="chk_p_pneu")
-        pneu_type = ""
-        pneu_detail = ""
+    with col_p2:
+    p_pneu = st.checkbox("Severe Pneumonia", key="chk_p_pneu")
+    pneu_type = ""
+    pneu_detail = ""
         if p_pneu:
             pneu_type = st.selectbox("Pneumonia Etiology", ["Not Specified", "Viral", "Bacterial", "Atypical / Others"], key="sel_pneu_type")
             pneu_detail = st.text_input("Organism / Details", value="", key="txt_pneu_detail")
