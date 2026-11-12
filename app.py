@@ -117,10 +117,36 @@ if p_pe:
           "Category A: Low Risk - Subclinical / Asymptomatic)",
           "Category B1: Symptomatic — Subsegmental (Single/multiple)",
           "Category B2: Symptomatic — Non-subsegmental",
-          "Category C1:(Low-Intermediate Risk - Normal Biomarkers & No RV Dysfunction)",
-          "Category C2: (Intermediate-High Risk - Elevated Cardiac Biomarkers)",
-          "Category C3: (Intermediate-High Risk - RV Dysfunction Present)",
-          "Category D (Incipient Cardiopulmonary Failure/Normotensive Shock)",
+          "Category C1: Low-Intermediate Risk - Normal Biomarkers & No RV Dysfunction",
+          "Category C2: Intermediate-High Risk - Elevated Cardiac  
+          "Category D1: Incipient Cardiopulmonary Failure — Transient hypotension",
+          "Category D2: Incipient Cardiopulmonary Failure — Normotensive shock",
+          "Category E1: Cardiopulmonary Failure — Recurrent/persistent hypotension with cardiogenic shock",
+          "Category E2: Cardiopulmonary Failure — Refractory cardiogenic shock or cardiac arrest",
+      ],
+      key="sel_pe_cat_2026",
+  )
+
+  # Tiered Respiratory Modifier (+/- R)
+  pe_resp_mod = st.selectbox(
+      "Respiratory Modifier (+/- R)",
+      [
+          "None / Not Applicable",
+          (
+              "Modifier R (Category C: SpO2 <90%, RR ≥30, need supplemental O2)"
+          ),
+          "Modifier R (Category D: >6L NC or NRB mask)",
+          "Modifier R (Category E: Hypoxemic or ventilatory failure)",
+      ],
+      key="sel_pe_resp_mod_2026",
+  )
+
+
+
+          
+          "Category C3: Intermediate-High Risk - RV Dysfunction Present ",
+          "Category D1: (Incipient Cardiopulmonary Failure/Normotensive Shock)",
+          "Category D2: 
           "Category E (Cardiopulmonary Failure/Shock)",
       ],
       key="sel_pe_category_2026",
