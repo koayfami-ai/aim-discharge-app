@@ -56,10 +56,21 @@ with tab2:
     p_ccf = st.checkbox("Decompensated Heart Failure", key="chk_p_ccf")
         p_apo = st.checkbox("Acute Pulmonary Edema", key="chk_p_apo")
         p_copd = st.checkbox("Acute Exacerbation of COPD / Asthma", key="chk_p_copd")
-    p_bronchiec = st.checkbox("Acute Exacerbation of bronchiectasis")
-        bronchiec_source = st.selectbox ("type (if checked)", ["Infective", "Non-Infective"], key="infective_type2")
-        p_ILD = st.checkbox("Acute Exacerbation of ILD")
-        ILD_source = st.selectbox ("type", ["Infective", "Non-Infective"], key="infection_type1")
+    
+p_bronch = st.checkbox("Acute Exacerbation of Bronchiectasis", key="chk_p_bronch")
+        bronch_type = ""
+        bronch_detail = ""
+        if p_bronch:
+            bronch_type = st.selectbox("Bronchiectasis Status", ["Infective Exacerbation", "Non-Infective Exacerbation"], key="sel_bronch_type")
+            bronch_detail = st.text_input("Organism / Sputum / Details", value="", key="txt_bronch_detail")
+
+        p_ild = st.checkbox("Acute Exacerbation of Interstitial Lung Disease (ILD)", key="chk_p_ild")
+        ild_type = ""
+        ild_detail = ""
+        if p_ild:
+            ild_type = st.selectbox("ILD Status", ["Infective Exacerbation", "Non-Infective Exacerbation / Flare"], key="sel_ild_type")
+            ild_detail = st.text_input("Subtype / HRCT / Details (e.g. IPF / CTD-ILD)", value="", key="txt_ild_detail")
+        
     p_sepsis = st.checkbox("Severe Sepsis", key="chk_p_sepsis")
         sepsis_source = ""
         if p_sepsis:
