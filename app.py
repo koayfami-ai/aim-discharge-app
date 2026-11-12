@@ -69,19 +69,27 @@ with tab2:
         if p_poisoning:
             poisoning_detail = st.text_input("Specify Poisoning Details / Agent", value="", key="txt_poisoning_detail")
 
+   with col_p2:
+        p_pneu = st.checkbox("Severe Pneumonia", key="chk_p_pneu")
+        pneu_type = ""
+        pneu_detail = ""
+        if p_pneu:
+            pneu_type = st.selectbox("Pneumonia Etiology", ["Not Specified", "Viral", "Bacterial", "Atypical / Others"], key="sel_pneu_type")
+            pneu_detail = st.text_input("Organism / Details", value="", key="txt_pneu_detail")
 
+        p_snake = st.checkbox("Snake Bite with Envenomation", key="chk_p_snake")
+        snake_detail = ""
+        if p_snake:
+            snake_detail = st.text_input("Local / Systemic Envenomation Details", value="", key="txt_snake_detail")
 
+        p_acs = st.checkbox("Acute Coronary Syndrome (ACS)", key="chk_p_acs")
+        acs_type = ""
+        acs_timi = ""
+        if p_acs:
+            acs_type = st.selectbox("ACS Type", ["UA", "NSTEMI", "STEMI / MI"], key="sel_acs_type")
+            acs_timi = st.text_input("TIMI Score & Details", value="", key="txt_acs_timi")
 
    
-    with col_p2:
-        p_pneu = st.checkbox("Severe Pneumonia")
-        pneu_type = st.selectbox("Pneumonia Etiology", ["Not Specified", "Viral", "Bacterial", "Atypical / Others"])
-        pneu_detail = st.text_input("Pneumonia Organism / Details", value="")
-        p_snake = st.checkbox("Snake Bite with Envenomation")
-        snake_detail = st.text_input("Local/Systemic Envenomation Details", value="")
-        p_acs = st.checkbox("Acute Coronary Syndrome (ACS)")
-        acs_type = st.selectbox("ACS Type & TIMI Score", ["UA", "NSTEMI", "STEMI / MI"])
-        acs_timi = st.text_input("TIMI Score & Details", value="")
         p_pe_primary = st.checkbox("Pulmonary Embolism (Primary)")
         pe_risk = st.text_input("PE Risk Stratification (e.g. High/Int/Low)", value="")
     
