@@ -89,7 +89,7 @@ withdrawal_detail = ""
 if p_withdrawal:
   withdrawal_type = st.text_input ("substance type/amphetamine/opiod/toxidromes", value="", key="sel_withdrawal_type")
 
-    with col_p2:
+with col_p2:
         p_pneu = st.checkbox("Severe Pneumonia", key="chk_p_pneu")
         pneu_type = ""
         pneu_detail = ""
