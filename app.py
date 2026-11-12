@@ -154,7 +154,7 @@ stroke_type = ""
 stroke_subtype = ""
 stroke_nihss = ""
 if p_stroke_pri:
-  stroke_type = st.selectbox(
+    stroke_type = st.selectbox(
       "Stroke Classification",
       ["Ischemic", "Hemorrhagic"],
       key="sel_stroke_type_pri",
