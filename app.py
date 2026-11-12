@@ -112,8 +112,8 @@ if p_pe:
   has_primary = True  # or has_sec = True depending on section
 
         
-    st.subheader("Secondary Problems")
-    col_s1, col_s2 = st.columns(2)
+st.subheader("Secondary Problems")
+col_s1, col_s2 = st.columns(2)
     with col_s1:
         s_aki = st.checkbox("Acute Kidney Injury (AKI)")
         aki_cause = st.text_input("AKI Etiology", value="")
