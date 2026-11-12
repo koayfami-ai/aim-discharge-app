@@ -72,13 +72,13 @@ if p_ild:
     ild_detail = st.text_input("Subtype / HRCT / Details (e.g. IPF / CTD-ILD)", value="", key="txt_ild_detail")
         
 p_sepsis = st.checkbox("Severe Sepsis", key="chk_p_sepsis")
-    sepsis_source = ""
-    if p_sepsis:
-        sepsis_source = st.text_input("Specify Sepsis Source", value="", key="txt_sepsis_source")
+sepsis_source = ""
+if p_sepsis:
+    sepsis_source = st.text_input("Specify Sepsis Source", value="", key="txt_sepsis_source")
 p_poisoning = st.checkbox("Poisoning", key="chk_p_poisoning")
 poisoning_detail = ""
-    if p_poisoning:
-        poisoning_detail = st.text_input("Specify Poisoning Details / Agent", value="", key="txt_poisoning_detail")
+if p_poisoning:
+    poisoning_detail = st.text_input("Specify Poisoning Details / Agent", value="", key="txt_poisoning_detail")
 
    with col_p2:
         p_pneu = st.checkbox("Severe Pneumonia", key="chk_p_pneu")
