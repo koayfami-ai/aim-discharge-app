@@ -994,9 +994,10 @@ row_data = [
         (f"Referral Source: {referral_place} ({referral_other})", f"Ward / Bed: {ward_bed}"),
         (f"Attending Doctor: {attending_dr}", f"Subspecialty Team: {subspec_team}")
         ]
-    for idx, (c1, c2) in enumerate(row_data):
-        t1.rows[idx].cells[0].text = c1
-        t1.rows[idx].cells[1].text = c2
+
+for idx, (c1, c2) in enumerate(row_data):
+    t1.rows[idx].cells[0].text = c1
+    t1.rows[idx].cells[1].text = c2
 
     p_meta = doc.add_paragraph()
     p_meta.add_run(f"Contact No: {contact_num} | Caretaker: {caretaker}\nAddress: {address}").italic = True
