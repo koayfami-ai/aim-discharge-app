@@ -458,16 +458,16 @@ lab_params = [
     ("Others", "ABG/Notes")
     ]
 
-    lab_inputs = {}
-    for param, unit in lab_params:
-        c1, c2, c3, c4, c5, c6 = st.columns([2.5, 3, 3, 3, 3, 3])
-        c1.markdown(f"**{param}** <small>({unit})</small>", unsafe_allow_html=True)
-        val_adm = c2.text_input(f"{param} Adm", value="", key=f"inp_{param}_adm", label_visibility="collapsed")
-        val_mid1 = c3.text_input(f"{param} Mid1", value="", key=f"inp_{param}_mid1", label_visibility="collapsed")
-        val_mid2 = c4.text_input(f"{param} Mid2", value="", key=f"inp_{param}_mid2", label_visibility="collapsed")
-        val_mid3 = c5.text_input(f"{param} Mid1", value="", key=f"inp_{param}_mid3", label_visibility="collapsed")
-        val_dis = c6.text_input(f"{param} Dis", value="", key=f"inp_{param}_dis", label_visibility="collapsed")
-        lab_inputs[param] = (val_adm, val_mid1, val_mid2, val_mid3, val_dis)
+lab_inputs = {}
+for param, unit in lab_params:
+    c1, c2, c3, c4, c5, c6 = st.columns([2.5, 3, 3, 3, 3, 3])
+    c1.markdown(f"**{param}** <small>({unit})</small>", unsafe_allow_html=True)
+    val_adm = c2.text_input(f"{param} Adm", value="", key=f"inp_{param}_adm", label_visibility="collapsed")
+    val_mid1 = c3.text_input(f"{param} Mid1", value="", key=f"inp_{param}_mid1", label_visibility="collapsed")
+    val_mid2 = c4.text_input(f"{param} Mid2", value="", key=f"inp_{param}_mid2", label_visibility="collapsed")
+    val_mid3 = c5.text_input(f"{param} Mid1", value="", key=f"inp_{param}_mid3", label_visibility="collapsed")
+    val_dis = c6.text_input(f"{param} Dis", value="", key=f"inp_{param}_dis", label_visibility="collapsed")
+    lab_inputs[param] = (val_adm, val_mid1, val_mid2, val_mid3, val_dis)
 
 st.markdown("---")
 
