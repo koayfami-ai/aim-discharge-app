@@ -422,7 +422,7 @@ with col_d2:
 with col_d3:
     date_mid2_str = st.text_input("Date", value="16/10/2026", key="lbl_mid2_date")
 with col_d4:
-    date_mid3_str = st.text_input("Date", value="17/10/2026", key="lbl_mid3_date" 
+    date_mid3_str = st.text_input("Date", value="17/10/2026", key="lbl_mid3_date")
 with col_d5:
     date_dis_str = st.text_input("Predischarge Date", value="19/10/2026", key="lbl_dis_date")
 
