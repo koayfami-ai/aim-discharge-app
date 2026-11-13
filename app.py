@@ -455,16 +455,17 @@ with tab3:
             tami_comp = c_c.text_input("Date Complete", value="", key="txt_in_tami_c")
             inmed_list.append(f"• Oral Tamiflu {tami_dose} {tami_freq} [Started: {tami_start if tami_start else 'N/A'} | Completed: {tami_comp if tami_comp else 'N/A'}]")
 
-    st.markdown("**Nebulization Therapies:**")
+    st.markdown("**Nebulization:**")
     cn1, cn2 = st.columns(2)
     with cn1:
         # Combivent
-        chk_comb = st.checkbox("Neb Combivent", key="chk_in_comb")
+        chk_comb = st.checkbox("Neb Combivent (Ipratopium bromide 0.5 mg/albuterol 2.5 mg per 3 mL vial) 4 hrly"), 
+        key="chk_in_comb")
         if chk_comb:
             c_s, c_c = st.columns(2)
             comb_start = c_s.text_input("Date Start", value="", key="txt_in_comb_s")
             comb_comp = c_c.text_input("Date Complete", value="", key="txt_in_comb_c")
-            inmed_list.append(f"• Neb Combivent 2.5ml 4 hrly [Started: {comb_start if comb_start else 'N/A'} | Completed: {comb_comp if comb_comp else 'N/A'}]")
+            inmed_list.append(f"• Neb Combivent 3ml 4 hrly [Started: {comb_start if comb_start else 'N/A'} | Completed: {comb_comp if comb_comp else 'N/A'}]")
 
         # Salbutamol
         chk_salb = st.checkbox("Neb Salbutamol", key="chk_in_salb")
@@ -491,7 +492,7 @@ with tab3:
             c_s, c_c = st.columns(2)
             gtn_start = c_s.text_input("Date Start", value="", key="txt_in_gtn_s")
             gtn_comp = c_c.text_input("Date Complete", value="", key="txt_in_gtn_c")
-            inmed_list.append(f"• Neb GTN 5 mg [Started: {gtn_start if gtn_start else 'N/A'} | Completed: {gtn_comp if gtn_comp else 'N/A'}]")
+            inmed_list.append(f"• Neb GTN 5 mg QID/PRN [Started: {gtn_start if gtn_start else 'N/A'} | Completed: {gtn_comp if gtn_comp else 'N/A'}]")
 
     inmed_custom = st.text_input("Other Inpatient Medications / Infusions", value="", key="txt_inmed_custom")
     if inmed_custom:
