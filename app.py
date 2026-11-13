@@ -113,10 +113,10 @@ with col_p2:
             key="chk_s_acs",)
         p_pe = st.checkbox(
             "Pulmonary Embolism (PE)", key="chk_p_pe")
-    pe_category = ""
-    pe_pert = False
-    pe_anticoag = ""
-    pe_details = ""
+        pe_category = ""
+        pe_pert = False
+        pe_anticoag = ""
+        pe_details = ""
 
         if p_pe:
             pe_category = st.selectbox(
