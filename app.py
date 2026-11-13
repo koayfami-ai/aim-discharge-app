@@ -1141,11 +1141,11 @@ target = io.BytesIO()
 doc.save(target)
 return target.getvalue()
 
-    doc_bytes = generate_docx()
-    st.download_button(
-        label="📄 Download Formatted Word Document (.docx)",
-        data=doc_bytes,
-        file_name=f"AIM_Discharge_{rn_mrn if rn_mrn else 'Draft'}.docx",
-        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+doc_bytes = generate_docx()
+st.download_button(
+    label="📄 Download Formatted Word Document (.docx)",
+    data=doc_bytes,
+    file_name=f"AIM_Discharge_{rn_mrn if rn_mrn else 'Draft'}.docx",
+    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
 
