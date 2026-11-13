@@ -984,9 +984,9 @@ def generate_docx():
 
         # Section 1: Demographics
     add_sec_heading("[ 1. PATIENT DEMOGRAPHICS & WARD METADATA ]")
-        t1 = doc.add_table(rows=5, cols=2)
-        t1.style = 'Table Grid'
-        t1.alignment = WD_TABLE_ALIGNMENT.CENTER
+    t1 = doc.add_table(rows=5, cols=2)
+    t1.style = 'Table Grid'
+    t1.alignment = WD_TABLE_ALIGNMENT.CENTER
         
         row_data = [
             (f"Patient Name: {patient_name}", f"RN / MRN: {rn_mrn}"),
