@@ -696,10 +696,10 @@ with tab4:
     if "Mobile Touch Grid" in entry_mode:
         st.info("💡 **Swipe left/right** with your finger across the table below to see all 5 dates. **Tap any cell** to enter values.")
         col_adm_hdr = f"Adm ({date_adm_str})"
-        col_m1_hdr = f"Ward1 ({date_mid1_str})"
-        col_m2_hdr = f"Ward2 ({date_mid2_str})"
-        col_m3_hdr = f"Ward3 ({date_mid3_str})"
-        col_dis_hdr = f"PreDischarge ({date_dis_str})"
+        col_m1_hdr = f"W1 ({date_mid1_str})"
+        col_m2_hdr = f"W2 ({date_mid2_str})"
+        col_m3_hdr = f"W3 ({date_mid3_str})"
+        col_dis_hdr = f"Pre ({date_dis_str})"
 
         dict_init = {
             "Parameter": [f"{p} ({u})" for p, u in lab_params],
