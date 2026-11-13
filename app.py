@@ -988,12 +988,12 @@ def generate_docx():
     t1.style = 'Table Grid'
     t1.alignment = WD_TABLE_ALIGNMENT.CENTER
         
-        row_data = [
-            (f"Patient Name: {patient_name}", f"RN / MRN: {rn_mrn}"),
-            (f"IC / Passport: {ic_passport}", f"Age / Sex: {age_sex}"),
-            (f"Admission Date: {adm_date}", f"Discharge Date: {dis_date}"),
-            (f"Referral Source: {referral_place} ({referral_other})", f"Ward / Bed: {ward_bed}"),
-            (f"Attending Doctor: {attending_dr}", f"Subspecialty Team: {subspec_team}")
+    row_data = [
+        (f"Patient Name: {patient_name}", f"RN / MRN: {rn_mrn}"),
+        (f"IC / Passport: {ic_passport}", f"Age / Sex: {age_sex}"),
+        (f"Admission Date: {adm_date}", f"Discharge Date: {dis_date}"),
+        (f"Referral Source: {referral_place} ({referral_other})", f"Ward / Bed: {ward_bed}"),
+        (f"Attending Doctor: {attending_dr}", f"Subspecialty Team: {subspec_team}")
         ]
         for idx, (c1, c2) in enumerate(row_data):
             t1.rows[idx].cells[0].text = c1
