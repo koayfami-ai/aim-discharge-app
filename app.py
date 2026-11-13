@@ -786,29 +786,31 @@ with col_m1:
 
     med_custom = st.text_area("Additional Prescribed Discharge Medications", value="", key="txt_med_custom")
 
-    st.subheader("Steroid Tapering Schedule (e.g. Prednisolone)")
-    steroid_active = st.checkbox("Patient Discharged on Steroid Tapering Plan", value=False, key="chk_steroid_active")
-    if steroid_active:
-        steroid_ind = st.text_input("Indication for Steroid Taper", value="COPD / Asthma Exacerbation", key="txt_steroid_ind")
-        st1 = st.text_input("Step 1: Dose & Duration", value="Prednisolone 30mg OD for 5 days", key="txt_st1")
-        st2 = st.text_input("Step 2: Dose & Duration", value="Then 20mg OD for 5 days", key="txt_st2")
-        st3 = st.text_input("Step 3: Dose & Duration", value="Then 10mg OD for 5 days", key="txt_st3")
-        st4 = st.text_input("Step 4: Dose & Off Date", value="Then 5mg OD for 5 days, then OFF", key="txt_st4")
-    else:
-        steroid_ind = ""
-        st1 = st2 = st3 = st4 = ""
+st.subheader("Steroid Tapering Schedule (e.g. Prednisolone)")
+steroid_active = st.checkbox("Patient Discharged on Steroid Tapering Plan", value=False, key="chk_steroid_active")
+if steroid_active:
+    steroid_ind = st.text_input("Indication", value="", key="txt_steroid_ind")
+    st1 = st.text_input("Step 1: Dose & Duration", value="Prednisolone 30mg OD for 5 days", key="txt_st1")
+    st2 = st.text_input("Step 2: Dose & Duration", value="Then 20mg OD for 5 days", key="txt_st2")
+    st3 = st.text_input("Step 3: Dose & Duration", value="Then 10mg OD for 5 days", key="txt_st3")
+    st4 = st.text_input("Step 4: Dose & Off Date", value="Then 5mg OD for 5 days, then OFF", key="txt_st4")
+
+else:
+    steroid_ind = ""
+    st1 = st2 = st3 = st4 = ""
 
 with tab6:
-    st.header("6. Review & Export Options")
+    st.header("6. Final Review & Export Options")
     
-    st.subheader("AIM Review Clinic & Follow-Up Plan")
-    aim_clinic_plan = st.text_area("AIM Clinic Appointment & Issues to Review/Plan", value="Review symptoms, fluid balance, repeat renal profile & electrolyte monitoring.", key="txt_aim_clinic_plan")
-    other_clinic_plan = st.text_area("Other Subspecialty Clinic Follow-Ups (Nephro/Cardio/Resp)", value="", key="txt_other_clinic_plan")
-    red_flags = st.text_area("Red Flag Warning Signs Provided to Patient", value="Severe dyspnea, chest discomfort, acute syncope, marked decrease in urine output, or sudden swelling.", key="txt_red_flags")
-    mo_name = st.text_input("Discharging Medical Officer Name", value="", key="txt_mo_name")
+st.subheader("AIM Rapid Review Clinic & Follow-Up Plan")
+aim_clinic_plan = st.text_area("AIM Clinic Appointment & Issues to Review/Plan", value="Review symptoms, fluid balance, repeat renal profile & electrolyte monitoring.", key="txt_aim_clinic_plan")
+other_clinic_plan = st.text_area("Other Subspecialty Clinic Follow-Ups (Nephro/Cardio/Resp)", value="", key="txt_other_clinic_plan")
+red_flags = st.text_area("Red Flag Warning Signs Provided to Patient", value="Severe dyspnea, chest discomfort, acute syncope, marked decrease in urine output, or sudden swelling.", key="txt_red_flags")
+mo_name1 = st.text_input("Medical Officer Name", value="", key="txt_mo1_name")
+mo_name2 = st.text_input ("Medical Officer Incharged", balue="", key = "txt_mo2_name")
 
-    # Build Dynamic Plain Text Summary (ONLY CHECKED ITEMS ARE ADDED)
-    summary_text = f"""
+# Build Dynamic Plain Text Summary (ONLY CHECKED ITEMS ARE ADDED)
+summary_text = f"""
 ================================================================================
  ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY
 ================================================================================
