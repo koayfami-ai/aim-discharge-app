@@ -638,8 +638,8 @@ with tab3:
     
     resus_notes = st.text_area("Remarks/Family Discussion/Future Direction of Care", value="", key="txt_resus_notes")
 with tab4:
-    st.header("4. Investigations Trend Table (5-Column Format)")
-    st.caption("5 Serial Date Timestamps: Admission → Random Ward Day 1 → Random Ward Day 2 → Random Ward Day 3 → Predischarge Date")
+    st.header("4. Investigations Trend")
+    st.caption("Serial Investigations: From Admission to predischarge")
         
     st.subheader("1. Select 5 Serial Date Headers")
     col_d1, col_d2, col_d3 = st.columns(3)
@@ -647,16 +647,16 @@ with tab4:
         dt_adm = st.date_input("Admission Date", value=None, format="DD/MM/YYYY", key="lbl_adm_date")
         date_adm_str = dt_adm.strftime("%d/%m/%Y") if dt_adm else "Admission"
     with col_d2:
-        dt_m1 = st.date_input("Ward Day 1", value=None, format="DD/MM/YYYY", key="lbl_mid1_date")
-        date_mid1_str = dt_m1.strftime("%d/%m/%Y") if dt_m1 else "Ward Day 1"
+        dt_m1 = st.date_input("Ward1", value=None, format="DD/MM/YYYY", key="lbl_mid1_date")
+        date_mid1_str = dt_m1.strftime("%d/%m/%Y") if dt_m1 else "Ward1"
     with col_d3:
-        dt_m2 = st.date_input("Ward Day 2", value=None, format="DD/MM/YYYY", key="lbl_mid2_date")
-        date_mid2_str = dt_m2.strftime("%d/%m/%Y") if dt_m2 else "Ward Day 2"
+        dt_m2 = st.date_input("Ward2", value=None, format="DD/MM/YYYY", key="lbl_mid2_date")
+        date_mid2_str = dt_m2.strftime("%d/%m/%Y") if dt_m2 else "Ward2"
 
     col_d4, col_d5 = st.columns(2)
     with col_d4:
-        dt_m3 = st.date_input("Ward Day 3", value=None, format="DD/MM/YYYY", key="lbl_mid3_date")
-        date_mid3_str = dt_m3.strftime("%d/%m/%Y") if dt_m3 else "Ward Day 3"
+        dt_m3 = st.date_input("Ward3", value=None, format="DD/MM/YYYY", key="lbl_mid3_date")
+        date_mid3_str = dt_m3.strftime("%d/%m/%Y") if dt_m3 else "Ward3"
     with col_d5:
         dt_dis = st.date_input("Predischarge Date", value=None, format="DD/MM/YYYY", key="lbl_dis_date")
         date_dis_str = dt_dis.strftime("%d/%m/%Y") if dt_dis else "Predischarge"
@@ -696,10 +696,10 @@ with tab4:
     if "Mobile Touch Grid" in entry_mode:
         st.info("💡 **Swipe left/right** with your finger across the table below to see all 5 dates. **Tap any cell** to enter values.")
         col_adm_hdr = f"Adm ({date_adm_str})"
-        col_m1_hdr = f"Day 1 ({date_mid1_str})"
-        col_m2_hdr = f"Day 2 ({date_mid2_str})"
-        col_m3_hdr = f"Day 3 ({date_mid3_str})"
-        col_dis_hdr = f"Discharge ({date_dis_str})"
+        col_m1_hdr = f"Ward1 ({date_mid1_str})"
+        col_m2_hdr = f"Ward2 ({date_mid2_str})"
+        col_m3_hdr = f"Ward3 ({date_mid3_str})"
+        col_dis_hdr = f"PreDischarge ({date_dis_str})"
 
         dict_init = {
             "Parameter": [f"{p} ({u})" for p, u in lab_params],
@@ -749,9 +749,9 @@ with tab4:
         h1, h2, h3, h4, h5, h6 = st.columns([2.5, 3, 3, 3, 3, 3])
         h1.markdown("**Parameter**")
         h2.markdown(f"**Admission ({date_adm_str})**")
-        h3.markdown(f"**Ward Day 1 ({date_mid1_str})**")
-        h4.markdown(f"**Ward Day 2 ({date_mid2_str})**")
-        h5.markdown(f"**Ward Day 3 ({date_mid3_str})**")
+        h3.markdown(f"**Ward1 ({date_mid1_str})**")
+        h4.markdown(f"**Ward2 ({date_mid2_str})**")
+        h5.markdown(f"**Ward3 ({date_mid3_str})**")
         h6.markdown(f"**Predischarge ({date_dis_str})**")
 
         for param, unit in lab_params:
