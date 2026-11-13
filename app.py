@@ -1125,7 +1125,7 @@ p_plan.add_run(f"Medical Officer Name: {mo_name}    Signature: _______________ D
 
 target = io.BytesIO()
 doc.save(target)
-return target.getvalue()
+    return target.getvalue()
 
 doc_bytes = generate_docx()
 st.download_button(
