@@ -322,26 +322,26 @@ with col_prog2:
 
 st.subheader("POCUS & Diagnostic Investigations")
 pocus_lung = st.text_input("POCUS Lung (e.g. B-lines, pleural effusion, sliding)", value="", key="txt_pocus_lung")
-pocus_heart = st.text_input("POCUS Heart (EF, RV strain, pericardial fluid)", value="", key="txt_pocus_heart")
-pocus_plr = st.text_input("POCUS Passive Leg Raise (PLR) / Fluid Responsiveness", value="", key="txt_pocus_plr")
+pocus_heart = st.text_input("POCUS Cardiac (EF, RV strain, pericardial fluid)", value="", key="txt_pocus_heart")
+pocus_plr = st.text_input("Passive Leg Raising (PLR) / Fluid Responsiveness", value="", key="txt_pocus_plr")
 pocus_vessels = st.text_input("POCUS Vessels (IVC collapsibility, DVT scan)", value="", key="txt_pocus_vessels")
 pocus_others = st.text_input("POCUS Others", value="", key="txt_pocus_others")
-pocus_interp = st.text_area("Overall POCUS & Clinical Interpretation", value="", key="txt_pocus_interp")
+pocus_interp = st.text_area("Clinical Interpretation", value="", key="txt_pocus_interp")
     
 ecg_findings = st.text_area("ECG", value="", key="txt_ecg_findings")
 cxr_findings = st.text_area ("CXR", vakue="", key="txt_cxr_findings")
 other_ix= st.text_area ("Other Imagings", value="", key="other_imaging")
 
 st.subheader("Inpatient Procedures")
-    col_proc1, col_proc2 = st.columns(2)
-    with col_proc1:
-        proc_pleural = st.checkbox("Pleural Aspiration / Drainage", key="chk_proc_pl")
-        proc_ascites = st.checkbox("Peritoneal Aspiration / Paracentesis", key="chk_proc_asc")
-        proc_lp = st.checkbox("Lumbar Puncture", key="chk_proc_lp")
-    with col_proc2:
-        proc_cvl = st.checkbox("Central Venous Line (CVL)", key="chk_proc_cvl")
-        proc_hd_cath = st.checkbox("Acute Dialysis Catheter (VasCath)", key="chk_proc_hd")
-        proc_others = st.text_input("Other Procedures", value="", key="txt_proc_others")
+col_proc1, col_proc2 = st.columns(2)
+with col_proc1:
+    proc_pleural = st.checkbox("Pleural Aspiration / Drainage", key="chk_proc_pl")
+    proc_ascites = st.checkbox("Peritoneal Aspiration / Paracentesis", key="chk_proc_asc")
+    proc_lp = st.checkbox("Lumbar Puncture", key="chk_proc_lp")
+with col_proc2:
+    proc_cvl = st.checkbox("Central Venous Line (CVL)", key="chk_proc_cvl")
+    proc_hd_cath = st.checkbox("Acute Dialysis Catheter (VasCath)", key="chk_proc_hd")
+    proc_others = st.text_input("Other Procedures", value="", key="txt_proc_others")
     
     dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"], key="sel_dialysis")
     dialysis_duration = ""
