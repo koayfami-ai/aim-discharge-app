@@ -411,7 +411,7 @@ with col_rc2:
 
 
 with tab4:
-st.header("4. Investigations Trend Table")
+    st.header("4. Investigations Trend Table")
 st.caption("Admission/Ward/Predischarge Date")
     
 col_d1, col_d2, col_d3, col_d4, col_d5 = st.columns(5)
