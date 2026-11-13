@@ -834,46 +834,44 @@ has_primary = True
 if p_apo: summary_text += "• Acute Pulmonary Edema\n"; 
 has_primary = True
 if p_copd: summary_text += "• Acute Exacerbation of COPD / Asthma\n"; has_primary = True
-    if p_bronch: summary_text += f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n"; has_primary = True
-    if p_ild: summary_text += f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n"; has_primary = True
-    if p_sepsis: summary_text += f"• Severe Sepsis secondary to: {sepsis_source}\n"; has_primary = True
-    if p_poisoning: summary_text += f"• Poisoning: {poisoning_detail}\n"; has_primary = True
-    if p_pneu: summary_text += f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n"; has_primary = True
-    if p_snake: summary_text += f"• Snake Bite with Envenomation: {snake_detail}\n"; has_primary = True
-    if p_acs: summary_text += f"• Acute Coronary Syndrome ({acs_type}) - TIMI: {acs_timi}\n"; has_primary = True
-    if p_pe: summary_text += f"• Pulmonary Embolism (Risk: {pe_risk})\n"; has_primary = True
-    if p_stroke_pri:
-        summary_text += f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n"
-        if nihss_score: summary_text += f"  - NIHSS Score: {nihss_score}\n"
-        has_primary = True
-    if p_withdrawal: summary_text += f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n"; has_primary = True
-    if p_seizure: summary_text += f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n"; has_primary = True
-    if other_primary: summary_text += f"• Others: {other_primary}\n"; has_primary = True
-    if not has_primary: summary_text += "• Nil acute primary diagnoses selected.\n"
+if p_bronch: summary_text += f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n"; has_primary = True
+if p_ild: summary_text += f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n"; has_primary = True
+if p_sepsis: summary_text += f"• Severe Sepsis secondary to: {sepsis_source}\n"; has_primary = True
+if p_poisoning: summary_text += f"• Poisoning: {poisoning_detail}\n"; has_primary = True
+if p_pneu: summary_text += f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n"; has_primary = True
+if p_snake: summary_text += f"• Snake Bite with Envenomation: {snake_detail}\n"; has_primary = True
+if p_acs: summary_text += f"• Acute Coronary Syndrome ({acs_type}) - TIMI: {acs_timi}\n"; has_primary = True
+if p_pe: summary_text += f"• Pulmonary Embolism (Risk: {pe_risk})\n"; has_primary = True
+if p_stroke_pri: summary_text += f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n"
+if nihss_score: summary_text += f"  - NIHSS Score: {nihss_score}\n" has_primary = True
+if p_withdrawal: summary_text += f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n"; has_primary = True
+if p_seizure: summary_text += f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n"; has_primary = True
+if other_primary: summary_text += f"• Others: {other_primary}\n"; has_primary = True
+if not has_primary: summary_text += "• Nil acute primary diagnoses selected.\n"
 
-    summary_text += "\nSecondary Problems:\n"
-    has_sec = False
-    if s_aki: summary_text += f"• AKI due to: {aki_cause}\n"; has_sec = True
-    if s_ards: summary_text += f"• ARDS ({ards_severity})\n"; has_sec = True
-    if s_rv_dys: summary_text += "• Right Ventricular Dysfunction / Failure\n"; has_sec = True
-    if s_arrhythmia: summary_text += f"• Cardiac Arrhythmia: {arrhythmia_detail}\n"; has_sec = True
-    if s_stroke: summary_text += "• Stroke\n"; has_sec = True
-    if s_pe_sec: summary_text += "• Secondary Pulmonary Embolism\n"; has_sec = True
-    if other_secondary: summary_text += f"• Others: {other_secondary}\n"; has_sec = True
-    if not has_sec: summary_text += "• Nil acute secondary problems.\n"
+summary_text += "\nSecondary Problems:\n"
+has_sec = False
+if s_aki: summary_text += f"• AKI due to: {aki_cause}\n"; has_sec = True
+if s_ards: summary_text += f"• ARDS ({ards_severity})\n"; has_sec = True
+if s_rv_dys: summary_text += "• Right Ventricular Dysfunction / Failure\n"; has_sec = True
+if s_arrhythmia: summary_text += f"• Cardiac Arrhythmia: {arrhythmia_detail}\n"; has_sec = True
+if s_stroke: summary_text += "• Stroke\n"; has_sec = True
+if s_pe_sec: summary_text += "• Secondary Pulmonary Embolism\n"; has_sec = True
+if other_secondary: summary_text += f"• Others: {other_secondary}\n"; has_sec = True
+if not has_sec: summary_text += "• Nil acute secondary problems.\n"
 
-    summary_text += "\nComorbidities:\n"
-    if c_ckd: summary_text += f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n"
-    if c_hf: summary_text += f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n"
-    if c_cad: summary_text += f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n"
-    if c_dm: summary_text += f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n"
-    if c_htn: summary_text += "• Hypertension\n"
-    if other_comorb: summary_text += f"• Other Comorbidities: {other_comorb}\n"
+summary_text += "\nComorbidities:\n"
+if c_ckd: summary_text += f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n"
+if c_hf: summary_text += f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n"
+if c_cad: summary_text += f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n"
+if c_dm: summary_text += f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n"
+if c_htn: summary_text += "• Hypertension\n"
+if other_comorb: summary_text += f"• Other Comorbidities: {other_comorb}\n"
 
-    summary_text += "\nFunctional Status & Capacity:\n"
-    if frailty_selected: summary_text += f"• Mobility / Frailty: {', '.join(frailty_selected)}\n"
-    if nyha_mets != "Not Specified": summary_text += f"• NYHA / METS Functional Capacity: {nyha_mets}\n"
-    if func_notes: summary_text += f"• Functional / ADL Notes: {func_notes}\n"
+summary_text += "\nFunctional Status & Capacity:\n"
+if frailty_selected: summary_text += f"• Mobility / Frailty: {', '.join(frailty_selected)}\n"
+if nyha_mets != "Not Specified": summary_text += f"• NYHA / METS Functional Capacity: {nyha_mets}\n"
+if func_notes: summary_text += f"• Functional / ADL Notes: {func_notes}\n"
 
     summary_text += f"""
 [ 3. CLINICAL PROGRESS & RESUSCITATION DIRECTIVE ]
