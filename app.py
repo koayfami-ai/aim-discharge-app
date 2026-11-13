@@ -1124,7 +1124,7 @@ p_plan.add_run(f"• Red Flag Warnings: {red_flags}\n\n")
 p_plan.add_run(f"Medical Officer Name: {mo_name}    Signature: _______________ Date: ________")
 
 target = io.BytesIO()
-    doc.save(target)
+doc.save(target)
     return target.getvalue()
 
 doc_bytes = generate_docx()
