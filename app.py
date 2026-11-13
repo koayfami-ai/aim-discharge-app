@@ -956,8 +956,8 @@ def generate_docx():
     doc = docx.Document()
         
         # Style page
-        section = doc.sections[0]
-        section.top_margin = Inches(0.8)
+    section = doc.sections[0]
+    section.top_margin = Inches(0.8)
         section.bottom_margin = Inches(0.8)
         section.left_margin = Inches(0.8)
         section.right_margin = Inches(0.8)
