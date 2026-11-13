@@ -748,11 +748,11 @@ with tab4:
     else:
         h1, h2, h3, h4, h5, h6 = st.columns([2.5, 3, 3, 3, 3, 3])
         h1.markdown("**Parameter**")
-        h2.markdown(f"**Admission ({date_adm_str})**")
-        h3.markdown(f"**Ward1 ({date_mid1_str})**")
-        h4.markdown(f"**Ward2 ({date_mid2_str})**")
-        h5.markdown(f"**Ward3 ({date_mid3_str})**")
-        h6.markdown(f"**Predischarge ({date_dis_str})**")
+        h2.markdown(f"**Adm ({date_adm_str})**")
+        h3.markdown(f"**W1 ({date_mid1_str})**")
+        h4.markdown(f"**W2 ({date_mid2_str})**")
+        h5.markdown(f"**W3 ({date_mid3_str})**")
+        h6.markdown(f"**Pre ({date_dis_str})**")
 
         for param, unit in lab_params:
             c1, c2, c3, c4, c5, c6 = st.columns([2.5, 3, 3, 3, 3, 3])
