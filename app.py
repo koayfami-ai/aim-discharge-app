@@ -1139,7 +1139,7 @@ def generate_docx():
         
 target = io.BytesIO()
 doc.save(target)
-        return target.getvalue()
+    return target.getvalue()
 
     doc_bytes = generate_docx()
     st.download_button(
