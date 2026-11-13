@@ -30,26 +30,30 @@ with tab1:
     st.header("1. Patient Demographics")
     col1, col2 = st.columns(2)
     with col1:
-        patient_name = st.text_input("Patient Full Name", value="", key="txt_patient_name")
-        rn_mrn = st.text_input("RN / MRN", value="", key="txt_rn_mrn")
-        ic_passport = st.text_input("NRIC / Passport No.", value="", key="txt_ic_passport")
-        age_sex = st.text_input("Age/Gender", value="", key="txt_age_sex")
-        contact_num = st.text_input("Patient/Caretaker Contact No.", value="", key="txt_contact_num")
-        caretaker = st.text_input("Caretaker Name & Relationship", value="", key="txt_caretaker")
+        patient_name = st.text_input("Patient Full Name", value="", key="patient_name")
+        rn_mrn = st.text_input("RN / MRN", value="", key="rn_mrn")
+        ic_passport = st.text_input("NRIC / Passport No.", value="", key="ic_passport")
+        age_sex = st.text_input("Age/Gender", value="", key="age_sex")
+        contact_num = st.text_input("Patient/Caretaker Contact No.", value="", key="contact_num")
+        caretaker = st.text_input("Caretaker Name & Relationship", value="", key="caretaker")
     with col2:
-        adm_date = st.date_input("Admission Date", key="dt_adm_date")
-        dis_date = st.date_input("Date of Discharge", key="dt_dis_date")
-        referral_place = st.selectbox("Referral Source", ["ED", "Private Hospital/Private Clinic", "Klinik Kesihatan (KK)", "Ambulance", "Transfer from Other Wards HBM", " Transfer from Hospitals Cluster Perai", " Transfer from Hospitals of different Clusters", "Others"], key="sel_referral_place")
-        referral_other = st.text_input("Specify Source", value="", key="txt_referral_other")
-        ward_bed = st.text_input("Ward / Bed No.", value="", key="txt_ward_bed")
-        attending_dr = st.text_input("Attending Doctor / Team", value="", key="txt_attending_dr")
-        subspec_team = st.text_input("Subspecialty Team(s) Involved", value="", key="txt_subspec_team")
-        address = st.text_area("Patient Address", value="", key="txt_address")
+        adm_date = st.date_input("Admission Date", key="adm_date")
+        dis_date = st.date_input("Date of Discharge", key="dis_date")
+        referral_place = st.selectbox(
+            "Referral Source", 
+            ["ED", "Private Hospital/Private Clinic", "Klinik Kesihatan (KK)", "Ambulance", "Transfer from Other Wards HBM", "Transfer from Hospitals Cluster Perai", "Transfer from Hospitals of different Clusters", "Others"],
+            key="referral_place"
+        )
+        referral_other = st.text_input("Specify Source", value="", key="referral_other")
+        ward_bed = st.text_input("Ward / Bed No.", value="", key="ward_bed")
+        attending_dr = st.text_input("Attending Doctor / Team", value="", key="attending_dr")
+        subspec_team = st.text_input("Subspecialty Team(s) Involved", value="", key="subspec_team")
+        address = st.text_area("Patient Address", value="", key="address")
 
 with tab2:
     st.header("2. Problem List & Clinical Diagnoses")
     st.info("💡 Sub-options appear dynamically ONLY when a problem is checked.")
-    st.subheader("Primary Diagnosis/Peoblems")
+    st.subheader("Primary Diagnosis/Problems")
     col_p1, col_p2 = st.columns(2)
     with col_p1:
         p_ccf = st.checkbox("Decompensated Heart Failure", key="chk_p_ccf")
@@ -82,8 +86,6 @@ with tab2:
 
         p_withdrawal = st.checkbox("Drug / Substance Withdrawal", key="chk_p_withdrawal")
         withdrawal_type = ""
-        withdrawal_toxidrome = ""
-        withdrawal_detail = ""
         if p_withdrawal:
             withdrawal_type = st.text_input("substance type/amphetamine/opiod/toxidromes", value="", key="sel_withdrawal_type")
 
@@ -108,7 +110,7 @@ with tab2:
             acs_timi = st.text_input("TIMI Score", value="", key="txt_acs_timi")
 
         s_acs = st.checkbox("Secondary Acute Coronary Syndrome", key="chk_s_acs")
-
+        
         p_pe = st.checkbox("Pulmonary Embolism (PE)", key="chk_p_pe")
         pe_category = ""
         pe_resp_mod = ""
@@ -116,26 +118,29 @@ with tab2:
             pe_category = st.selectbox(
                 "2026 Acute PE Clinical Category (A–E)", 
                 [
-                    "Category A: Low Risk - Subclinical / Asymptomatic)",
+                    "Category A: Low Risk - Subclinical / Asymptomatic",
                     "Category B1: Symptomatic — Subsegmental (Single/multiple)",
                     "Category B2: Symptomatic — Non-subsegmental",
                     "Category C1: Low-Intermediate Risk - Normal Biomarkers & No RV Dysfunction",
-                    "Category C2: Intermediate-High Risk - Elevated Cardiac",
+                    "Category C2: Intermediate-High Risk - Elevated Cardiac Biomarkers",
                     "Category D1: Incipient Cardiopulmonary Failure — Transient hypotension",
                     "Category D2: Incipient Cardiopulmonary Failure — Normotensive shock",
-                    "Category E1: Cardiopulmonary Failure — Recurrent/persistent hypotension with cardiogenic shock",
-                    "Category E2: Cardiopulmonary Failure — Refractory cardiogenic shock or cardiac arrest",
-                ], key="sel_pe_cat_2026")
-            
+                    "Category E1: Cardiopulmonary Failure — Recurrent/persistent hypotension",
+                    "Category E2: Cardiopulmonary Failure — Refractory shock or cardiac arrest",
+                ],
+                key="sel_pe_cat_2026"
+            )
             pe_resp_mod = st.selectbox(
                 "Respiratory Modifier (+/- R)",
                 [
                     "None / Not Applicable",
                     "Modifier R (Category C: SpO2 <90%, RR ≥30, need supplemental O2)",
                     "Modifier R (Category D: >6L NC or NRB mask)",
-                    "Modifier R (Category E: Hypoxemic or ventilatory failure)",
-                ], key="sel_pe_resp_mod_2026")
-    
+                    "Modifier R (Category E: Hypoxemic or ventilatory failure)"
+                ],
+                key="sel_pe_resp_mod_2026"
+            )
+
         p_stroke_pri = st.checkbox("Acute Stroke", key="chk_p_stroke_pri")
         stroke_type = ""
         stroke_subtype = ""
@@ -153,9 +158,9 @@ with tab2:
         seizure_detail = ""
         if p_seizure:
             seizure_type = st.selectbox("Seizure Type", ["Generalized Tonic-Clonic (GTC)", "Focal Seizure", "Status Epilepticus", "Absence / Myoclonic", "Provoked", "New Onset / Unclassified"], key="sel_seizure_type")
-            seizure_detail = st.text_input("Seizure Details / EEG", value="", key="txt_seizure_detail")
+            seizure_detail = st.text_input("Seizure Details / Meds", value="", key="txt_seizure_detail")
 
-    other_primary = st.text_area("Others (Primary Diagnoses)", value="", key="txt_other_primary")
+        other_primary = st.text_area("Others (Primary Diagnoses)", value="", key="txt_other_primary")
 
     st.subheader("Secondary Problems")
     col_s1, col_s2 = st.columns(2)
@@ -226,6 +231,7 @@ with tab2:
             ["Independent", "Partially dependent", "Homebound", "Wheelchair-bound", "Fully bedridden"],
             key="mult_frailty"
         )
+
     with col_f2:
         nyha_mets = st.selectbox(
             "Functional Capacity",
@@ -234,7 +240,7 @@ with tab2:
                 "NYHA Class I (No limitation / > 4 METS)",
                 "NYHA Class II (Slight limitation / ~4 METS)",
                 "NYHA Class III (Marked limitation / < 4 METS)",
-                "NYHA Class IV (Severe limitation / Symptoms at rest / < 2 METS)",
+                "NYHA Class IV (Severe limitation / Symptoms at rest / < 2 METS)"
             ],
             key="sel_nyha_mets"
         )
@@ -249,7 +255,7 @@ with tab3:
     with col_int1:
         int_o2 = st.text_input("Acute Oxygen Therapy Given", value="", key="txt_int_o2")
         int_fluid = st.text_input("Fluid Bolus", value="", key="txt_int_fluid")
-        int_inotropes = st.text_input("Inotropes/Vasopressors", value="", key="txt_int_inotropes")
+        int_inotropes = st.text_input("Inotropes/Vasopressors (Acute)", value="", key="txt_int_inotropes")
 
     with col_int2:
         int_scan_by = st.text_input("Admission Bedside Scan Performed By", value="", key="txt_int_scan_by")
@@ -258,7 +264,7 @@ with tab3:
     st.subheader("Ward Clinical Progress & Hemodynamic Monitoring")
     col_prog1, col_prog2 = st.columns(2)
     with col_prog1:
-        max_o2_modality = st.selectbox("Highest Oxygenation", ["Room Air", "Nasal Cannula", "Face Mask", "Venturi Mask", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"], key="sel_max_o2")
+        max_o2_modality = st.selectbox("Highest Oxygenation", ["Room Air", "Nasal Cannula", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"], key="sel_max_o2")
         max_fio2 = st.text_input("Highest FiO2 %", value="", key="txt_max_fio2")
         o2_duration = st.text_input("Duration of High Flow Oxygenation (HFNC/NIV/IMV)", value="", key="txt_o2_duration")
 
@@ -268,42 +274,232 @@ with tab3:
         if o2_conc_dis == "Yes":
             o2_conc_duration = st.text_input("If Yes, Duration Needed", value="", key="txt_o2_conc_dur")
             
-        inotropes_ward = st.selectbox("Inotropes/Vasopressors", ["None", "IV Noradrenaline", "IV Dobutamine", "IV Vasopressin", "IV Adrenaline", "IV Dopamine"], key="txt_inotropes_ward")
+        inotropes_ward = st.multiselect(
+            "Inotropes / Vasopressors Required in Ward",
+            ["IV Noradrenaline", "IV Dobutamine", "IV Vasopressin", "IV Adrenaline", "IV Dopamine"],
+            key="mult_inotropes_ward"
+        )
 
-    st.subheader("Inpatient Acute Medications & Therapies Administered")
-    st.caption("💡 Select key acute medications administered during ward stay / admission.")
-    col_inmed1, col_inmed2 = st.columns(2)
-    with col_inmed1:
-        inmed_abx = st.checkbox("IV / Oral Antibiotics", key="chk_inmed_abx")
-        inmed_abx_detail = ""
-        if inmed_abx:
-            inmed_abx_detail = st.text_input("Antibiotics Details (Agent, Dose, Duration & Stop Plan)", value="", key="txt_inmed_abx_detail")
+    st.subheader("Inpatient Medications & Treatment")
+    st.caption("⚡ Select inpatient medications administered. Configure Dose, Frequency, Date Start, and Date Complete to dynamically compile into a summary box to expedite discharges!")
 
-        inmed_diuretic = st.checkbox("IV Diuretics / Infusions", key="chk_inmed_diuretic")
-        inmed_diuretic_detail = ""
-        if inmed_diuretic:
-            inmed_diuretic_detail = st.text_input("IV Frusemide / Diuretic Boluses & Infusion Details", value="", key="txt_inmed_diuretic_detail")
+    inmed_list = []
+    
+    # Grid layout for Inpatient Meds
+    ci_1, ci_2 = st.columns(2)
+    
+    with ci_1:
+        # 1. IV Unasyn
+        chk_unasyn = st.checkbox("IV Unasyn (Ampicillin/Sulbactam)", key="chk_in_unasyn")
+        if chk_unasyn:
+            c_d, c_f = st.columns(2)
+            u_dose = c_d.selectbox("Dose", ["1.5g", "3g", "4.5g"], key="sel_in_unasyn_d")
+            u_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID", "4 hrly"], key="sel_in_unasyn_f")
+            c_s, c_c = st.columns(2)
+            u_start = c_s.text_input("Date Start", value="", key="txt_in_unasyn_s")
+            u_comp = c_c.text_input("Date Complete", value="", key="txt_in_unasyn_c")
+            inmed_list.append(f"• IV Unasyn {u_dose} {u_freq} [Started: {u_start if u_start else 'N/A'} | Completed: {u_comp if u_comp else 'N/A'}]")
 
-        inmed_anticoag = st.checkbox("Inpatient Anticoagulation / Antiplatelets", key="chk_inmed_anticoag")
-        inmed_anticoag_detail = ""
-        if inmed_anticoag:
-            inmed_anticoag_detail = st.text_input("Anticoagulation Details (LMWH, UFH, Loading doses)", value="", key="txt_inmed_anticoag_detail")
+        # 2. IV Augmentin
+        chk_aug = st.checkbox("IV Augmentin", key="chk_in_aug")
+        if chk_aug:
+            c_d, c_f = st.columns(2)
+            aug_dose = c_d.selectbox("Dose", ["1.2g"], key="sel_in_aug_d")
+            aug_freq = c_f.selectbox("Freq", ["BD", "TDS"], key="sel_in_aug_f")
+            c_s, c_c = st.columns(2)
+            aug_start = c_s.text_input("Date Start", value="", key="txt_in_aug_s")
+            aug_comp = c_c.text_input("Date Complete", value="", key="txt_in_aug_c")
+            inmed_list.append(f"• IV Augmentin {aug_dose} {aug_freq} [Started: {aug_start if aug_start else 'N/A'} | Completed: {aug_comp if aug_comp else 'N/A'}]")
 
-    with col_inmed2:
-        inmed_steroid = st.checkbox("Inpatient Corticosteroids", key="chk_inmed_steroid")
-        inmed_steroid_detail = ""
-        if inmed_steroid:
-            inmed_steroid_detail = st.text_input("Steroids Given (e.g. IV Hydrocortisone / Prednisolone)", value="", key="txt_inmed_steroid_detail")
+        # 3. IV Meropenem
+        chk_mero = st.checkbox("IV Meropenem", key="chk_in_mero")
+        if chk_mero:
+            c_d, c_f = st.columns(2)
+            mero_dose = c_d.selectbox("Dose", ["500 mg", "1g", "2g"], key="sel_in_mero_d")
+            mero_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_mero_f")
+            c_s, c_c = st.columns(2)
+            mero_start = c_s.text_input("Date Start", value="", key="txt_in_mero_s")
+            mero_comp = c_c.text_input("Date Complete", value="", key="txt_in_mero_c")
+            inmed_list.append(f"• IV Meropenem {mero_dose} {mero_freq} [Started: {mero_start if mero_start else 'N/A'} | Completed: {mero_comp if mero_comp else 'N/A'}]")
 
-        inmed_resp = st.checkbox("Acute Bronchodilators / Nebulizers", key="chk_inmed_resp")
-        inmed_resp_detail = ""
-        if inmed_resp:
-            inmed_resp_detail = st.text_input("Nebulizer / Inhaler Details", value="", key="txt_inmed_resp_detail")
+        # 4. Tazosin
+        chk_tazo = st.checkbox("Tazosin (Piperacillin/Tazobactam)", key="chk_in_tazo")
+        if chk_tazo:
+            c_d, c_f = st.columns(2)
+            tazo_dose = c_d.selectbox("Dose", ["2.25g", "3.375g", "4.5g"], key="sel_in_tazo_d")
+            tazo_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_tazo_f")
+            c_s, c_c = st.columns(2)
+            tazo_start = c_s.text_input("Date Start", value="", key="txt_in_tazo_s")
+            tazo_comp = c_c.text_input("Date Complete", value="", key="txt_in_tazo_c")
+            inmed_list.append(f"• Tazosin {tazo_dose} {tazo_freq} [Started: {tazo_start if tazo_start else 'N/A'} | Completed: {tazo_comp if tazo_comp else 'N/A'}]")
 
-        inmed_others_chk = st.checkbox("Other Acute Inpatient Infusions / Meds", key="chk_inmed_others")
-        inmed_others_detail = ""
-        if inmed_others_chk:
-            inmed_others_detail = st.text_input("Other Inpatient Meds & Infusions Details", value="", key="txt_inmed_others_detail")
+        # 5. Cefepime
+        chk_cefep = st.checkbox("Cefepime", key="chk_in_cefep")
+        if chk_cefep:
+            c_d, c_f = st.columns(2)
+            cefep_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_cefep_d")
+            cefep_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_cefep_f")
+            c_s, c_c = st.columns(2)
+            cefep_start = c_s.text_input("Date Start", value="", key="txt_in_cefep_s")
+            cefep_comp = c_c.text_input("Date Complete", value="", key="txt_in_cefep_c")
+            inmed_list.append(f"• Cefepime {cefep_dose} {cefep_freq} [Started: {cefep_start if cefep_start else 'N/A'} | Completed: {cefep_comp if cefep_comp else 'N/A'}]")
+
+        # 6. Ceftriaxone
+        chk_ceftri = st.checkbox("Ceftriaxone", key="chk_in_ceftri")
+        if chk_ceftri:
+            c_d, c_f = st.columns(2)
+            ceftri_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_ceftri_d")
+            ceftri_freq = c_f.selectbox("Freq", ["OD", "BD"], key="sel_in_ceftri_f")
+            c_s, c_c = st.columns(2)
+            ceftri_start = c_s.text_input("Date Start", value="", key="txt_in_ceftri_s")
+            ceftri_comp = c_c.text_input("Date Complete", value="", key="txt_in_ceftri_c")
+            inmed_list.append(f"• Ceftriaxone {ceftri_dose} {ceftri_freq} [Started: {ceftri_start if ceftri_start else 'N/A'} | Completed: {ceftri_comp if ceftri_comp else 'N/A'}]")
+
+        # 7. Fortum
+        chk_fortum = st.checkbox("Fortum (Ceftazidime)", key="chk_in_fortum")
+        if chk_fortum:
+            c_d, c_f = st.columns(2)
+            fortum_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_fortum_d")
+            fortum_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_fortum_f")
+            c_s, c_c = st.columns(2)
+            fortum_start = c_s.text_input("Date Start", value="", key="txt_in_fortum_s")
+            fortum_comp = c_c.text_input("Date Complete", value="", key="txt_in_fortum_c")
+            inmed_list.append(f"• Fortum {fortum_dose} {fortum_freq} [Started: {fortum_start if fortum_start else 'N/A'} | Completed: {fortum_comp if fortum_comp else 'N/A'}]")
+
+        # 8. Cipro
+        chk_cipro = st.checkbox("Cipro (Ciprofloxacin)", key="chk_in_cipro")
+        if chk_cipro:
+            c_d, c_f = st.columns(2)
+            cipro_dose = c_d.selectbox("Dose", ["400 mg"], key="sel_in_cipro_d")
+            cipro_freq = c_f.selectbox("Freq", ["OD", "BD"], key="sel_in_cipro_f")
+            c_s, c_c = st.columns(2)
+            cipro_start = c_s.text_input("Date Start", value="", key="txt_in_cipro_s")
+            cipro_comp = c_c.text_input("Date Complete", value="", key="txt_in_cipro_c")
+            inmed_list.append(f"• Cipro {cipro_dose} {cipro_freq} [Started: {cipro_start if cipro_start else 'N/A'} | Completed: {cipro_comp if cipro_comp else 'N/A'}]")
+
+    with ci_2:
+        # 9. IV Clindamycin
+        chk_clinda = st.checkbox("IV Clindamycin", key="chk_in_clinda")
+        if chk_clinda:
+            c_d, c_f = st.columns(2)
+            clinda_dose = c_d.selectbox("Dose", ["300 mg", "600 mg", "900 mg"], key="sel_in_clinda_d")
+            clinda_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_clinda_f")
+            c_s, c_c = st.columns(2)
+            clinda_start = c_s.text_input("Date Start", value="", key="txt_in_clinda_s")
+            clinda_comp = c_c.text_input("Date Complete", value="", key="txt_in_clinda_c")
+            inmed_list.append(f"• IV Clindamycin {clinda_dose} {clinda_freq} [Started: {clinda_start if clinda_start else 'N/A'} | Completed: {clinda_comp if clinda_comp else 'N/A'}]")
+
+        # 10. Acyclovir
+        chk_acyclo = st.checkbox("Acyclovir", key="chk_in_acyclo")
+        if chk_acyclo:
+            c_d, c_f = st.columns(2)
+            acyclo_dose = c_d.selectbox("Dose", ["500 mg"], key="sel_in_acyclo_d")
+            acyclo_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_acyclo_f")
+            c_s, c_c = st.columns(2)
+            acyclo_start = c_s.text_input("Date Start", value="", key="txt_in_acyclo_s")
+            acyclo_comp = c_c.text_input("Date Complete", value="", key="txt_in_acyclo_c")
+            inmed_list.append(f"• Acyclovir {acyclo_dose} {acyclo_freq} [Started: {acyclo_start if acyclo_start else 'N/A'} | Completed: {acyclo_comp if acyclo_comp else 'N/A'}]")
+
+        # 11. Hydrocortisone
+        chk_hcort = st.checkbox("Hydrocortisone", key="chk_in_hcort")
+        if chk_hcort:
+            c_d, c_f = st.columns(2)
+            hcort_dose = c_d.selectbox("Dose", ["50 mg", "100 mg"], key="sel_in_hcort_d")
+            hcort_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_hcort_f")
+            c_s, c_c = st.columns(2)
+            hcort_start = c_s.text_input("Date Start", value="", key="txt_in_hcort_s")
+            hcort_comp = c_c.text_input("Date Complete", value="", key="txt_in_hcort_c")
+            inmed_list.append(f"• Hydrocortisone {hcort_dose} {hcort_freq} [Started: {hcort_start if hcort_start else 'N/A'} | Completed: {hcort_comp if hcort_comp else 'N/A'}]")
+
+        # 12. Dexa
+        chk_dexa_in = st.checkbox("Dexa (Dexamethasone)", key="chk_in_dexa")
+        if chk_dexa_in:
+            c_d, c_f = st.columns(2)
+            dexain_dose = c_d.selectbox("Dose", ["2 mg", "4 mg", "6 mg", "8 mg"], key="sel_in_dexain_d")
+            dexain_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_dexain_f")
+            c_s, c_c = st.columns(2)
+            dexain_start = c_s.text_input("Date Start", value="", key="txt_in_dexain_s")
+            dexain_comp = c_c.text_input("Date Complete", value="", key="txt_in_dexain_c")
+            inmed_list.append(f"• Dexa {dexain_dose} {dexain_freq} [Started: {dexain_start if dexain_start else 'N/A'} | Completed: {dexain_comp if dexain_comp else 'N/A'}]")
+
+        # 13. IV Pantoprazole
+        chk_panto_in = st.checkbox("IV Pantoprazole", key="chk_in_panto")
+        if chk_panto_in:
+            c_d, c_f = st.columns(2)
+            panto_in_dose = c_d.selectbox("Dose", ["40 mg", "80 mg"], key="sel_in_panto_d")
+            panto_in_freq = c_f.selectbox("Freq", ["OD", "BD", "Continuous Infusion"], key="sel_in_panto_f")
+            c_s, c_c = st.columns(2)
+            panto_in_start = c_s.text_input("Date Start", value="", key="txt_in_panto_s")
+            panto_in_comp = c_c.text_input("Date Complete", value="", key="txt_in_panto_c")
+            inmed_list.append(f"• IV Pantoprazole {panto_in_dose} {panto_in_freq} [Started: {panto_in_start if panto_in_start else 'N/A'} | Completed: {panto_in_comp if panto_in_comp else 'N/A'}]")
+
+        # 14. IV Azithromycin
+        chk_azith = st.checkbox("IV Azithromycin", key="chk_in_azith")
+        if chk_azith:
+            c_d, c_f = st.columns(2)
+            azith_dose = c_d.selectbox("Dose", ["500 mg"], key="sel_in_azith_d")
+            azith_dur = c_f.selectbox("Duration", ["3 days", "5 days", "Custom"], key="sel_in_azith_dur")
+            c_s, c_c = st.columns(2)
+            azith_start = c_s.text_input("Date Start", value="", key="txt_in_azith_s")
+            azith_comp = c_c.text_input("Date Complete", value="", key="txt_in_azith_c")
+            inmed_list.append(f"• IV Azithromycin {azith_dose} OD ({azith_dur}) [Started: {azith_start if azith_start else 'N/A'} | Completed: {azith_comp if azith_comp else 'N/A'}]")
+
+        # 15. Oral Tamiflu
+        chk_tami = st.checkbox("Oral Tamiflu", key="chk_in_tami")
+        if chk_tami:
+            c_d, c_f = st.columns(2)
+            tami_dose = c_d.selectbox("Dose", ["75 mg"], key="sel_in_tami_d")
+            tami_freq = c_f.selectbox("Freq", ["OD", "EOD", "BD"], key="sel_in_tami_f")
+            c_s, c_c = st.columns(2)
+            tami_start = c_s.text_input("Date Start", value="", key="txt_in_tami_s")
+            tami_comp = c_c.text_input("Date Complete", value="", key="txt_in_tami_c")
+            inmed_list.append(f"• Oral Tamiflu {tami_dose} {tami_freq} [Started: {tami_start if tami_start else 'N/A'} | Completed: {tami_comp if tami_comp else 'N/A'}]")
+
+    st.markdown("**Nebulization Therapies:**")
+    cn1, cn2 = st.columns(2)
+    with cn1:
+        # Combivent
+        chk_comb = st.checkbox("Neb Combivent", key="chk_in_comb")
+        if chk_comb:
+            c_s, c_c = st.columns(2)
+            comb_start = c_s.text_input("Date Start", value="", key="txt_in_comb_s")
+            comb_comp = c_c.text_input("Date Complete", value="", key="txt_in_comb_c")
+            inmed_list.append(f"• Neb Combivent 2.5ml 4 hrly [Started: {comb_start if comb_start else 'N/A'} | Completed: {comb_comp if comb_comp else 'N/A'}]")
+
+        # Salbutamol
+        chk_salb = st.checkbox("Neb Salbutamol", key="chk_in_salb")
+        if chk_salb:
+            salb_freq = st.selectbox("Freq", ["2 hrly", "4 hrly"], key="sel_in_salb_f")
+            c_s, c_c = st.columns(2)
+            salb_start = c_s.text_input("Date Start", value="", key="txt_in_salb_s")
+            salb_comp = c_c.text_input("Date Complete", value="", key="txt_in_salb_c")
+            inmed_list.append(f"• Neb Salbutamol 2.5mg {salb_freq} [Started: {salb_start if salb_start else 'N/A'} | Completed: {salb_comp if salb_comp else 'N/A'}]")
+
+    with cn2:
+        # Pulmicort
+        chk_pulm = st.checkbox("Neb Pulmicort", key="chk_in_pulm")
+        if chk_pulm:
+            pulm_dose = st.selectbox("Dose", ["1 mg", "2 mg", "3 mg"], key="sel_in_pulm_d")
+            c_s, c_c = st.columns(2)
+            pulm_start = c_s.text_input("Date Start", value="", key="txt_in_pulm_s")
+            pulm_comp = c_c.text_input("Date Complete", value="", key="txt_in_pulm_c")
+            inmed_list.append(f"• Neb Pulmicort {pulm_dose} BD [Started: {pulm_start if pulm_start else 'N/A'} | Completed: {pulm_comp if pulm_comp else 'N/A'}]")
+
+        # Neb GTN
+        chk_gtn = st.checkbox("Neb GTN (5 mg)", key="chk_in_gtn")
+        if chk_gtn:
+            c_s, c_c = st.columns(2)
+            gtn_start = c_s.text_input("Date Start", value="", key="txt_in_gtn_s")
+            gtn_comp = c_c.text_input("Date Complete", value="", key="txt_in_gtn_c")
+            inmed_list.append(f"• Neb GTN 5 mg [Started: {gtn_start if gtn_start else 'N/A'} | Completed: {gtn_comp if gtn_comp else 'N/A'}]")
+
+    inmed_custom = st.text_input("Other Inpatient Medications / Infusions", value="", key="txt_inmed_custom")
+    if inmed_custom:
+        inmed_list.append(f"• Others: {inmed_custom}")
+
+    # Summary box for Inpatient Meds Regimen
+    inpatient_regimen_text = "\n".join(inmed_list) if inmed_list else "Nil inpatient acute medications selected."
+    st.text_area("Inpatient Medications & Treatment Regimen Summary Box (Copyable)", value=inpatient_regimen_text, height=150)
 
     st.subheader("POCUS & Diagnostic Investigations")
     pocus_lung = st.text_input("POCUS Lung (e.g. B-lines, pleural effusion, sliding)", value="", key="txt_pocus_lung")
@@ -312,7 +508,7 @@ with tab3:
     pocus_vessels = st.text_input("POCUS Vessels (IVC collapsibility, DVT scan)", value="", key="txt_pocus_vessels")
     pocus_others = st.text_input("POCUS Others", value="", key="txt_pocus_others")
     pocus_interp = st.text_area("Clinical Interpretation", value="", key="txt_pocus_interp")
-        
+    
     ecg_findings = st.text_area("ECG", value="", key="txt_ecg_findings")
     cxr_findings = st.text_area("CXR", value="", key="txt_cxr_findings")
     other_ix = st.text_area("Other Imagings", value="", key="other_imaging")
@@ -349,7 +545,7 @@ with tab3:
             with cp1:
                 proc_lp_date = st.text_input("Date Performed", value="", key="txt_proc_lp_date")
             with cp2:
-                proc_lp_detail = st.text_input("Lumbar Puncture Details & Results (e.g. pressure, CSF biochemistry, Gram stain)", value="", key="txt_proc_lp_detail")
+                proc_lp_detail = st.text_input("Lumbar Puncture Details & Results (e.g. opening pressure, CSF biochemistry, Gram stain)", value="", key="txt_proc_lp_detail")
 
     with col_proc2:
         proc_cvl = st.checkbox("Central Venous Line (CVL)", key="chk_proc_cvl")
@@ -396,18 +592,18 @@ with tab3:
     resus_notes = st.text_area("Remarks/Family Discussion/Future Direction of Care", value="", key="txt_resus_notes")
 
 with tab4:
-    st.header("4. Investigations Trend Table")
-    st.caption("Admission/Ward/Predischarge Date")
+    st.header("4. Investigations Trend Table (5-Column Format)")
+    st.caption("5 Serial Date Timestamps: Admission → Random Ward Day 1 → Random Ward Day 2 → Random Ward Day 3 → Predischarge Date")
         
     col_d1, col_d2, col_d3, col_d4, col_d5 = st.columns(5)
     with col_d1:
         date_adm_str = st.text_input("Admission Date", value="14/10/2026", key="lbl_adm_date")
     with col_d2:
-        date_mid1_str = st.text_input("Date 1", value="15/10/2026", key="lbl_mid1_date")
+        date_mid1_str = st.text_input("Ward Day 1", value="15/10/2026", key="lbl_mid1_date")
     with col_d3:
-        date_mid2_str = st.text_input("Date 2", value="16/10/2026", key="lbl_mid2_date")
+        date_mid2_str = st.text_input("Ward Day 2", value="16/10/2026", key="lbl_mid2_date")
     with col_d4:
-        date_mid3_str = st.text_input("Date 3", value="17/10/2026", key="lbl_mid3_date")
+        date_mid3_str = st.text_input("Ward Day 3", value="17/10/2026", key="lbl_mid3_date")
     with col_d5:
         date_dis_str = st.text_input("Predischarge Date", value="19/10/2026", key="lbl_dis_date")
 
@@ -417,10 +613,10 @@ with tab4:
     h1, h2, h3, h4, h5, h6 = st.columns([2.5, 3, 3, 3, 3, 3])
     h1.markdown("**Parameter**")
     h2.markdown(f"**Admission ({date_adm_str})**")
-    h3.markdown(f"**Date 1 ({date_mid1_str})**")
-    h4.markdown(f"**Date 2 ({date_mid2_str})**")
-    h5.markdown(f"**Date 3 ({date_mid3_str})**")
-    h6.markdown(f"**Discharge ({date_dis_str})**")
+    h3.markdown(f"**Ward Day 1 ({date_mid1_str})**")
+    h4.markdown(f"**Ward Day 2 ({date_mid2_str})**")
+    h5.markdown(f"**Ward Day 3 ({date_mid3_str})**")
+    h6.markdown(f"**Predischarge ({date_dis_str})**")
 
     # Lab Dict
     lab_params = [
@@ -457,10 +653,10 @@ with tab4:
     st.markdown("---")
 
 with tab5:
-    st.header("5. Discharge Medication Regimen & Steroid Tapering")
+    st.header("5. Discharge Medication Regimen & Steroid Regimen")
     st.caption("Check ONLY the medications prescribed at discharge.")
     st.subheader("Select Prescribed Discharge Medications")
-        
+    
     col_m1, col_m2 = st.columns(2)
     with col_m1:
         # 1. Pantoprazole
@@ -469,20 +665,7 @@ with tab5:
         if m_panto:
             val_panto = "40mg OD (Fixed)"
                 
-        # 2. Prednisolone
-        m_pred = st.checkbox("Prednisolone", value=False, key="chk_m_pred")
-        val_pred = ""
-        if m_pred:
-            c1, c2, c3 = st.columns([1, 1, 1])
-            with c1:
-                pred_mode = st.selectbox("Mode", ["Oral", "Syp"], key="sel_pred_mode")
-            with c2:
-                pred_dose = st.selectbox("Dose", ["10 mg", "20 mg", "30 mg", "40 mg", "50 mg", "60 mg"], key="sel_pred_dose")
-            with c3:
-                pred_freq = st.selectbox("Freq", ["OD", "BD", "TDS", "QID", "PRN"], key="sel_pred_freq")
-            val_pred = f"{pred_mode} {pred_dose} {pred_freq}"
-                
-        # 3. Calcium Carbonate (CaCO3)
+        # 2. Calcium Carbonate (CaCO3)
         m_caco3 = st.checkbox("Calcium Carbonate (CaCO3)", value=False, key="chk_m_caco3")
         val_caco3 = ""
         if m_caco3:
@@ -493,7 +676,7 @@ with tab5:
                 caco_freq = st.selectbox("Freq", ["BD", "OD", "TDS", "PRN"], key="sel_caco_freq")
             val_caco3 = f"{caco_dose} {caco_freq}"
                 
-        # 4. Rocaltriol / Calcitriol
+        # 3. Rocaltriol / Calcitriol
         m_rocal = st.checkbox("Rocaltriol / Calcitriol", value=False, key="chk_m_rocal")
         val_rocal = ""
         if m_rocal:
@@ -504,14 +687,14 @@ with tab5:
                 rocal_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_rocal_freq")
             val_rocal = f"{rocal_dose} {rocal_freq}"
         
-        # 5. SGLT2i
+        # 4. SGLT2i
         m_sglt2 = st.checkbox("SGLT2i (Dapagliflozin / Empagliflozin)", value=True, key="chk_m_sglt2")
         val_sglt2 = ""
         if m_sglt2:
             sglt2_choice = st.selectbox("Regimen", ["Dapagliflozin 10mg OD (Fixed)", "Empagliflozin 10mg OD", "Empagliflozin 25mg OD"], key="sel_sglt2_choice")
             val_sglt2 = sglt2_choice
 
-        # 6. Spironolactone
+        # 5. Spironolactone
         m_spiro = st.checkbox("Spironolactone", value=False, key="chk_m_spiro")
         val_spiro = ""
         if m_spiro:
@@ -522,7 +705,7 @@ with tab5:
                 spiro_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_spiro_freq")
             val_spiro = f"{spiro_dose} {spiro_freq}"
 
-        # 7. Frusemide
+        # 6. Frusemide
         m_fruse = st.checkbox("Frusemide", value=True, key="chk_m_fruse")
         val_fruse = ""
         if m_fruse:
@@ -533,7 +716,7 @@ with tab5:
                 fruse_freq = st.selectbox("Freq", ["OD", "BD", "TDS", "QID", "PRN"], key="sel_fruse_freq")
             val_fruse = f"{fruse_dose} {fruse_freq}"
 
-        # 8. Amlodipine
+        # 7. Amlodipine
         m_amlo = st.checkbox("Amlodipine", value=False, key="chk_m_amlo")
         val_amlo = ""
         if m_amlo:
@@ -544,13 +727,13 @@ with tab5:
                 amlo_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_amlo_freq")
             val_amlo = f"{amlo_dose} {amlo_freq}"
 
-        # 9. Aspirin / Glyprin
+        # 8. Aspirin / Glyprin
         m_glyprin = st.checkbox("Aspirin / Glyprin", value=True, key="chk_m_glyprin")
         val_glyprin = ""
         if m_glyprin:
             val_glyprin = "1 tablet (100mg) OD (Fixed)"
 
-        # 10. Atorvastatin
+        # 9. Atorvastatin
         m_atorva = st.checkbox("Atorvastatin", value=True, key="chk_m_atorva")
         val_atorva = ""
         if m_atorva:
@@ -560,8 +743,8 @@ with tab5:
             with c2:
                 atorva_freq = st.selectbox("Freq", ["ON (Night)", "OD", "PRN"], key="sel_atorva_freq")
             val_atorva = f"{atorva_dose} {atorva_freq}"
-
-        # 11. Bisoprolol
+        
+        # 10. Bisoprolol
         m_biso = st.checkbox("Bisoprolol", value=False, key="chk_m_biso")
         val_biso = ""
         if m_biso:
@@ -573,7 +756,7 @@ with tab5:
             val_biso = f"{biso_dose} {biso_freq}"
 
     with col_m2:
-        # 12. Perindopril
+        # 11. Perindopril
         m_perin = st.checkbox("Perindopril", value=False, key="chk_m_perin")
         val_perin = ""
         if m_perin:
@@ -584,7 +767,7 @@ with tab5:
                 perin_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_perin_freq")
             val_perin = f"{perin_dose} {perin_freq}"
 
-        # 13. ARNI (Sacubitril / Valsartan)
+        # 12. ARNI (Sacubitril / Valsartan)
         m_arni = st.checkbox("ARNI (Sacubitril / Valsartan)", value=False, key="chk_m_arni")
         val_arni = ""
         if m_arni:
@@ -595,7 +778,7 @@ with tab5:
                 arni_freq = st.selectbox("Freq", ["BD", "OD", "PRN"], key="sel_arni_freq")
             val_arni = f"{arni_dose} {arni_freq}"
 
-        # 14. Metformin (IR & XR)
+        # 13. Metformin (IR & XR)
         m_metformin = st.checkbox("Metformin", value=False, key="chk_m_metformin")
         val_metformin = ""
         if m_metformin:
@@ -608,7 +791,7 @@ with tab5:
                 met_freq = st.selectbox("Freq", ["BD", "OD", "TDS", "PRN"], key="sel_met_freq")
             val_metformin = f"{met_form} {met_dose} {met_freq}"
 
-        # 15. Gliclazide (Standard & MR)
+        # 14. Gliclazide (Standard & MR)
         m_gliclazide = st.checkbox("Gliclazide", value=False, key="chk_m_gliclazide")
         val_gliclazide = ""
         if m_gliclazide:
@@ -623,8 +806,8 @@ with tab5:
             with c3:
                 glic_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_glic_freq")
             val_gliclazide = f"{glic_form} {glic_dose} {glic_freq}"
-
-        # 16. Subcutaneous Insulin Regimens
+                
+        # 15. Subcutaneous Insulin Regimens
         m_insulin = st.checkbox("SC Insulin Regimens", value=False, key="chk_m_insulin")
         val_insulin = ""
         if m_insulin:
@@ -635,7 +818,7 @@ with tab5:
                 ins_dose = st.text_input("Dose Details (e.g. 12u BD / 10u ON)", value="12u BD", key="txt_ins_dose")
             val_insulin = f"{ins_type}: {ins_dose}"
 
-        # 17. Prazosin
+        # 16. Prazosin
         m_prazosin = st.checkbox("Prazosin", value=False, key="chk_m_prazosin")
         val_prazosin = ""
         if m_prazosin:
@@ -646,7 +829,7 @@ with tab5:
                 prazo_freq = st.selectbox("Freq", ["TDS", "QID", "BD", "PRN"], key="sel_prazo_freq")
             val_prazosin = f"{prazo_dose} {prazo_freq}"
 
-        # 18. Zincofer
+        # 17. Zincofer
         m_zincofer = st.checkbox("Zincofer", value=False, key="chk_m_zincofer")
         val_zincofer = ""
         if m_zincofer:
@@ -657,7 +840,7 @@ with tab5:
                 zinc_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_zinc_freq")
             val_zincofer = f"{zinc_dose} {zinc_freq}"
 
-        # 19. Vit B12 / Folate / Multivitamins
+        # 18. Vit B12 / Folate / Multivitamins
         m_vit = st.checkbox("Vit B12 / Folate / Multivitamins", value=False, key="chk_m_vit")
         val_vit = ""
         if m_vit:
@@ -668,7 +851,7 @@ with tab5:
                 vit_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_vit_freq")
             val_vit = f"{vit_dose} {vit_freq}"
 
-        # 20. Syp Morphine
+        # 19. Syp Morphine
         m_morphine = st.checkbox("Syp Morphine", value=False, key="chk_m_morphine")
         val_morphine = ""
         if m_morphine:
@@ -679,7 +862,7 @@ with tab5:
                 morph_freq = st.selectbox("Freq", ["4-hourly", "PRN", "OD", "BD", "TDS", "QID"], key="sel_morph_freq")
             val_morphine = f"{morph_dose} {morph_freq}"
 
-        # 21. Paracetamol (PCM)
+        # 20. Paracetamol (PCM)
         m_pcm = st.checkbox("Paracetamol (PCM)", value=False, key="chk_m_pcm")
         val_pcm = ""
         if m_pcm:
@@ -690,19 +873,77 @@ with tab5:
                 pcm_freq = st.selectbox("Freq", ["QID PRN", "TDS PRN", "QID", "TDS", "PRN"], key="sel_pcm_freq")
             val_pcm = f"{pcm_dose} {pcm_freq}"
 
-    med_custom = st.text_area("Additional Prescribed Discharge Medications", value="", key="txt_med_custom")
+    med_custom = st.text_area("Additional Discharge Medications", value="", key="txt_med_custom")
 
-    st.subheader("Steroid Tapering Schedule (e.g. Prednisolone)")
-    steroid_active = st.checkbox("Patient Discharged on Steroid Tapering Plan", value=False, key="chk_steroid_active")
-    if steroid_active:
-        steroid_ind = st.text_input("Indication for Steroid Taper", value="COPD / Asthma Exacerbation", key="txt_steroid_ind")
-        st1 = st.text_input("Step 1: Dose & Duration", value="Prednisolone 30mg OD for 5 days", key="txt_st1")
-        st2 = st.text_input("Step 2: Dose & Duration", value="Then 20mg OD for 5 days", key="txt_st2")
-        st3 = st.text_input("Step 3: Dose & Duration", value="Then 10mg OD for 5 days", key="txt_st3")
-        st4 = st.text_input("Step 4: Dose & Off Date", value="Then 5mg OD for 5 days, then OFF", key="txt_st4")
-    else:
-        steroid_ind = ""
-        st1 = st2 = st3 = st4 = ""
+    # Oral Steroid Regimen Section
+    st.subheader("Oral Prednisolone & Dexamethasone Regimen")
+    
+    # Prednisolone
+    chk_p_reg = st.checkbox("Prescribe Oral Prednisolone Regimen", key="chk_p_reg")
+    pred_steps_list = []
+    pred_regimen_summary = ""
+    if chk_p_reg:
+        p_ind = st.text_input("Indication", value="COPD / Asthma / ILD Flare", key="txt_p_ind")
+        st.markdown("**Configure Step-by-Step Tapering Steps:**")
+        
+        c_s1, c_s2, c_s3 = st.columns(3)
+        with c_s1:
+            p_d1 = st.selectbox("Step 1 Dose", ["30 mg", "40 mg", "50 mg", "60 mg", "20 mg", "15 mg", "10 mg", "5 mg"], key="sel_p_d1")
+            p_f1 = st.selectbox("Step 1 Freq", ["OD", "BD", "OFF"], key="sel_p_f1")
+            p_dur1 = st.selectbox("Step 1 Duration", ["5 days", "3 days", "7 days", "10 days", "14 days"], key="sel_p_dur1")
+            if p_f1 != "OFF":
+                pred_steps_list.append(f"  - Step 1: Prednisolone {p_d1} {p_f1} for {p_dur1}")
+
+        with c_s2:
+            p_d2 = st.selectbox("Step 2 Dose", ["20 mg", "30 mg", "15 mg", "10 mg", "5 mg"], key="sel_p_d2")
+            p_f2 = st.selectbox("Step 2 Freq", ["OD", "BD", "OFF"], key="sel_p_f2")
+            p_dur2 = st.selectbox("Step 2 Duration", ["5 days", "3 days", "7 days", "10 days"], key="sel_p_dur2")
+            if p_f2 != "OFF":
+                pred_steps_list.append(f"  - Step 2: Then {p_d2} {p_f2} for {p_dur2}")
+
+        with c_s3:
+            p_d3 = st.selectbox("Step 3 Dose", ["10 mg", "15 mg", "5 mg"], key="sel_p_d3")
+            p_f3 = st.selectbox("Step 3 Freq", ["OD", "BD", "OFF"], key="sel_p_f3")
+            p_dur3 = st.selectbox("Step 3 Duration", ["5 days", "3 days", "7 days"], key="sel_p_dur3")
+            if p_f3 != "OFF":
+                pred_steps_list.append(f"  - Step 3: Then {p_d3} {p_f3} for {p_dur3}")
+
+        c_s4, c_s5 = st.columns(2)
+        with c_s4:
+            p_d4 = st.selectbox("Step 4 Dose", ["5 mg", "10 mg"], key="sel_p_d4")
+            p_f4 = st.selectbox("Step 4 Freq", ["OFF", "OD"], key="sel_p_f4")
+            p_dur4 = st.selectbox("Step 4 Duration", ["5 days", "3 days", "Then OFF"], key="sel_p_dur4")
+            if p_f4 != "OFF":
+                pred_steps_list.append(f"  - Step 4: Then {p_d4} {p_f4} for {p_dur4}")
+
+        pred_regimen_summary = f"Oral Prednisolone Regimen (Indication: {p_ind}):\n" + "\n".join(pred_steps_list)
+        st.text_area("Oral Prednisolone Regimen Summary Box", value=pred_regimen_summary, height=130)
+
+    # Dexamethasone
+    chk_d_reg = st.checkbox("Prescribe Oral Dexamethasone Regimen", key="chk_d_reg")
+    dexa_steps_list = []
+    dexa_regimen_summary = ""
+    if chk_d_reg:
+        d_ind = st.text_input("Indication (Dexa)", value="Brain Edema / Flare", key="txt_d_ind")
+        st.markdown("**Configure Step-by-Step Steps:**")
+        
+        cd_1, cd_2 = st.columns(2)
+        with cd_1:
+            d_d1 = st.selectbox("Step 1 Dose (Dexa)", ["6 mg", "8 mg", "4 mg", "2 mg"], key="sel_d_d1")
+            d_f1 = st.selectbox("Step 1 Freq (Dexa)", ["OD", "BD", "OFF"], key="sel_d_f1")
+            d_dur1 = st.selectbox("Step 1 Duration (Dexa)", ["5 days", "3 days", "7 days", "10 days"], key="sel_d_dur1")
+            if d_f1 != "OFF":
+                dexa_steps_list.append(f"  - Step 1: Dexamethasone {d_d1} {d_f1} for {d_dur1}")
+
+        with cd_2:
+            d_d2 = st.selectbox("Step 2 Dose (Dexa)", ["4 mg", "2 mg", "1 mg"], key="sel_d_d2")
+            d_f2 = st.selectbox("Step 2 Freq (Dexa)", ["OD", "OFF"], key="sel_d_f2")
+            d_dur2 = st.selectbox("Step 2 Duration (Dexa)", ["5 days", "3 days", "Then OFF"], key="sel_d_dur2")
+            if d_f2 != "OFF":
+                dexa_steps_list.append(f"  - Step 2: Then {d_d2} {d_f2} for {d_dur2}")
+
+        dexa_regimen_summary = f"Oral Dexamethasone Regimen (Indication: {d_ind}):\n" + "\n".join(dexa_steps_list)
+        st.text_area("Oral Dexamethasone Regimen Summary Box", value=dexa_regimen_summary, height=110)
 
 with tab6:
     st.header("6. Final Review & Export Options")
@@ -714,22 +955,23 @@ with tab6:
     mo_name2 = st.text_input("Medical Officer Incharged", value="", key="txt_mo2_name")
 
     # Build Dynamic Plain Text Summary
-    summary_text = "================================================================================\n"
-    summary_text += " ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY\n"
-    summary_text += "================================================================================\n\n"
-    summary_text += "[ 1. PATIENT DEMOGRAPHICS & METADATA ]\n"
-    summary_text += f"Patient Name: {patient_name}    RN/MRN: {rn_mrn}\n"
-    summary_text += f"IC/Passport: {ic_passport}    Age/Sex: {age_sex}\n"
-    summary_text += f"Admission Date: {adm_date}    Discharge Date: {dis_date}\n"
-    summary_text += f"Referral Source: {referral_place} {f'({referral_other})' if referral_other else ''}\n"
-    summary_text += f"Ward/Bed: {ward_bed}    Attending Team: {attending_dr}\n"
-    summary_text += f"Subspecialty Team: {subspec_team}\n"
-    summary_text += f"Contact No: {contact_num}    Caretaker: {caretaker}\n"
-    summary_text += f"Address: {address}\n\n"
-
-    summary_text += "[ 2. PROBLEM LIST & DIAGNOSES ]\nPrimary Diagnoses:\n"
+    summary_text = (
+        "================================================================================\n"
+        " ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY\n"
+        "================================================================================\n\n"
+        "[ 1. PATIENT DEMOGRAPHICS & METADATA ]\n"
+        f"Patient Name: {patient_name}    RN/MRN: {rn_mrn}\n"
+        f"IC/Passport: {ic_passport}    Age/Sex: {age_sex}\n"
+        f"Admission Date: {adm_date}    Discharge Date: {dis_date}\n"
+        f"Referral Source: {referral_place} {f'({referral_other})' if referral_other else ''}\n"
+        f"Ward/Bed: {ward_bed}    Attending Team: {attending_dr}\n"
+        f"Subspecialty Team: {subspec_team}\n"
+        f"Contact No: {contact_num}    Caretaker: {caretaker}\n"
+        f"Address: {address}\n\n"
+        "[ 2. PROBLEM LIST & DIAGNOSES ]\nPrimary Diagnoses:\n"
+    )
+    
     has_primary = False
-
     if p_ccf: summary_text += "• Decompensated Heart Failure\n"; has_primary = True
     if p_apo: summary_text += "• Acute Pulmonary Edema\n"; has_primary = True
     if p_copd: summary_text += "• Acute Exacerbation of COPD / Asthma\n"; has_primary = True
@@ -775,25 +1017,25 @@ with tab6:
     if nyha_mets != "Not Specified": summary_text += f"• NYHA / METS Functional Capacity: {nyha_mets}\n"
     if func_notes: summary_text += f"• Functional / ADL Notes: {func_notes}\n"
 
-    summary_text += "\n[ 3. CLINICAL PROGRESS & RESUSCITATION DIRECTIVE ]\n"
-    summary_text += f"Main Presentation: {presentation}\n"
-    summary_text += f"Acute Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n"
-    summary_text += f"Initial Bedside Scan by {int_scan_by}: {int_scan_findings}\n\n"
-    summary_text += "Ward Progress:\n"
-    summary_text += f"• Highest Oxygen Modality: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration})\n"
-    summary_text += f"• Concentrator Needed at Discharge: {o2_conc_dis} {f'(Duration: {o2_conc_duration})' if o2_conc_duration else ''}\n"
-    summary_text += f"• Inotropic Support: {inotropes_ward}\n"
+    inotropes_str = ", ".join(inotropes_ward) if inotropes_ward else "None"
 
-    inmed_lines = []
-    if inmed_abx: inmed_lines.append(f"  - Antibiotics: {inmed_abx_detail if inmed_abx_detail else 'Administered'}")
-    if inmed_diuretic: inmed_lines.append(f"  - IV Diuretics: {inmed_diuretic_detail if inmed_diuretic_detail else 'Administered'}")
-    if inmed_anticoag: inmed_lines.append(f"  - Anticoagulation/Antiplatelets: {inmed_anticoag_detail if inmed_anticoag_detail else 'Administered'}")
-    if inmed_steroid: inmed_lines.append(f"  - Corticosteroids: {inmed_steroid_detail if inmed_steroid_detail else 'Administered'}")
-    if inmed_resp: inmed_lines.append(f"  - Nebulizers/Respiratory: {inmed_resp_detail if inmed_resp_detail else 'Administered'}")
-    if inmed_others_chk: inmed_lines.append(f"  - Other Acute Meds: {inmed_others_detail if inmed_others_detail else 'Administered'}")
-    
-    if inmed_lines:
-        summary_text += "• Inpatient Acute Medications:\n" + "\n".join(inmed_lines) + "\n"
+    summary_text += (
+        "\n[ 3. CLINICAL PROGRESS & RESUSCITATION DIRECTIVE ]\n"
+        f"Main Presentation: {presentation}\n"
+        f"Acute Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n"
+        f"Initial Bedside Scan by {int_scan_by}: {int_scan_findings}\n\n"
+        "Ward Progress:\n"
+        f"• Highest Oxygen Modality: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration})\n"
+        f"• Concentrator Needed at Discharge: {o2_conc_dis} {f'(Duration: {o2_conc_duration})' if o2_conc_duration else ''}\n"
+        f"• Inotropic Support Required: {inotropes_str}\n\n"
+        "Inpatient Medications & Treatment Regimen:\n"
+        f"{inpatient_regimen_text}\n\n"
+        "POCUS & Diagnostics:\n"
+        f"• Lung: {pocus_lung} | Cardiac: {pocus_heart}\n"
+        f"• PLR: {pocus_plr} | Vessels: {pocus_vessels} | Others: {pocus_others}\n"
+        f"• Interpretation: {pocus_interp}\n"
+        f"• ECG: {ecg_findings} | CXR: {cxr_findings} | Other Imagings: {other_ix}\n\n"
+    )
 
     proc_summary_lines = []
     if proc_pleural:
@@ -809,12 +1051,15 @@ with tab6:
         det_str = f": {proc_lp_detail}" if proc_lp_detail else ""
         proc_summary_lines.append(f"  - Lumbar Puncture{dt_str}{det_str}")
     if proc_cvl:
-        proc_summary_lines.append(f"  - Central Venous Line (CVL): {proc_cvl_detail if proc_cvl_detail else 'Inserted/Removed'}")
+        det_str = f": {proc_cvl_detail}" if proc_cvl_detail else ""
+        proc_summary_lines.append(f"  - Central Venous Line (CVL){det_str}")
     if proc_hd_cath:
-        proc_summary_lines.append(f"  - Acute Dialysis Catheter: {proc_hd_detail if proc_hd_detail else 'Inserted/Removed'}")
+        det_str = f": {proc_hd_detail}" if proc_hd_detail else ""
+        proc_summary_lines.append(f"  - Acute Dialysis Catheter{det_str}")
     if proc_others_chk:
-        proc_summary_lines.append(f"  - Other Procedure: {proc_others_detail if proc_others_detail else 'Completed'}")
-    
+        det_str = f": {proc_others_detail}" if proc_others_detail else ""
+        proc_summary_lines.append(f"  - Other Procedure{det_str}")
+
     if proc_summary_lines:
         summary_text += "• Procedures Performed:\n" + "\n".join(proc_summary_lines) + "\n"
     else:
@@ -828,14 +1073,6 @@ with tab6:
     else:
         summary_text += "• Acute Dialysis: No\n"
 
-    summary_text += "\nPOCUS & Diagnostics:\n"
-    summary_text += f"• Lung: {pocus_lung} | Heart: {pocus_heart}\n"
-    summary_text += f"• PLR: {pocus_plr} | Vessels: {pocus_vessels} | Others: {pocus_others}\n"
-    summary_text += f"• Interpretation: {pocus_interp}\n"
-    summary_text += f"• ECG: {ecg_findings}\n"
-    summary_text += f"• CXR: {cxr_findings}\n"
-    summary_text += f"• Other Imagings: {other_ix}\n"
-
     resus_str = ", ".join(resus_code_selected) if resus_code_selected else "Unspecified / See Notes"
     ceiling_items = []
     if resus_hfnc: ceiling_items.append("HFNC")
@@ -846,14 +1083,16 @@ with tab6:
     if resus_ab: ceiling_items.append("Antibiotics")
     ceiling_str = ", ".join(ceiling_items) if ceiling_items else "NIL specified"
 
-    summary_text += "\nRESUSCITATION DIRECTIVE & CEILING OF CARE:\n"
-    summary_text += f"• Advanced Directive / Wish: {Advance_directive}\n"
-    summary_text += f"• Resuscitation Status: {resus_str}\n"
-    summary_text += f"• Maximum Ceiling Interventions: {ceiling_str}\n"
-    summary_text += f"• Directives / Notes: {resus_notes}\n"
+    summary_text += (
+        "\nRESUSCITATION DIRECTIVE & CEILING OF CARE:\n"
+        f"• Advanced Directive / Wish: {Advance_directive}\n"
+        f"• Resuscitation Status: {resus_str}\n"
+        f"• Maximum Ceiling Interventions: {ceiling_str}\n"
+        f"• Directives / Notes: {resus_notes}\n\n"
+        "[ 4. LABORATORY & DIAGNOSTIC TRENDS ]\n"
+        f"Flowsheet Trend Table ({date_adm_str} vs {date_mid1_str} vs {date_mid2_str} vs {date_mid3_str} vs {date_dis_str}):\n"
+    )
 
-    summary_text += f"\n[ 4. LABORATORY & DIAGNOSTIC TRENDS ]\n"
-    summary_text += f"Flowsheet Trend Table ({date_adm_str} vs {date_mid1_str} vs {date_mid2_str} vs {date_mid3_str} vs {date_dis_str}):\n"
     for param, unit in lab_params:
         v1, v2, v3, v4, v5 = lab_inputs[param]
         if v1 or v2 or v3 or v4 or v5:
@@ -862,7 +1101,6 @@ with tab6:
     summary_text += "\n[ 5. DISCHARGE MEDICATIONS ]\n"
     med_idx = 1
     if m_panto: summary_text += f"{med_idx}. Pantoprazole: {val_panto}\n"; med_idx += 1
-    if m_pred: summary_text += f"{med_idx}. Prednisolone: {val_pred}\n"; med_idx += 1
     if m_caco3: summary_text += f"{med_idx}. Calcium Carbonate: {val_caco3}\n"; med_idx += 1
     if m_rocal: summary_text += f"{med_idx}. Rocaltriol: {val_rocal}\n"; med_idx += 1
     if m_sglt2: summary_text += f"{med_idx}. SGLT2i: {val_sglt2}\n"; med_idx += 1
@@ -884,16 +1122,19 @@ with tab6:
     if m_pcm: summary_text += f"{med_idx}. Paracetamol: {val_pcm}\n"; med_idx += 1
     if med_custom: summary_text += f"Additional Meds: {med_custom}\n"
 
-    if steroid_active:
-        summary_text += f"\nSteroid Tapering Plan (Indication: {steroid_ind}):\n"
-        summary_text += f"  - {st1}\n  - {st2}\n  - {st3}\n  - {st4}\n"
+    if chk_p_reg and pred_regimen_summary:
+        summary_text += f"\n{pred_regimen_summary}\n"
+    if chk_d_reg and dexa_regimen_summary:
+        summary_text += f"\n{dexa_regimen_summary}\n"
 
-    summary_text += "\n[ 6. PLAN & SAFETY-NETTING ]\n"
-    summary_text += f"• AIM Clinic Plan: {aim_clinic_plan}\n"
-    summary_text += f"• Other Clinic Follow-ups: {other_clinic_plan}\n"
-    summary_text += f"• Red Flag Warning Signs: {red_flags}\n"
-    summary_text += f"• Discharging MO: {mo_name1} {f'(Incharge: {mo_name2})' if mo_name2 else ''}\n"
-    summary_text += "================================================================================\n"
+    summary_text += (
+        "\n[ 6. PLAN & SAFETY-NETTING ]\n"
+        f"• AIM Clinic Plan: {aim_clinic_plan}\n"
+        f"• Other Clinic Follow-ups: {other_clinic_plan}\n"
+        f"• Red Flag Warning Signs: {red_flags}\n"
+        f"• Discharging MO: {mo_name1} {f'(Incharge: {mo_name2})' if mo_name2 else ''}\n"
+        "================================================================================\n"
+    )
 
     st.subheader("Generated Summary Preview")
     st.text_area("Copyable Plain Text Summary (For Hospital EHR)", summary_text, height=350)
@@ -994,13 +1235,15 @@ with tab6:
         p_prog = doc.add_paragraph()
         p_prog.add_run(f"Presentation: {presentation}\n")
         p_prog.add_run(f"Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n")
-        p_prog.add_run(f"Ward Progress: Highest O2: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration}). Concentrator Needed: {o2_conc_dis} ({o2_conc_duration}).\n")
-        if inmed_lines:
-            p_prog.add_run("Inpatient Acute Medications Administered:\n").bold = True
-            for imline in inmed_lines:
+        p_prog.add_run(f"Ward Progress: Highest O2: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration}). Concentrator Needed: {o2_conc_dis} ({o2_conc_duration}). Inotropes: {inotropes_str}.\n\n")
+        if inmed_list:
+            p_prog.add_run("Inpatient Medications & Treatment Administered:\n").bold = True
+            for imline in inmed_list:
                 p_prog.add_run(f"{imline}\n")
-        p_prog.add_run(f"POCUS Summary: Heart: {pocus_heart} | Lung: {pocus_lung} | Vessels: {pocus_vessels}\n")
+            p_prog.add_run("\n")
+        p_prog.add_run(f"POCUS Summary: Cardiac: {pocus_heart} | Lung: {pocus_lung} | Vessels: {pocus_vessels}\n")
         p_prog.add_run(f"Interpretation: {pocus_interp}\n")
+        p_prog.add_run(f"Diagnostics: ECG: {ecg_findings} | CXR: {cxr_findings} | Other Imagings: {other_ix}\n")
         dial_info = f"Acute Dialysis: {dialysis_needed} {f'(Mode: {dialysis_mode}' + (f', Date: {dialysis_date}' if dialysis_date else '') + (f', Recovery: {renal_recovery}' if renal_recovery else '') + ')' if dialysis_needed == 'Yes' else ''}\n"
         p_prog.add_run(dial_info)
         if proc_summary_lines:
@@ -1013,7 +1256,6 @@ with tab6:
         t_resus.style = 'Table Grid'
         cell = t_resus.rows[0].cells[0]
         
-        # Yellow shading
         shd = parse_xml(r'<w:shd {} w:fill="FFF2CC"/>'.format(nsdecls('w')))
         cell._tc.get_or_add_tcPr().append(shd)
         
@@ -1039,7 +1281,7 @@ with tab6:
         t_labs = doc.add_table(rows=num_rows, cols=6)
         t_labs.style = 'Table Grid'
         
-        headers = ["Parameter", f"Adm ({date_adm_str})", f"Date 1 ({date_mid1_str})", f"Date 2 ({date_mid2_str})", f"Date 3 ({date_mid3_str})", f"Dis ({date_dis_str})"]
+        headers = ["Parameter", f"Admission ({date_adm_str})", f"Ward Day 1 ({date_mid1_str})", f"Ward Day 2 ({date_mid2_str})", f"Ward Day 3 ({date_mid3_str})", f"Predischarge ({date_dis_str})"]
         for i, h in enumerate(headers):
             cell = t_labs.rows[0].cells[i]
             cell.text = h
@@ -1057,11 +1299,10 @@ with tab6:
             t_labs.rows[row_idx].cells[5].text = v5
 
         # Section 5: Meds & Plan
-        add_sec_heading("[ 5. DISCHARGE MEDICATIONS & STEROID TAPER ]")
+        add_sec_heading("[ 5. DISCHARGE MEDICATIONS & STEROID REGIMEN ]")
         p_meds = doc.add_paragraph()
         m_count = 1
         if m_panto: p_meds.add_run(f"{m_count}. Pantoprazole: {val_panto}\n"); m_count += 1
-        if m_pred: p_meds.add_run(f"{m_count}. Prednisolone: {val_pred}\n"); m_count += 1
         if m_caco3: p_meds.add_run(f"{m_count}. Calcium Carbonate: {val_caco3}\n"); m_count += 1
         if m_rocal: p_meds.add_run(f"{m_count}. Rocaltriol: {val_rocal}\n"); m_count += 1
         if m_sglt2: p_meds.add_run(f"{m_count}. SGLT2i: {val_sglt2}\n"); m_count += 1
@@ -1083,9 +1324,10 @@ with tab6:
         if m_pcm: p_meds.add_run(f"{m_count}. Paracetamol: {val_pcm}\n"); m_count += 1
         if med_custom: p_meds.add_run(f"Additional Meds: {med_custom}\n")
 
-        if steroid_active:
-            p_meds.add_run(f"\nSteroid Tapering Plan ({steroid_ind}):\n").bold = True
-            p_meds.add_run(f"• {st1}\n• {st2}\n• {st3}\n• {st4}\n")
+        if chk_p_reg and pred_regimen_summary:
+            p_meds.add_run(f"\n{pred_regimen_summary}\n").bold = True
+        if chk_d_reg and dexa_regimen_summary:
+            p_meds.add_run(f"\n{dexa_regimen_summary}\n").bold = True
 
         add_sec_heading("[ 6. FOLLOW-UP PLAN & RED FLAGS ]")
         p_plan = doc.add_paragraph()
