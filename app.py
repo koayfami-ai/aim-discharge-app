@@ -371,7 +371,7 @@ with tab3:
         if chk_cipro:
             c_d, c_f = st.columns(2)
             cipro_dose = c_d.selectbox("Dose", ["400 mg"], key="sel_in_cipro_d")
-            cipro_freq = c_f.selectbox("Freq", ["OD", "BD"], key="sel_in_cipro_f")
+            cipro_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_cipro_f")
             c_s, c_c = st.columns(2)
             cipro_start = c_s.text_input("Date Start", value="", key="txt_in_cipro_s")
             cipro_comp = c_c.text_input("Date Complete", value="", key="txt_in_cipro_c")
@@ -383,17 +383,17 @@ with tab3:
         if chk_clinda:
             c_d, c_f = st.columns(2)
             clinda_dose = c_d.selectbox("Dose", ["300 mg", "600 mg", "900 mg"], key="sel_in_clinda_d")
-            clinda_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_clinda_f")
+            clinda_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_clinda_f")
             c_s, c_c = st.columns(2)
             clinda_start = c_s.text_input("Date Start", value="", key="txt_in_clinda_s")
             clinda_comp = c_c.text_input("Date Complete", value="", key="txt_in_clinda_c")
             inmed_list.append(f"• IV Clindamycin {clinda_dose} {clinda_freq} [Started: {clinda_start if clinda_start else 'N/A'} | Completed: {clinda_comp if clinda_comp else 'N/A'}]")
 
         # 10. Acyclovir
-        chk_acyclo = st.checkbox("Acyclovir", key="chk_in_acyclo")
+        chk_acyclo = st.checkbox("IV Acyclovir", key="chk_in_acyclo")
         if chk_acyclo:
             c_d, c_f = st.columns(2)
-            acyclo_dose = c_d.selectbox("Dose", ["500 mg"], key="sel_in_acyclo_d")
+            acyclo_dose = c_d.selectbox("Dose", ["500 mg", "10 mg/kg/dose"], key="sel_in_acyclo_d")
             acyclo_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_acyclo_f")
             c_s, c_c = st.columns(2)
             acyclo_start = c_s.text_input("Date Start", value="", key="txt_in_acyclo_s")
@@ -401,10 +401,10 @@ with tab3:
             inmed_list.append(f"• Acyclovir {acyclo_dose} {acyclo_freq} [Started: {acyclo_start if acyclo_start else 'N/A'} | Completed: {acyclo_comp if acyclo_comp else 'N/A'}]")
 
         # 11. Hydrocortisone
-        chk_hcort = st.checkbox("Hydrocortisone", key="chk_in_hcort")
+        chk_hcort = st.checkbox("IV Hydrocortisone", key="chk_in_hcort")
         if chk_hcort:
             c_d, c_f = st.columns(2)
-            hcort_dose = c_d.selectbox("Dose", ["50 mg", "100 mg"], key="sel_in_hcort_d")
+            hcort_dose = c_d.selectbox("Dose", ["25mg", "50 mg", "100 mg"], key="sel_in_hcort_d")
             hcort_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_hcort_f")
             c_s, c_c = st.columns(2)
             hcort_start = c_s.text_input("Date Start", value="", key="txt_in_hcort_s")
@@ -412,11 +412,11 @@ with tab3:
             inmed_list.append(f"• Hydrocortisone {hcort_dose} {hcort_freq} [Started: {hcort_start if hcort_start else 'N/A'} | Completed: {hcort_comp if hcort_comp else 'N/A'}]")
 
         # 12. Dexa
-        chk_dexa_in = st.checkbox("Dexa (Dexamethasone)", key="chk_in_dexa")
+        chk_dexa_in = st.checkbox("IV Dexamethasone", key="chk_in_dexa")
         if chk_dexa_in:
             c_d, c_f = st.columns(2)
             dexain_dose = c_d.selectbox("Dose", ["2 mg", "4 mg", "6 mg", "8 mg"], key="sel_in_dexain_d")
-            dexain_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_dexain_f")
+            dexain_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID", key="sel_in_dexain_f")
             c_s, c_c = st.columns(2)
             dexain_start = c_s.text_input("Date Start", value="", key="txt_in_dexain_s")
             dexain_comp = c_c.text_input("Date Complete", value="", key="txt_in_dexain_c")
@@ -426,8 +426,8 @@ with tab3:
         chk_panto_in = st.checkbox("IV Pantoprazole", key="chk_in_panto")
         if chk_panto_in:
             c_d, c_f = st.columns(2)
-            panto_in_dose = c_d.selectbox("Dose", ["40 mg", "80 mg"], key="sel_in_panto_d")
-            panto_in_freq = c_f.selectbox("Freq", ["OD", "BD", "Continuous Infusion"], key="sel_in_panto_f")
+            panto_in_dose = c_d.selectbox("Dose", ["40 mg", "80 mg", "8mg/hr"], key="sel_in_panto_d")
+            panto_in_freq = c_f.selectbox("Freq", ["STAT", "OD", "BD", "Continuous Infusion"], key="sel_in_panto_f")
             c_s, c_c = st.columns(2)
             panto_in_start = c_s.text_input("Date Start", value="", key="txt_in_panto_s")
             panto_in_comp = c_c.text_input("Date Complete", value="", key="txt_in_panto_c")
@@ -437,8 +437,8 @@ with tab3:
         chk_azith = st.checkbox("IV Azithromycin", key="chk_in_azith")
         if chk_azith:
             c_d, c_f = st.columns(2)
-            azith_dose = c_d.selectbox("Dose", ["500 mg"], key="sel_in_azith_d")
-            azith_dur = c_f.selectbox("Duration", ["3 days", "5 days", "Custom"], key="sel_in_azith_dur")
+            azith_dose = c_d.selectbox("Dose", ["250","500 mg", "1g"], key="sel_in_azith_d")
+            azith_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_azith_dur")
             c_s, c_c = st.columns(2)
             azith_start = c_s.text_input("Date Start", value="", key="txt_in_azith_s")
             azith_comp = c_c.text_input("Date Complete", value="", key="txt_in_azith_c")
@@ -448,7 +448,7 @@ with tab3:
         chk_tami = st.checkbox("Oral Tamiflu", key="chk_in_tami")
         if chk_tami:
             c_d, c_f = st.columns(2)
-            tami_dose = c_d.selectbox("Dose", ["75 mg"], key="sel_in_tami_d")
+            tami_dose = c_d.selectbox("Dose", ["75 mg", "150mg"], key="sel_in_tami_d")
             tami_freq = c_f.selectbox("Freq", ["OD", "EOD", "BD"], key="sel_in_tami_f")
             c_s, c_c = st.columns(2)
             tami_start = c_s.text_input("Date Start", value="", key="txt_in_tami_s")
