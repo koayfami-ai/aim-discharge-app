@@ -429,41 +429,45 @@ with col_d5:
 st.markdown("---")
     
 # Headers
-h1, h2, h3, h4 = st.columns([2.5, 3, 3, 3])
+h1, h2, h3, h4, h5, h6 = st.columns([2.5, 3, 3, 3, 3, 3])
 h1.markdown("**Parameter**")
 h2.markdown(f"**Admission ({date_adm_str})**")
-h3.markdown(f"**Midway ({date_mid_str})**")
-h4.markdown(f"**Discharge ({date_dis_str})**")
+h3.markdown(f"**Midway1 ({date_mid1_str})**")
+h4.markdown(f"**Midway2 ({date_mid2_str})**")
+h5.markdown(f"**Midway3 ({date_mid3_str})**")
+h6.markdown(f"**Discharge ({date_dis_str})**")
 
-    # Lab Dict
-    lab_params = [
-        ("Hb", "g/dL"),
-        ("Hct", "%"),
-        ("Wcc", "x10^9/L"),
-        ("Lymp", "% / count"),
-        ("Plt", "x10^9/L"),
-        ("Urea", "mmol/L"),
-        ("Creat", "umol/L"),
-        ("Na", "mmol/L"),
-        ("K", "mmol/L"),
-        ("LDH", "U/L"),
-        ("ALT", "U/L"),
-        ("Coag", "PT/aPTT/INR"),
-        ("CRP", "mg/L"),
-        ("HbA1c", "%"),
-        ("Trop I", "ug/L"),
-        ("ProBNP", "pg/mL"),
-        ("Others", "ABG/POCUS/Notes")
+# Lab Dict
+lab_params = [
+    ("Hb", "g/dL"),
+    ("Hct", "%"),
+    ("Wcc", "x10^9/L"),
+    ("Lymp", "% / count"),
+    ("Plt", "x10^9/L"),
+    ("Urea", "mmol/L"),
+    ("Creat", "umol/L"),
+    ("Na", "mmol/L"),
+    ("K", "mmol/L"),
+    ("LDH", "U/L"),
+    ("ALT", "U/L"),
+    ("Coag", "PT/aPTT/INR"),
+    ("CRP", "mg/L"),
+    ("HbA1c", "%"),
+    ("Trop I", "ug/L"),
+    ("ProBNP", "pg/mL"),
+    ("Others", "ABG/Notes")
     ]
 
     lab_inputs = {}
     for param, unit in lab_params:
-        c1, c2, c3, c4 = st.columns([2.5, 3, 3, 3])
+        c1, c2, c3, c4, c5, c6 = st.columns([2.5, 3, 3, 3, 3, 3])
         c1.markdown(f"**{param}** <small>({unit})</small>", unsafe_allow_html=True)
         val_adm = c2.text_input(f"{param} Adm", value="", key=f"inp_{param}_adm", label_visibility="collapsed")
-        val_mid = c3.text_input(f"{param} Mid", value="", key=f"inp_{param}_mid", label_visibility="collapsed")
-        val_dis = c4.text_input(f"{param} Dis", value="", key=f"inp_{param}_dis", label_visibility="collapsed")
-        lab_inputs[param] = (val_adm, val_mid, val_dis)
+        val_mid1 = c3.text_input(f"{param} Mid1", value="", key=f"inp_{param}_mid1", label_visibility="collapsed")
+        val_mid2 = c4.text_input(f"{param} Mid2", value="", key=f"inp_{param}_mid2", label_visibility="collapsed")
+        val_mid3 = c5.text_input(f"{param} Mid1", value="", key=f"inp_{param}_mid3", label_visibility="collapsed")
+        val_dis = c6.text_input(f"{param} Dis", value="", key=f"inp_{param}_dis", label_visibility="collapsed")
+        lab_inputs[param] = (val_adm, val_mid1, val_mid2, val_mid3, val_dis)
 
     st.markdown("---")
     st.subheader("Imaging & Modality Summaries")
