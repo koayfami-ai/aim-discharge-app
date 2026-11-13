@@ -337,47 +337,52 @@ st.caption("💡 Check a procedure to enter specific details & lab/scan results.
 col_proc1, col_proc2 = st.columns(2)
 with col_proc1:
     proc_pleural = st.checkbox("Pleural Aspiration / Drainage", key="chk_proc_pl")
+    proc_pleural_date = ""
     proc_pleural_detail = ""
     if proc_pleural:
-        proc_pleural_detail = st.text_input("Pleural Aspiration Details & Results (e.g. volume, appearance, biochemistry, culture)", value="", key="txt_proc_pl_detail")
+        cp1, cp2 = st.columns([1, 2.5])
+        with cp1:
+            proc_pleural_date = st.text_input("Date Performed", value="", key="txt_proc_pl_date")
+        with cp2:
+            proc_pleural_detail = st.text_input("Details & Results (e.g. volume, appearance, biochemistry, culture)", value="", key="txt_proc_pl_detail")
 
     proc_ascites = st.checkbox("Peritoneal Aspiration / Drainage", key="chk_proc_asc")
+    proc_ascites_date=""
     proc_ascites_detail = ""
     if proc_ascites:
-        proc_ascites_detail = st.text_input("Paracentesis Details & Results (e.g. SAAG, cell count, culture)", value="", key="txt_proc_asc_detail")
+        cp1, cp2 = st.columns([1, 2.5])
+        with cp1:
+            proc_ascites_date = st.text_input("Date Performed", value="", key="txt_proc_asc_date")
+        with cp2:
+            proc_ascites_detail = st.text_input("Paracentesis Details & Results (e.g. SAAG, cell count, culture)", value="", key="txt_proc_asc_detail")
 
     proc_lp = st.checkbox("Lumbar Puncture", key="chk_proc_lp")
+    proc_lp_date=""
     proc_lp_detail = ""
     if proc_lp:
-        proc_lp_detail = st.text_input("Lumbar Puncture Details & Results (e.g. opening pressure, CSF biochemistry, Gram stain)", value="", key="txt_proc_lp_detail")
+        cp1, cp2 = st.columns([1, 2.5])
+        with cp1:
+            proc_lp_date = st.text_input("Date Performed", value="", key="txt_proc_lp_date")
+        with cp2:
+            proc_lp_detail = st.text_input("Lumbar Puncture Details & Results (e.g. opening pressure, CSF biochemistry, Gram stain)", value="", key="txt_proc_lp_detail")
 
 with col_proc2:
     proc_cvl = st.checkbox("Central Venous Line (CVL)", key="chk_proc_cvl")
     proc_cvl_detail = ""
     if proc_cvl:
-        proc_cvl_detail = st.text_input("CVL Site & date of Insertion and removed", value="", key="txt_proc_cvl_detail")
+        proc_cvl_detail = st.text_input("CVL Site & date of Insertion and Removed", value="", key="txt_proc_cvl_detail")
 
     proc_hd_cath = st.checkbox("Acute Dialysis Catheter", key="chk_proc_hd")
     proc_hd_detail = ""
     if proc_hd_cath:
-        proc_hd_detail = st.text_input("VasCath Insertion Site, Details & Line Status", value="", key="txt_proc_hd_detail")
+        proc_hd_detail = st.text_input("Insertion Site, Date of Insertion and Removed & Line Status", value="", key="txt_proc_hd_detail")
 
     proc_others_chk = st.checkbox("Other Procedures", key="chk_proc_others")
     proc_others_detail = ""
     if proc_others_chk:
         proc_others_detail = st.text_input("Other Procedures Types and Results", value="", key="txt_proc_others_detail")
     
-st.subheader("Inpatient Procedures")
-col_proc1, col_proc2 = st.columns(2)
-with col_proc1:
-    proc_pleural = st.checkbox("Pleural Aspiration / Drainage", key="chk_proc_pl")
-    proc_ascites = st.checkbox("Peritoneal Aspiration / Paracentesis", key="chk_proc_asc")
-    proc_lp = st.checkbox("Lumbar Puncture", key="chk_proc_lp")
-with col_proc2:
-    proc_cvl = st.checkbox("Central Venous Line (CVL)", key="chk_proc_cvl")
-    proc_hd_cath = st.checkbox("Acute Dialysis Catheter (VasCath)", key="chk_proc_hd")
-    proc_others = st.text_input("Other Procedures", value="", key="txt_proc_others")
-    
+
     dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"], key="sel_dialysis")
     dialysis_duration = ""
     renal_recovery = ""
