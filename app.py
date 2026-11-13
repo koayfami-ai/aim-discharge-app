@@ -873,7 +873,8 @@ if frailty_selected: summary_text += f"• Mobility / Frailty: {', '.join(frailt
 if nyha_mets != "Not Specified": summary_text += f"• NYHA / METS Functional Capacity: {nyha_mets}\n"
 if func_notes: summary_text += f"• Functional / ADL Notes: {func_notes}\n"
 
-    summary_text += f"""
+summary_text += f"""
+
 [ 3. CLINICAL PROGRESS & RESUSCITATION DIRECTIVE ]
 Main Presentation: {presentation}
 Acute Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}
