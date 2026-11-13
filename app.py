@@ -164,31 +164,23 @@ with col_p2:
         else:
            stroke_subtype = st.text_input("Hemorrhagic Stroke Details", value="", key="txt_stroke_hem_detail")
 
-       # Presentation NIHSS Score
-       nihss_score = st.text_input(
-      "NIHSS Score / Severity at Presentation",
-      value="",
-      key="txt_nihss_score",)
+        # Presentation NIHSS Score
+         nihss_score = st.text_input(
+             "NIHSS Score / Severity at Presentation", value="",
+             key="txt_nihss_score",)
 
-p_seizure = st.checkbox("Seizures / Status Epilepticus", key="chk_p_seizure")
-seizure_type = ""
-seizure_detail = ""
-if p_seizure:
-    seizure_type = st.selectbox(
-      "Seizure Type",
-      [
-          "Generalized Tonic-Clonic (GTC)",
-          "Focal Seizure",
-      ],
-      key="sel_seizure_type",
-  )
-    seizure_detail = st.text_input(
-      "Seizure Type",
-      value="",
-      key="txt_seizure_detail",
-  )
+        p_seizure = st.checkbox("Seizures / Status Epilepticus", key="chk_p_seizure")
+        seizure_type = ""
+        seizure_detail = ""
+        if p_seizure:
+            seizure_type = st.selectbox(
+                "Seizure Type",[
+                    "Generalized Tonic-Clonic (GTC)",
+                    "Focal Seizure",],key="sel_seizure_type",)
+            seizure_detail = st.text_input(
+                "Seizure Type",value="",key="txt_seizure_detail",)
 
-other_primary = st.text_area("Others", value="")
+        other_primary = st.text_area("Others", value="")
 
 st.subheader("Secondary Problems")
 col_s1, col_s2 = st.columns(2)
