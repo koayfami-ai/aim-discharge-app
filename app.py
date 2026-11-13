@@ -552,164 +552,165 @@ with col_m1:
     # 8. Amlodipine
     m_amlo = st.checkbox("Amlodipine", value=False, key="chk_m_amlo")
     val_amlo = ""
-        if m_amlo:
-            c1, c2 = st.columns(2)
-            with c1:
-                amlo_dose = st.selectbox("Dose", ["5 mg", "10 mg"], key="sel_amlo_dose")
-            with c2:
-                amlo_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_amlo_freq")
-            val_amlo = f"{amlo_dose} {amlo_freq}"
+    if m_amlo:
+        c1, c2 = st.columns(2)
+    with c1:
+        amlo_dose = st.selectbox("Dose", ["5 mg", "10 mg"], key="sel_amlo_dose")
+    with c2:
+        amlo_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_amlo_freq")
+    val_amlo = f"{amlo_dose} {amlo_freq}"
 
-        # 9. Aspirin / Glyprin
-        m_glyprin = st.checkbox("Aspirin / Glyprin", value=True, key="chk_m_glyprin")
-        val_glyprin = ""
-        if m_glyprin:
-            val_glyprin = "1 tablet (100mg) OD (Fixed)"
+    # 9. Aspirin / Glyprin
+    m_glyprin = st.checkbox("Aspirin / Glyprin", value=True, key="chk_m_glyprin")
+    val_glyprin = ""
+    if m_glyprin:
+        val_glyprin = "1 tablet (100mg) OD (Fixed)"
 
-        # 10. Atorvastatin
-        m_atorva = st.checkbox("Atorvastatin", value=True, key="chk_m_atorva")
-        val_atorva = ""
-        if m_atorva:
-            c1, c2 = st.columns(2)
-            with c1:
-                atorva_dose = st.selectbox("Dose", ["40 mg", "80 mg"], key="sel_atorva_dose")
-            with c2:
-                atorva_freq = st.selectbox("Freq", ["ON (Night)", "OD", "PRN"], key="sel_atorva_freq")
-            val_atorva = f"{atorva_dose} {atorva_freq}"
-
-        # 11. Bisoprolol
-        m_biso = st.checkbox("Bisoprolol", value=False, key="chk_m_biso")
-        val_biso = ""
-        if m_biso:
-            c1, c2 = st.columns(2)
-            with c1:
-                biso_dose = st.selectbox("Dose", ["1.25 mg", "2.5 mg", "3.75 mg", "5 mg"], key="sel_biso_dose")
-            with c2:
-                biso_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_biso_freq")
-            val_biso = f"{biso_dose} {biso_freq}"
+    # 10. Atorvastatin
+    m_atorva = st.checkbox("Atorvastatin", value=True, key="chk_m_atorva")
+    val_atorva = ""
+    if m_atorva:
+        c1, c2 = st.columns(2)
+    with c1:
+        atorva_dose = st.selectbox("Dose", ["40 mg", "80 mg"], key="sel_atorva_dose")
+    with c2:
+        atorva_freq = st.selectbox("Freq", ["ON (Night)", "OD", "PRN"], key="sel_atorva_freq")
+    val_atorva = f"{atorva_dose} {atorva_freq}"
+    
+    # 11. Bisoprolol
+    m_biso = st.checkbox("Bisoprolol", value=False, key="chk_m_biso")
+    val_biso = ""
+    if m_biso:
+        c1, c2 = st.columns(2)
+    with c1:
+        biso_dose = st.selectbox("Dose", ["1.25 mg", "2.5 mg", "3.75 mg", "5 mg"], key="sel_biso_dose")
+    with c2:
+        biso_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_biso_freq")
+    val_biso = f"{biso_dose} {biso_freq}"
 
     with col_m2:
         # 12. Perindopril
         m_perin = st.checkbox("Perindopril", value=False, key="chk_m_perin")
-        val_perin = ""
-        if m_perin:
-            c1, c2 = st.columns(2)
-            with c1:
-                perin_dose = st.selectbox("Dose", ["2 mg", "4 mg", "6 mg", "8 mg"], key="sel_perin_dose")
-            with c2:
-                perin_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_perin_freq")
-            val_perin = f"{perin_dose} {perin_freq}"
+    val_perin = ""
+    if m_perin:
+        c1, c2 = st.columns(2)
+    with c1:
+        perin_dose = st.selectbox("Dose", ["2 mg", "4 mg", "6 mg", "8 mg"], key="sel_perin_dose")
+    with c2:
+        perin_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_perin_freq")
+    val_perin = f"{perin_dose} {perin_freq}"
 
-        # 13. ARNI (Sacubitril / Valsartan)
-        m_arni = st.checkbox("ARNI (Sacubitril / Valsartan)", value=False, key="chk_m_arni")
-        val_arni = ""
-        if m_arni:
-            c1, c2 = st.columns(2)
-            with c1:
-                arni_dose = st.selectbox("Dose", ["25 mg", "50 mg", "100 mg", "150 mg", "200 mg"], key="sel_arni_dose")
-            with c2:
-                arni_freq = st.selectbox("Freq", ["BD", "OD", "PRN"], key="sel_arni_freq")
-            val_arni = f"{arni_dose} {arni_freq}"
+    # 13. ARNI (Sacubitril / Valsartan)
+    m_arni = st.checkbox("ARNI (Sacubitril / Valsartan)", value=False, key="chk_m_arni")
+    val_arni = ""
+    if m_arni:
+        c1, c2 = st.columns(2)
+    with c1:
+        arni_dose = st.selectbox("Dose", ["25 mg", "50 mg", "100 mg", "150 mg", "200 mg"], key="sel_arni_dose")
+    with c2:
+        arni_freq = st.selectbox("Freq", ["BD", "OD", "PRN"], key="sel_arni_freq")
+    val_arni = f"{arni_dose} {arni_freq}"
 
-        # 14. Metformin (IR & XR)
-        m_metformin = st.checkbox("Metformin", value=False, key="chk_m_metformin")
-        val_metformin = ""
-        if m_metformin:
-            c1, c2, c3 = st.columns([1.5, 1, 1])
-            with c1:
-                met_form = st.selectbox("Form", ["Metformin IR", "Metformin XR"], key="sel_met_form")
-            with c2:
-                met_dose = st.selectbox("Dose", ["500 mg", "1 g"], key="sel_met_dose")
-            with c3:
-                met_freq = st.selectbox("Freq", ["BD", "OD", "TDS", "PRN"], key="sel_met_freq")
-            val_metformin = f"{met_form} {met_dose} {met_freq}"
+    # 14. Metformin (IR & XR)
+    m_metformin = st.checkbox("Metformin", value=False, key="chk_m_metformin")
+    val_metformin = ""
+    if m_metformin:
+        c1, c2, c3 = st.columns([1.5, 1, 1])
+    with c1:
+        met_form = st.selectbox("Form", ["Metformin IR", "Metformin XR"], key="sel_met_form")
+    with c2:
+        met_dose = st.selectbox("Dose", ["500 mg", "1 g"], key="sel_met_dose")
+    with c3:
+        met_freq = st.selectbox("Freq", ["BD", "OD", "TDS", "PRN"], key="sel_met_freq")
+    val_metformin = f"{met_form} {met_dose} {met_freq}"
 
-        # 15. Gliclazide (Standard & MR)
-        m_gliclazide = st.checkbox("Gliclazide", value=False, key="chk_m_gliclazide")
-        val_gliclazide = ""
-        if m_gliclazide:
-            c1, c2, c3 = st.columns([1.5, 1, 1])
-            with c1:
-                glic_form = st.selectbox("Form", ["Gliclazide Standard", "Gliclazide MR"], key="sel_glic_form")
-            with c2:
-                if glic_form == "Gliclazide MR":
-                    glic_dose = st.selectbox("Dose", ["30 mg", "60 mg", "90 mg", "120 mg"], key="sel_glic_dose_mr")
-                else:
-                    glic_dose = st.selectbox("Dose", ["40 mg", "80 mg", "120 mg", "160 mg"], key="sel_glic_dose_std")
+    # 15. Gliclazide (Standard & MR)
+    m_gliclazide = st.checkbox("Gliclazide", value=False, key="chk_m_gliclazide")
+    val_gliclazide = ""
+    if m_gliclazide:
+        c1, c2, c3 = st.columns([1.5, 1, 1])
+    with c1:
+        glic_form = st.selectbox("Form", ["Gliclazide Standard", "Gliclazide MR"], key="sel_glic_form")
+    with c2:
+        if glic_form == "Gliclazide MR":
+            glic_dose = st.selectbox("Dose", ["30 mg", "60 mg", "90 mg", "120 mg"], key="sel_glic_dose_mr")
+        else:
+            glic_dose = st.selectbox("Dose", ["40 mg", "80 mg", "120 mg", "160 mg"], key="sel_glic_dose_std")
             with c3:
                 glic_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_glic_freq")
-            val_gliclazide = f"{glic_form} {glic_dose} {glic_freq}"
+                val_gliclazide = f"{glic_form} {glic_dose} {glic_freq}"
+                
+    # 16. Subcutaneous Insulin Regimens
+    m_insulin = st.checkbox("SC Insulin Regimens", value=False, key="chk_m_insulin")
+    val_insulin = ""
+    if m_insulin:
+        c1, c2 = st.columns([1.5, 1])
+    with c1:
+        ins_type = st.selectbox("Regimen Type", ["SC Mixtard (BD)", "SC Insulatard BIDS (BD)", "SC Insulatard Basal-Bolus (ON)", "SC Actrapid (OD/BD/TDS)", "SC Glargine / Lantus (ON)"], key="sel_ins_type")
+    with c2:
+        ins_dose = st.text_input("Dose Details (e.g. 12u BD / 10u ON)", value="12u BD", key="txt_ins_dose")
+    val_insulin = f"{ins_type}: {ins_dose}"
 
-        # 16. Subcutaneous Insulin Regimens
-        m_insulin = st.checkbox("SC Insulin Regimens", value=False, key="chk_m_insulin")
-        val_insulin = ""
-        if m_insulin:
-            c1, c2 = st.columns([1.5, 1])
-            with c1:
-                ins_type = st.selectbox("Regimen Type", ["SC Mixtard (BD)", "SC Insulatard BIDS (BD)", "SC Insulatard Basal-Bolus (ON)", "SC Actrapid (OD/BD/TDS)", "SC Glargine / Lantus (ON)"], key="sel_ins_type")
-            with c2:
-                ins_dose = st.text_input("Dose Details (e.g. 12u BD / 10u ON)", value="12u BD", key="txt_ins_dose")
-            val_insulin = f"{ins_type}: {ins_dose}"
+    # 17. Prazosin
+    m_prazosin = st.checkbox("Prazosin", value=False, key="chk_m_prazosin")
+    val_prazosin = ""
+    if m_prazosin:
+        c1, c2 = st.columns(2)
+    with c1:
+        prazo_dose = st.selectbox("Dose", ["0.5 mg", "1 mg", "1.5 mg", "2 mg"], key="sel_prazo_dose")
+    with c2:
+        prazo_freq = st.selectbox("Freq", ["TDS", "QID", "BD", "PRN"], key="sel_prazo_freq")
+    val_prazosin = f"{prazo_dose} {prazo_freq}"
 
-        # 17. Prazosin
-        m_prazosin = st.checkbox("Prazosin", value=False, key="chk_m_prazosin")
-        val_prazosin = ""
-        if m_prazosin:
-            c1, c2 = st.columns(2)
-            with c1:
-                prazo_dose = st.selectbox("Dose", ["0.5 mg", "1 mg", "1.5 mg", "2 mg"], key="sel_prazo_dose")
-            with c2:
-                prazo_freq = st.selectbox("Freq", ["TDS", "QID", "BD", "PRN"], key="sel_prazo_freq")
-            val_prazosin = f"{prazo_dose} {prazo_freq}"
+    # 18. Zincofer
+    m_zincofer = st.checkbox("Zincofer", value=False, key="chk_m_zincofer")
+    val_zincofer = ""
+    if m_zincofer:
+        c1, c2 = st.columns(2)
+    with c1:
+        zinc_dose = st.selectbox("Dose", ["1 tablet", "2 tablets"], key="sel_zinc_dose")
+    with c2:
+        zinc_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_zinc_freq")
+    val_zincofer = f"{zinc_dose} {zinc_freq}"
 
-        # 18. Zincofer
-        m_zincofer = st.checkbox("Zincofer", value=False, key="chk_m_zincofer")
-        val_zincofer = ""
-        if m_zincofer:
-            c1, c2 = st.columns(2)
-            with c1:
-                zinc_dose = st.selectbox("Dose", ["1 tablet", "2 tablets"], key="sel_zinc_dose")
-            with c2:
-                zinc_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_zinc_freq")
-            val_zincofer = f"{zinc_dose} {zinc_freq}"
+    # 19. Vit B12 / Folate / Multivitamins
+    m_vit = st.checkbox("Vit B12 / Folate / Multivitamins", value=False, key="chk_m_vit")
+    val_vit = ""
+    if m_vit:
+        c1, c2 = st.columns(2)
+    with c1:
+        vit_dose = st.selectbox("Dose", ["1 tablet", "2 tablets"], key="sel_vit_dose")
+    with c2:
+        vit_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_vit_freq")
+    val_vit = f"{vit_dose} {vit_freq}"
 
-        # 19. Vit B12 / Folate / Multivitamins
-        m_vit = st.checkbox("Vit B12 / Folate / Multivitamins", value=False, key="chk_m_vit")
-        val_vit = ""
-        if m_vit:
-            c1, c2 = st.columns(2)
-            with c1:
-                vit_dose = st.selectbox("Dose", ["1 tablet", "2 tablets"], key="sel_vit_dose")
-            with c2:
-                vit_freq = st.selectbox("Freq", ["OD", "BD", "PRN"], key="sel_vit_freq")
-            val_vit = f"{vit_dose} {vit_freq}"
+    # 20. Syp Morphine
+    m_morphine = st.checkbox("Syp Morphine", value=False, key="chk_m_morphine")
+    val_morphine = ""
+    if m_morphine:
+        c1, c2 = st.columns(2)
+    with c1:
+        morph_dose = st.text_input("Dosage (e.g. 5mg / 2.5ml)", value="5mg", key="txt_morph_dose")
+    with c2:
+        morph_freq = st.selectbox("Freq", ["4-hourly", "PRN", "OD", "BD", "TDS", "QID"], key="sel_morph_freq")
+    val_morphine = f"{morph_dose} {morph_freq}"
 
-        # 20. Syp Morphine
-        m_morphine = st.checkbox("Syp Morphine", value=False, key="chk_m_morphine")
-        val_morphine = ""
-        if m_morphine:
-            c1, c2 = st.columns(2)
-            with c1:
-                morph_dose = st.text_input("Dosage (e.g. 5mg / 2.5ml)", value="5mg", key="txt_morph_dose")
-            with c2:
-                morph_freq = st.selectbox("Freq", ["4-hourly", "PRN", "OD", "BD", "TDS", "QID"], key="sel_morph_freq")
-            val_morphine = f"{morph_dose} {morph_freq}"
+    # 21. Paracetamol (PCM)
+    m_pcm = st.checkbox("Paracetamol (PCM)", value=False, key="chk_m_pcm")
+    val_pcm = ""
+    if m_pcm:
+        c1, c2 = st.columns(2)
+    with c1:
+        pcm_dose = st.selectbox("Dose", ["1 g (2 tablets)", "500 mg (1 tablet)"], key="sel_pcm_dose")
+    with c2:
+        pcm_freq = st.selectbox("Freq", ["QID PRN", "TDS PRN", "QID", "TDS", "PRN"], key="sel_pcm_freq")
+    val_pcm = f"{pcm_dose} {pcm_freq}"
+    
+    
+    med_custom = st.text_area("Additional Discharge Medications", value="", key="txt_med_custom")
 
-        # 21. Paracetamol (PCM)
-        m_pcm = st.checkbox("Paracetamol (PCM)", value=False, key="chk_m_pcm")
-        val_pcm = ""
-        if m_pcm:
-            c1, c2 = st.columns(2)
-            with c1:
-                pcm_dose = st.selectbox("Dose", ["1 g (2 tablets)", "500 mg (1 tablet)"], key="sel_pcm_dose")
-            with c2:
-                pcm_freq = st.selectbox("Freq", ["QID PRN", "TDS PRN", "QID", "TDS", "PRN"], key="sel_pcm_freq")
-            val_pcm = f"{pcm_dose} {pcm_freq}"
-
-    med_custom = st.text_area("Additional Prescribed Discharge Medications", value="", key="txt_med_custom")
-
-    st.subheader("Steroid Tapering Schedule (e.g. Prednisolone)")
-    steroid_active = st.checkbox("Patient Discharged on Steroid Tapering Plan", value=False, key="chk_steroid_active")
+st.subheader("Steroid Tapering Schedule (e.g. Prednisolone)")
+steroid_active = st.checkbox("Patient Discharged on Steroid Tapering Plan", value=False, key="chk_steroid_active")
     if steroid_active:
         steroid_ind = st.text_input("Indication for Steroid Taper", value="COPD / Asthma Exacerbation", key="txt_steroid_ind")
         st1 = st.text_input("Step 1: Dose & Duration", value="Prednisolone 30mg OD for 5 days", key="txt_st1")
