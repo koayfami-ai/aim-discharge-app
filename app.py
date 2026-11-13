@@ -704,7 +704,7 @@ Discharging MO: {mo_name}
         if p_pneu: p_prob.add_run(f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n")
         if p_snake: p_prob.add_run(f"• Snake Bite with Envenomation: {snake_detail}\n")
         if p_acs: p_prob.add_run(f"• ACS ({acs_type}) - TIMI: {acs_timi}\n")
-        if p_pe_primary: p_prob.add_run(f"• Pulmonary Embolism (Risk: {pe_risk})\n")
+        if p_pe: p_prob.add_run(f"• Pulmonary Embolism (Risk: {pe_risk})\n")
         if p_stroke_pri:
             p_prob.add_run(f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n")
             if nihss_score: p_prob.add_run(f"  - NIHSS Score: {nihss_score}\n")
