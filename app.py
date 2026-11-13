@@ -303,7 +303,7 @@ with tab3:
             inmed_list.append(f"• IV Unasyn {u_dose} {u_freq} [Started: {u_start if u_start else 'N/A'} | Completed: {u_comp if u_comp else 'N/A'}]")
 
         # 2. IV Augmentin
-        chk_aug = st.checkbox("IV Augmentin (Amoxycillin/Clavulanate"), key="chk_in_aug")
+        chk_aug = st.checkbox("IV Augmentin (Amoxycillin/Clavulanate)", key="chk_in_aug")
         if chk_aug:
             c_d, c_f = st.columns(2)
             aug_dose = c_d.selectbox("Dose", ["600mg", "1.2g"], key="sel_in_aug_d")
