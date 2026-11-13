@@ -469,50 +469,39 @@ lab_params = [
         val_dis = c6.text_input(f"{param} Dis", value="", key=f"inp_{param}_dis", label_visibility="collapsed")
         lab_inputs[param] = (val_adm, val_mid1, val_mid2, val_mid3, val_dis)
 
-    st.markdown("---")
-    st.subheader("Imaging & Modality Summaries")
-    cxr_summary = st.text_area("Chest X-Ray (CXR) Findings & Evolution", value="", key="txt_cxr")
-    usg_summary = st.text_area("Ultrasound (USG Abdomen/KUB/Vessels)", value="", key="txt_usg")
-    ct_mri_summary = st.text_area("CT / MRI Scans", value="", key="txt_ct_mri")
-    other_img = st.text_area("Other Imaging / Microbiology", value="", key="txt_other_img")
+st.markdown("---")
 
-with tab5:
-    st.header("5. Discharge Medication Regimen & Steroid Tapering")
-    st.caption("Check ONLY the medications prescribed at discharge.")
+with tab4: 
+    st.header("5. Discharge Plan & Medications")
+st.caption("Check ONLY the medications prescribed at discharge.")
+st.subheader("Select Prescribed Discharge Medications")
     
-    st.subheader("Select Prescribed Discharge Medications")
-    
-    col_m1, col_m2 = st.columns(2)
-    with col_m1:
-        m_panto = st.checkbox("Pantoprazole", value=True, key="chk_m_panto")
-        val_panto = ""
-        if m_panto:
-            val_panto = st.text_input("Pantoprazole Dose & Freq", value="40mg OD", key="txt_m_panto")
-            
-        m_caco3 = st.checkbox("Calcium Carbonate", value=False, key="chk_m_caco3")
-        val_caco3 = ""
-        if m_caco3:
-            val_caco3 = st.text_input("CaCO3 Dose & Freq", value="500mg BD", key="txt_m_caco3")
-            
-        m_rocal = st.checkbox("Rocaltriol / Calcitriol", value=False, key="chk_m_rocal")
-        val_rocal = ""
-        if m_rocal:
-            val_rocal = st.text_input("Rocaltriol Dose & Freq", value="0.25mcg OD", key="txt_m_rocal")
-
-        m_sglt2 = st.checkbox("SGLT2i (Dapagliflozin / Empagliflozin)", value=True, key="chk_m_sglt2")
-        val_sglt2 = ""
-        if m_sglt2:
-            val_sglt2 = st.text_input("SGLT2i Dose & Freq", value="Dapagliflozin 10mg OD", key="txt_m_sglt2")
-
-        m_spiro = st.checkbox("Spironolactone", value=False, key="chk_m_spiro")
-        val_spiro = ""
-        if m_spiro:
-            val_spiro = st.text_input("Spironolactone Dose & Freq", value="25mg OD", key="txt_m_spiro")
-
-        m_fruse = st.checkbox("Frusemide", value=True, key="chk_m_fruse")
-        val_fruse = ""
-        if m_fruse:
-            val_fruse = st.text_input("Frusemide Dose & Freq", value="40mg OD", key="txt_m_fruse")
+col_m1, col_m2 = st.columns(2)
+with col_m1:
+    m_panto = st.checkbox("Pantoprazole", value=True, key="chk_m_panto")
+    val_panto = ""
+    if m_panto:
+        val_panto = st.text_input("Pantoprazole Dose & Freq", value="40mg OD", key="txt_m_panto")
+    m_caco3 = st.checkbox("Calcium Carbonate", value=False, key="chk_m_caco3")
+    val_caco3 = ""
+    if m_caco3:
+        val_caco3 = st.text_input("CaCO3 Dose & Freq", value="500mg BD", key="txt_m_caco3")
+    m_rocal = st.checkbox("Rocaltriol / Calcitriol", value=False, key="chk_m_rocal")
+    val_rocal = ""
+    if m_rocal:
+        val_rocal = st.text_input("Rocaltriol Dose & Freq", value="0.25mcg OD", key="txt_m_rocal")
+    m_sglt2 = st.checkbox("SGLT2i (Dapagliflozin / Empagliflozin)", value=True, key="chk_m_sglt2")
+    val_sglt2 = ""
+    if m_sglt2:
+        val_sglt2 = st.text_input("SGLT2i Dose & Freq", value="Dapagliflozin 10mg OD", key="txt_m_sglt2")
+    m_spiro = st.checkbox("Spironolactone", value=False, key="chk_m_spiro")
+    val_spiro = ""
+    if m_spiro:
+        val_spiro = st.text_input("Spironolactone Dose & Freq", value="25mg OD", key="txt_m_spiro")
+    m_fruse = st.checkbox("Frusemide", value=True, key="chk_m_fruse")
+    val_fruse = ""
+    if m_fruse:
+        val_fruse = st.text_input("Frusemide Dose & Freq", value="40mg OD", key="txt_m_fruse")
 
     with col_m2:
         m_glyprin = st.checkbox("Aspirin / Glyprin", value=True, key="chk_m_glyprin")
