@@ -473,7 +473,7 @@ with tab3:
             inmed_list.append(f"• IV Azithromycin {azith_dose} OD ({azith_dur}) [Started: {azith_start if azith_start else 'N/A'} | Completed: {azith_comp if azith_comp else 'N/A'}]")
 
         # 15. Oral Tamiflu
-        chk_tami = st.checkbox("Oral Tamiflu", key="chk_in_tami")
+        chk_tami = st.checkbox("Oral Tamiflu (oseltamivir)"), key="chk_in_tami")
         if chk_tami:
             c_d, c_f = st.columns(2)
             tami_dose = c_d.selectbox("Dose", ["75 mg", "150 mg"], key="sel_in_tami_d")
@@ -511,7 +511,7 @@ with tab3:
 
     with cn2:
         # Pulmicort
-        chk_pulm = st.checkbox("Neb Pulmicort", key="chk_in_pulm")
+        chk_pulm = st.checkbox("Neb Pulmicort BD", key="chk_in_pulm")
         if chk_pulm:
             pulm_dose = st.selectbox("Dose", ["1 mg", "2 mg", "3 mg"], key="sel_in_pulm_d")
             c_s, c_c = st.columns(2)
@@ -522,7 +522,7 @@ with tab3:
             inmed_list.append(f"• Neb Pulmicort {pulm_dose} BD [Started: {pulm_start if pulm_start else 'N/A'} | Completed: {pulm_comp if pulm_comp else 'N/A'}]")
 
         # Neb GTN
-        chk_gtn = st.checkbox("Neb GTN (5 mg)", key="chk_in_gtn")
+        chk_gtn = st.checkbox("Neb GTN 5 mg", key="chk_in_gtn")
         if chk_gtn:
             c_s, c_c = st.columns(2)
             gtn_s_dt = c_s.date_input("Date Start", value=None, format="DD/MM/YYYY", key="txt_in_gtn_s")
@@ -537,106 +537,7 @@ with tab3:
 
     # Summary box for Inpatient Meds Regimen
     inpatient_regimen_text = "\n".join(inmed_list) if inmed_list else "Nil inpatient acute medications selected."
-    st.text_area("Inpatient Medications & Treatment Regimen Summary Box (Copyable)", value=inpatient_regimen_text, height=150)
-
-    
-    
-        # 4. Tazosin
-        chk_tazo = st.checkbox("IV Tazosin (Piperacillin/Tazobactam)", key="chk_in_tazo")
-        if chk_tazo:
-            c_d, c_f = st.columns(2)
-            tazo_dose = c_d.selectbox("Dose", ["2.25g", "3.375g", "4.5g"], key="sel_in_tazo_d")
-            tazo_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID", "QID 3 hr infusion", "TDS 4 hr infusion"], key="sel_in_tazo_f")
-            c_s, c_c = st.columns(2)
-            tazo_start = c_s.text_input("Date Start", value="", key="txt_in_tazo_s")
-            tazo_comp = c_c.text_input("Date Complete", value="", key="txt_in_tazo_c")
-            inmed_list.append(f"• Tazosin {tazo_dose} {tazo_freq} [Started: {tazo_start if tazo_start else 'N/A'} | Completed: {tazo_comp if tazo_comp else 'N/A'}]")
-
-        # 5. Cefepime
-        chk_cefep = st.checkbox("IV Cefepime", key="chk_in_cefep")
-        if chk_cefep:
-            c_d, c_f = st.columns(2)
-            cefep_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_cefep_d")
-            cefep_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_cefep_f")
-            c_s, c_c = st.columns(2)
-            cefep_start = c_s.text_input("Date Start", value="", key="txt_in_cefep_s")
-            cefep_comp = c_c.text_input("Date Complete", value="", key="txt_in_cefep_c")
-            inmed_list.append(f"• Cefepime {cefep_dose} {cefep_freq} [Started: {cefep_start if cefep_start else 'N/A'} | Completed: {cefep_comp if cefep_comp else 'N/A'}]")
-
-        # 6. Ceftriaxone
-        chk_ceftri = st.checkbox("IV Ceftriaxone", key="chk_in_ceftri")
-        if chk_ceftri:
-            c_d, c_f = st.columns(2)
-            ceftri_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_ceftri_d")
-            ceftri_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_ceftri_f")
-            c_s, c_c = st.columns(2)
-            ceftri_start = c_s.text_input("Date Start", value="", key="txt_in_ceftri_s")
-            ceftri_comp = c_c.text_input("Date Complete", value="", key="txt_in_ceftri_c")
-            inmed_list.append(f"• Ceftriaxone {ceftri_dose} {ceftri_freq} [Started: {ceftri_start if ceftri_start else 'N/A'} | Completed: {ceftri_comp if ceftri_comp else 'N/A'}]")
-
-        # 7. Fortum
-        chk_fortum = st.checkbox("IV Fortum (Ceftazidime)", key="chk_in_fortum")
-        if chk_fortum:
-            c_d, c_f = st.columns(2)
-            fortum_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_fortum_d")
-            fortum_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_fortum_f")
-            c_s, c_c = st.columns(2)
-            fortum_start = c_s.text_input("Date Start", value="", key="txt_in_fortum_s")
-            fortum_comp = c_c.text_input("Date Complete", value="", key="txt_in_fortum_c")
-            inmed_list.append(f"• Fortum {fortum_dose} {fortum_freq} [Started: {fortum_start if fortum_start else 'N/A'} | Completed: {fortum_comp if fortum_comp else 'N/A'}]")
-
-        # 8. Cipro
-        chk_cipro = st.checkbox("Cipro (IV Ciprofloxacin)", key="chk_in_cipro")
-        if chk_cipro:
-            c_d, c_f = st.columns(2)
-            cipro_dose = c_d.selectbox("Dose", ["400 mg"], key="sel_in_cipro_d")
-            cipro_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_cipro_f")
-            c_s, c_c = st.columns(2)
-            cipro_start = c_s.text_input("Date Start", value="", key="txt_in_cipro_s")
-            cipro_comp = c_c.text_input("Date Complete", value="", key="txt_in_cipro_c")
-            inmed_list.append(f"• Cipro {cipro_dose} {cipro_freq} [Started: {cipro_start if cipro_start else 'N/A'} | Completed: {cipro_comp if cipro_comp else 'N/A'}]")
-
-    with ci_2:
-        # 9. IV Clindamycin
-        chk_clinda = st.checkbox("IV Clindamycin", key="chk_in_clinda")
-        if chk_clinda:
-            c_d, c_f = st.columns(2)
-            clinda_dose = c_d.selectbox("Dose", ["300 mg", "600 mg", "900 mg"], key="sel_in_clinda_d")
-            clinda_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_clinda_f")
-            c_s, c_c = st.columns(2)
-            clinda_start = c_s.text_input("Date Start", value="", key="txt_in_clinda_s")
-            clinda_comp = c_c.text_input("Date Complete", value="", key="txt_in_clinda_c")
-            inmed_list.append(f"• IV Clindamycin {clinda_dose} {clinda_freq} [Started: {clinda_start if clinda_start else 'N/A'} | Completed: {clinda_comp if clinda_comp else 'N/
-    st.markdown("**Nebulization:**")
-    cn1, cn2 = st.columns(2)
-    with cn1:
-        # Combivent
-        chk_comb = st.checkbox("Neb Combivent (Ipratopium bromide 0.5 mg/albuterol 2.5 mg per 3 mL vial) 4 hrly", key="chk_in_comb")
-        if chk_comb:
-            c_s, c_c = st.columns(2)
-            comb_start = c_s.text_input("Date Start", value="", key="txt_in_comb_s")
-            comb_comp = c_c.text_input("Date Complete", value="", key="txt_in_comb_c")
-            inmed_list.append(f"• Neb Combivent 3ml 4 hrly [Started: {comb_start if comb_start else 'N/A'} | Completed: {comb_comp if comb_comp else 'N/A'}]")
-
-        # Salbutamol
-        chk_salb = st.checkbox("Neb Salbutamol", key="chk_in_salb")
-        if chk_salb:
-            salb_freq = st.selectbox("Freq", ["2 hrly", "4 hrly"], key="sel_in_salb_f")
-            c_s, c_c = st.columns(2)
-            salb_start = c_s.text_input("Date Start", value="", key="txt_in_salb_s")
-            salb_comp = c_c.text_input("Date Complete", value="", key="txt_in_salb_c")
-            inmed_list.append(f"• Neb Salbutamol 2.5mg {salb_freq} [Started: {salb_start if salb_start else 'N/A'} | Completed: {salb_comp if salb_comp else 'N/A'}]")
-
-    with cn2:
-        # Pulmicort
-        chk_pulm = st.checkbox("Neb Pulmicort", key="chk_in_pulm")
-        if chk_pulm:
-            pulm_dose = st.selectbox("Dose", ["1 mg", "2 mg", "3 mg"], key="sel_in_pulm_d")
-            c_s, c_c = st.columns(2)
-            pulm_start = c_s.text_input("Date Start", value="", key="txt_in_pulm_s")
-            pulm_comp = c_c.text_input("Date Complete", value="", key="txt_in_pulm_c")
-            inmed_list.append(f"• Neb Pulmicort {pulm_dose} BD [Started: {pulm_start if pulm_start else 'N/A'} | Completed: {pulm_comp if pulm_comp else 'N/A'}]")
-
+    st.text_area("Inpatient Medications & Treatment Regimen Summary Box (Copyable)", value=inpatient_regimen_text, 
         # Neb GTN
         chk_gtn = st.checkbox("Neb GTN (5 mg)", key="chk_in_gtn")
         if chk_gtn:
