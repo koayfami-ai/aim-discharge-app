@@ -328,10 +328,11 @@ pocus_vessels = st.text_input("POCUS Vessels (IVC collapsibility, DVT scan)", va
 pocus_others = st.text_input("POCUS Others", value="", key="txt_pocus_others")
 pocus_interp = st.text_area("Overall POCUS & Clinical Interpretation", value="", key="txt_pocus_interp")
     
-ecg_findings = st.text_area("ECG Findings & Evolution", value="", key="txt_ecg_findings")
+ecg_findings = st.text_area("ECG", value="", key="txt_ecg_findings")
+cxr_findings = st.text_area ("CXR", vakue="", key="txt_cxr_findings")
+other_ix= st.text_area ("Other Imagings", value="", key="other_imaging")
 
-    
-st.subheader("Inpatient Procedures Performed")
+st.subheader("Inpatient Procedures")
     col_proc1, col_proc2 = st.columns(2)
     with col_proc1:
         proc_pleural = st.checkbox("Pleural Aspiration / Drainage", key="chk_proc_pl")
