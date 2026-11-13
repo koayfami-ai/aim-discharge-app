@@ -817,20 +817,22 @@ summary_text = f"""
 
 [ 1. PATIENT DEMOGRAPHICS & METADATA ]
 """
-    summary_text += f"Patient Name: {patient_name}    RN/MRN: {rn_mrn}\n"
-    summary_text += f"IC/Passport: {ic_passport}    Age/Sex: {age_sex}\n"
-    summary_text += f"Admission Date: {adm_date}    Discharge Date: {dis_date}\n"
-    summary_text += f"Referral Source: {referral_place} {f'({referral_other})' if referral_other else ''}\n"
-    summary_text += f"Ward/Bed: {ward_bed}    Attending Team: {attending_dr}\n"
-    summary_text += f"Subspecialty Team: {subspec_team}\n"
-    summary_text += f"Contact No: {contact_num}    Caretaker: {caretaker}\n"
-    summary_text += f"Address: {address}\n"
+summary_text += f"Patient Name: {patient_name}    RN/MRN: {rn_mrn}\n"
+summary_text += f"IC/Passport: {ic_passport}    Age/Sex: {age_sex}\n"
+summary_text += f"Admission Date: {adm_date}    Discharge Date: {dis_date}\n"
+summary_text += f"Referral Source: {referral_place} {f'({referral_other})' if referral_other else ''}\n"
+summary_text += f"Ward/Bed: {ward_bed}    Attending Team: {attending_dr}\n"
+summary_text += f"Subspecialty Team: {subspec_team}\n"
+summary_text += f"Contact No: {contact_num}    Caretaker: {caretaker}\n"
+summary_text += f"Address: {address}\n"
 
-    summary_text += "\n[ 2. PROBLEM LIST & DIAGNOSES ]\nPrimary Diagnoses:\n"
-    has_primary = False
-    if p_ccf: summary_text += "• Decompensated CCF\n"; has_primary = True
-    if p_apo: summary_text += "• Acute Pulmonary Edema\n"; has_primary = True
-    if p_copd: summary_text += "• Acute Exacerbation of COPD / Asthma\n"; has_primary = True
+summary_text += "\n[ 2. PROBLEM LIST & DIAGNOSES ]\nPrimary Diagnoses:\n"
+has_primary = False
+if p_ccf: summary_text += 
+    "• Decompensated CCF\n"; has_primary = True
+if p_apo: summary_text += 
+    "• Acute Pulmonary Edema\n"; has_primary = True
+        if p_copd: summary_text += "• Acute Exacerbation of COPD / Asthma\n"; has_primary = True
     if p_bronch: summary_text += f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n"; has_primary = True
     if p_ild: summary_text += f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n"; has_primary = True
     if p_sepsis: summary_text += f"• Severe Sepsis secondary to: {sepsis_source}\n"; has_primary = True
