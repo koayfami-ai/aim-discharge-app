@@ -291,43 +291,47 @@ with col_f2:
   )
     
 with tab3:
-    st.header("3. Clinical Progress, POCUS & Resuscitation Directives")
-    st.subheader("Main Presentation & Acute Interventions")
-    presentation = st.text_area("Main Presentation & Associated Symptoms/Signs", value="", key="txt_presentation")
+st.header("3. Ward Clinical Progress, POCUS & Resuscitation Directives")
+st.subheader("Main Presentation & Acute Interventions")
+presentation = st.text_area("Main Presentation & Associated Symptoms/Signs", value="", key="txt_presentation")
     
-    col_int1, col_int2 = st.columns(2)
-    with col_int1:
-        int_o2 = st.text_input("Acute Oxygen Therapy Given", value="", key="txt_int_o2")
-        int_fluid = st.text_input("Fluid Resuscitation / Restriction", value="", key="txt_int_fluid")
-        int_inotropes = st.text_input("Inotropic Support Given", value="", key="txt_int_inotropes")
-    with col_int2:
-        int_scan_by = st.text_input("Bedside Scan Performed By", value="", key="txt_int_scan_by")
-        int_scan_findings = st.text_area("Initial Scan Findings", value="", key="txt_int_scan_findings")
+col_int1, col_int2 = st.columns(2)
+with col_int1:
+    int_o2 = st.text_input("Acute Oxygen Therapy Given", value="", key="txt_int_o2")
+    int_fluid = st.text_input("Fluid Bolus", value="", key="txt_int_fluid")
+    int_inotropes = st.text_input("Inotropes/Vasopressors", value="", key="txt_int_inotropes")
 
-    st.subheader("Ward Progress & Respiratory Support")
-    col_prog1, col_prog2 = st.columns(2)
-    with col_prog1:
-        max_o2_modality = st.selectbox("Highest Oxygen Modality Required", ["Room Air", "Nasal Cannula", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"], key="sel_max_o2")
-        max_fio2 = st.text_input("Highest FiO2 / Flow Rate (%)", value="", key="txt_max_fio2")
-        o2_duration = st.text_input("Duration of Advanced Oxygen Support", value="", key="txt_o2_duration")
-    with col_prog2:
-        o2_conc_dis = st.selectbox("Need Temporary Oxygen Concentrator at Discharge?", ["No", "Yes"], key="sel_o2_conc")
-        o2_conc_duration = ""
-        if o2_conc_dis == "Yes":
-            o2_conc_duration = st.text_input("If Yes, Duration Needed", value="", key="txt_o2_conc_dur")
+with col_int2:
+        int_scan_by = st.text_input("Admission Bedside Scan Performed By", value="", key="txt_int_scan_by")
+        int_scan_findings = st.text_area("Scan Findings", value="", key="txt_int_scan_findings")
+
+st.subheader("Ward Clinical Progress & Hemodynamic Monitoring")
+col_prog1, col_prog2 = st.columns(2)
+with col_prog1:
+    max_o2_modality = st.selectbox("Highest Oxygenation", ["Room Air", "Nasal Cannula", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"], key="sel_max_o2")
+    max_fio2 = st.text_input("Highest FiO2 %)", value="", key="txt_max_fio2")
+    o2_duration = st.text_input("Duration of High Flow Oxygenation (HFNC/NIV/IMV)", value="", key="txt_o2_duration")
+
+with col_prog2:
+    o2_conc_dis = st.selectbox("Need Temporary Oxygen Concentrator at Discharge?", ["No", "Yes"], key="sel_o2_conc")
+    o2_conc_duration = ""
+    if o2_conc_dis == "Yes":
+        o2_conc_duration = st.text_input("If Yes, Duration Needed", value="", key="txt_o2_conc_dur")
         
-        inotropes_ward = st.text_input("Ward Inotropic Support Details", value="", key="txt_inotropes_ward")
+    inotropes_ward = st.selectbox ("Inotropes/Vasopressors", ["IV Noradrenaline", "IV dobutamine", "IV Vasopressin", "IV Adrenaline","IV Dopamine"], key="txt_inotropes_ward")
 
-    st.subheader("POCUS & Diagnostic Investigations")
-    pocus_lung = st.text_input("POCUS Lung (e.g. B-lines, pleural effusion, sliding)", value="", key="txt_pocus_lung")
-    pocus_heart = st.text_input("POCUS Heart (EF, RV strain, pericardial fluid)", value="", key="txt_pocus_heart")
-    pocus_plr = st.text_input("POCUS Passive Leg Raise (PLR) / Fluid Responsiveness", value="", key="txt_pocus_plr")
-    pocus_vessels = st.text_input("POCUS Vessels (IVC collapsibility, DVT scan)", value="", key="txt_pocus_vessels")
-    pocus_others = st.text_input("POCUS Others", value="", key="txt_pocus_others")
-    pocus_interp = st.text_area("Overall POCUS & Clinical Interpretation", value="", key="txt_pocus_interp")
-    ecg_findings = st.text_area("ECG Findings & Evolution", value="", key="txt_ecg_findings")
+st.subheader("POCUS & Diagnostic Investigations")
+pocus_lung = st.text_input("POCUS Lung (e.g. B-lines, pleural effusion, sliding)", value="", key="txt_pocus_lung")
+pocus_heart = st.text_input("POCUS Heart (EF, RV strain, pericardial fluid)", value="", key="txt_pocus_heart")
+pocus_plr = st.text_input("POCUS Passive Leg Raise (PLR) / Fluid Responsiveness", value="", key="txt_pocus_plr")
+pocus_vessels = st.text_input("POCUS Vessels (IVC collapsibility, DVT scan)", value="", key="txt_pocus_vessels")
+pocus_others = st.text_input("POCUS Others", value="", key="txt_pocus_others")
+pocus_interp = st.text_area("Overall POCUS & Clinical Interpretation", value="", key="txt_pocus_interp")
+    
+ecg_findings = st.text_area("ECG Findings & Evolution", value="", key="txt_ecg_findings")
 
-    st.subheader("Inpatient Procedures Performed")
+    
+st.subheader("Inpatient Procedures Performed")
     col_proc1, col_proc2 = st.columns(2)
     with col_proc1:
         proc_pleural = st.checkbox("Pleural Aspiration / Drainage", key="chk_proc_pl")
