@@ -301,11 +301,11 @@ with tab3:
             inmed_list.append(f"• IV Unasyn {u_dose} {u_freq} [Started: {u_start if u_start else 'N/A'} | Completed: {u_comp if u_comp else 'N/A'}]")
 
         # 2. IV Augmentin
-        chk_aug = st.checkbox("IV Augmentin", key="chk_in_aug")
+        chk_aug = st.checkbox("IV Augmentin (Amoxycillin/Clavulanate", key="chk_in_aug")
         if chk_aug:
             c_d, c_f = st.columns(2)
-            aug_dose = c_d.selectbox("Dose", ["1.2g"], key="sel_in_aug_d")
-            aug_freq = c_f.selectbox("Freq", ["BD", "TDS"], key="sel_in_aug_f")
+            aug_dose = c_d.selectbox("Dose", ["600 mg", "1.2g"], key="sel_in_aug_d")
+            aug_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_aug_f")
             c_s, c_c = st.columns(2)
             aug_start = c_s.text_input("Date Start", value="", key="txt_in_aug_s")
             aug_comp = c_c.text_input("Date Complete", value="", key="txt_in_aug_c")
@@ -323,18 +323,18 @@ with tab3:
             inmed_list.append(f"• IV Meropenem {mero_dose} {mero_freq} [Started: {mero_start if mero_start else 'N/A'} | Completed: {mero_comp if mero_comp else 'N/A'}]")
 
         # 4. Tazosin
-        chk_tazo = st.checkbox("Tazosin (Piperacillin/Tazobactam)", key="chk_in_tazo")
+        chk_tazo = st.checkbox("IV Tazosin (Piperacillin/Tazobactam)", key="chk_in_tazo")
         if chk_tazo:
             c_d, c_f = st.columns(2)
             tazo_dose = c_d.selectbox("Dose", ["2.25g", "3.375g", "4.5g"], key="sel_in_tazo_d")
-            tazo_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_tazo_f")
+            tazo_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID", "QID 3 hr infusion", "TDS 4 hr infusion"], key="sel_in_tazo_f")
             c_s, c_c = st.columns(2)
             tazo_start = c_s.text_input("Date Start", value="", key="txt_in_tazo_s")
             tazo_comp = c_c.text_input("Date Complete", value="", key="txt_in_tazo_c")
             inmed_list.append(f"• Tazosin {tazo_dose} {tazo_freq} [Started: {tazo_start if tazo_start else 'N/A'} | Completed: {tazo_comp if tazo_comp else 'N/A'}]")
 
         # 5. Cefepime
-        chk_cefep = st.checkbox("Cefepime", key="chk_in_cefep")
+        chk_cefep = st.checkbox("IV Cefepime", key="chk_in_cefep")
         if chk_cefep:
             c_d, c_f = st.columns(2)
             cefep_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_cefep_d")
@@ -345,18 +345,18 @@ with tab3:
             inmed_list.append(f"• Cefepime {cefep_dose} {cefep_freq} [Started: {cefep_start if cefep_start else 'N/A'} | Completed: {cefep_comp if cefep_comp else 'N/A'}]")
 
         # 6. Ceftriaxone
-        chk_ceftri = st.checkbox("Ceftriaxone", key="chk_in_ceftri")
+        chk_ceftri = st.checkbox("IV Ceftriaxone", key="chk_in_ceftri")
         if chk_ceftri:
             c_d, c_f = st.columns(2)
             ceftri_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_ceftri_d")
-            ceftri_freq = c_f.selectbox("Freq", ["OD", "BD"], key="sel_in_ceftri_f")
+            ceftri_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS"], key="sel_in_ceftri_f")
             c_s, c_c = st.columns(2)
             ceftri_start = c_s.text_input("Date Start", value="", key="txt_in_ceftri_s")
             ceftri_comp = c_c.text_input("Date Complete", value="", key="txt_in_ceftri_c")
             inmed_list.append(f"• Ceftriaxone {ceftri_dose} {ceftri_freq} [Started: {ceftri_start if ceftri_start else 'N/A'} | Completed: {ceftri_comp if ceftri_comp else 'N/A'}]")
 
         # 7. Fortum
-        chk_fortum = st.checkbox("Fortum (Ceftazidime)", key="chk_in_fortum")
+        chk_fortum = st.checkbox("IV Fortum (Ceftazidime)", key="chk_in_fortum")
         if chk_fortum:
             c_d, c_f = st.columns(2)
             fortum_dose = c_d.selectbox("Dose", ["1g", "2g"], key="sel_in_fortum_d")
@@ -367,7 +367,7 @@ with tab3:
             inmed_list.append(f"• Fortum {fortum_dose} {fortum_freq} [Started: {fortum_start if fortum_start else 'N/A'} | Completed: {fortum_comp if fortum_comp else 'N/A'}]")
 
         # 8. Cipro
-        chk_cipro = st.checkbox("Cipro (Ciprofloxacin)", key="chk_in_cipro")
+        chk_cipro = st.checkbox("Cipro (IV Ciprofloxacin)", key="chk_in_cipro")
         if chk_cipro:
             c_d, c_f = st.columns(2)
             cipro_dose = c_d.selectbox("Dose", ["400 mg"], key="sel_in_cipro_d")
