@@ -502,16 +502,16 @@ with tab3:
     st.text_area("Inpatient Medications & Treatment Regimen Summary Box (Copyable)", value=inpatient_regimen_text, height=150)
 
     st.subheader("POCUS & Diagnostic Investigations")
-    pocus_lung = st.text_input("POCUS Lung (e.g. B-lines, pleural effusion, sliding)", value="", key="txt_pocus_lung")
-    pocus_heart = st.text_input("POCUS Cardiac (EF, RV strain, pericardial fluid)", value="", key="txt_pocus_heart")
-    pocus_plr = st.text_input("Passive Leg Raising (PLR) / Fluid Responsiveness", value="", key="txt_pocus_plr")
-    pocus_vessels = st.text_input("POCUS Vessels (IVC collapsibility, DVT scan)", value="", key="txt_pocus_vessels")
+    pocus_lung = st.text_input("POCUS Lung", value="", key="txt_pocus_lung")
+    pocus_heart = st.text_input("POCUS Cardiac", value="", key="txt_pocus_heart")
+    pocus_plr = st.text_input("Passive Leg Raising (PLR) for Fluid Responsiveness", value="", key="txt_pocus_plr")
+    pocus_vessels = st.text_input("POCUS Vessels", value="", key="txt_pocus_vessels")
     pocus_others = st.text_input("POCUS Others", value="", key="txt_pocus_others")
     pocus_interp = st.text_area("Clinical Interpretation", value="", key="txt_pocus_interp")
     
     ecg_findings = st.text_area("ECG", value="", key="txt_ecg_findings")
     cxr_findings = st.text_area("CXR", value="", key="txt_cxr_findings")
-    other_ix = st.text_area("Other Imagings", value="", key="other_imaging")
+    other_ix = st.text_area("Other Imaging", value="", key="other_imaging")
 
     st.subheader("Inpatient Procedures")
     st.caption("💡 Check a procedure to enter specific details & lab/scan results.")
