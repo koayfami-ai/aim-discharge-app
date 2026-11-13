@@ -948,190 +948,203 @@ Discharging MO: {mo_name}
 ================================================================================
 """
 
-st.subheader("Generated Summary Preview")
-st.text_area("Copyable Plain Text Summary (For Hospital EHR)", summary_text, height=350)
+    st.subheader("Generated Summary Preview")
+    st.text_area("Copyable Plain Text Summary (For Hospital EHR)", summary_text, height=350)
 
-# Word Generator Function
-def generate_docx():
-    doc = docx.Document()
+    # Word Generator Function
+    def generate_docx():
+        doc = docx.Document()
         
-# Style page
-    section = doc.sections[0]
-    section.top_margin = Inches(0.8)
-    section.bottom_margin = Inches(0.8)
-    section.left_margin = Inches(0.8)
-    section.right_margin = Inches(0.8)
+        # Style page
+        section = doc.sections[0]
+        section.top_margin = Inches(0.8)
+        section.bottom_margin = Inches(0.8)
+        section.left_margin = Inches(0.8)
+        section.right_margin = Inches(0.8)
 
-# Title
-    p_title = doc.add_paragraph()
-    run_t = p_title.add_run("ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY")
-    run_t.bold = True
-    run_t.font.size = Pt(14)
-    run_t.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
+        # Title
+        p_title = doc.add_paragraph()
+        run_t = p_title.add_run("ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY")
+        run_t.bold = True
+        run_t.font.size = Pt(14)
+        run_t.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
+        p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+        # Helper function for headings
+        def add_sec_heading(title):
+            p = doc.add_paragraph()
+            p.paragraph_format.space_before = Pt(10)
+            p.paragraph_format.space_after = Pt(4)
+            run = p.add_run(title)
+            run.bold = True
+            run.font.size = Pt(11)
+            run.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
+
+        # Section 1: Demographics
+        add_sec_heading("[ 1. PATIENT DEMOGRAPHICS & WARD METADATA ]")
+        t1 = doc.add_table(rows=5, cols=2)
+        t1.style = 'Table Grid'
+        t1.alignment = WD_TABLE_ALIGNMENT.CENTER
         
-    p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-
-# Helper function for headings
-def add_sec_heading(title):
-    p = doc.add_paragraph()
-    p.paragraph_format.space_before = Pt(10)
-    p.paragraph_format.space_after = Pt(4)
-    run = p.add_run(title)
-    run.bold = True
-    run.font.size = Pt(11)
-    run.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
-
-# Section 1: Demographics
-add_sec_heading("[ 1. PATIENT DEMOGRAPHICS & WARD METADATA ]")
-t1 = doc.add_table(rows=5, cols=2)
-t1.style = 'Table Grid'
-t1.alignment = WD_TABLE_ALIGNMENT.CENTER
-    
-row_data = [
-        (f"Patient Name: {patient_name}", f"RN / MRN: {rn_mrn}"),
-        (f"IC / Passport: {ic_passport}", f"Age / Sex: {age_sex}"),
-        (f"Admission Date: {adm_date}", f"Discharge Date: {dis_date}"),
-        (f"Referral Source: {referral_place} ({referral_other})", f"Ward / Bed: {ward_bed}"),
-        (f"Attending Doctor: {attending_dr}", f"Subspecialty Team: {subspec_team}")
+        row_data = [
+            (f"Patient Name: {patient_name}", f"RN / MRN: {rn_mrn}"),
+            (f"IC / Passport: {ic_passport}", f"Age / Sex: {age_sex}"),
+            (f"Admission Date: {adm_date}", f"Discharge Date: {dis_date}"),
+            (f"Referral Source: {referral_place} ({referral_other})", f"Ward / Bed: {ward_bed}"),
+            (f"Attending Doctor: {attending_dr}", f"Subspecialty Team: {subspec_team}")
         ]
+        for idx, (c1, c2) in enumerate(row_data):
+            t1.rows[idx].cells[0].text = c1
+            t1.rows[idx].cells[1].text = c2
 
-for idx, (c1, c2) in enumerate(row_data):
-    t1.rows[idx].cells[0].text = c1
-    t1.rows[idx].cells[1].text = c2
+        p_meta = doc.add_paragraph()
+        p_meta.add_run(f"Contact No: {contact_num} | Caretaker: {caretaker}\nAddress: {address}").italic = True
 
-    p_meta = doc.add_paragraph()
-    p_meta.add_run(f"Contact No: {contact_num} | Caretaker: {caretaker}\nAddress: {address}").italic = True
+        # Section 2: Problem List
+        add_sec_heading("[ 2. PROBLEM LIST & CLINICAL DIAGNOSES ]")
+        p_prob = doc.add_paragraph()
+        p_prob.add_run("Primary / Acute Discharge Diagnoses:\n").bold = True
+        if p_ccf: p_prob.add_run("• Decompensated CCF\n")
+        if p_apo: p_prob.add_run("• Acute Pulmonary Edema\n")
+        if p_copd: p_prob.add_run("• Acute Exacerbation of COPD / Asthma\n")
+        if p_bronch: p_prob.add_run(f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n")
+        if p_ild: p_prob.add_run(f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n")
+        if p_sepsis: p_prob.add_run(f"• Severe Sepsis secondary to: {sepsis_source}\n")
+        if p_poisoning: p_prob.add_run(f"• Poisoning: {poisoning_detail}\n")
+        if p_pneu: p_prob.add_run(f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n")
+        if p_snake: p_prob.add_run(f"• Snake Bite with Envenomation: {snake_detail}\n")
+        if p_acs: p_prob.add_run(f"• ACS ({acs_type}) - TIMI: {acs_timi}\n")
+        if p_pe_primary: p_prob.add_run(f"• Pulmonary Embolism (Risk: {pe_risk})\n")
+        if p_stroke_pri:
+            p_prob.add_run(f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n")
+            if nihss_score: p_prob.add_run(f"  - NIHSS Score: {nihss_score}\n")
+        if p_withdrawal: p_prob.add_run(f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n")
+        if p_seizure: p_prob.add_run(f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n")
+        if other_primary: p_prob.add_run(f"• Others: {other_primary}\n")
 
-# Section 2: Problem List
-add_sec_heading("[ 2. PROBLEM LIST & CLINICAL DIAGNOSES ]")
-p_prob = doc.add_paragraph()
-p_prob.add_run("Primary / Acute Discharge Diagnoses:\n").bold = True
-if p_ccf: p_prob.add_run("• Decompensated CCF\n")
-if p_apo: p_prob.add_run("• Acute Pulmonary Edema\n")
-if p_copd: p_prob.add_run("• Acute Exacerbation of COPD / Asthma\n")
-if p_bronch: p_prob.add_run(f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n")
-if p_ild: p_prob.add_run(f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n")
-if p_sepsis: p_prob.add_run(f"• Severe Sepsis secondary to: {sepsis_source}\n")
-if p_poisoning: p_prob.add_run(f"• Poisoning: {poisoning_detail}\n")
-if p_pneu: p_prob.add_run(f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n")
-if p_snake: p_prob.add_run(f"• Snake Bite with Envenomation: {snake_detail}\n")
-if p_acs: p_prob.add_run(f"• ACS ({acs_type}) - TIMI: {acs_timi}\n")
-if p_pe: p_prob.add_run(f"• Pulmonary Embolism (Risk: {pe_risk})\n")
-if p_stroke_pri:
-    p_prob.add_run(f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n")
-if nihss_score: p_prob.add_run(f"  - NIHSS Score: {nihss_score}\n")
-if p_withdrawal: p_prob.add_run(f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n")
-if p_seizure: p_prob.add_run(f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n")
-if other_primary: p_prob.add_run(f"• Others: {other_primary}\n")
+        p_prob.add_run("\nSecondary Problems & Comorbidities:\n").bold = True
+        if s_aki: p_prob.add_run(f"• AKI due to: {aki_cause if aki_cause else 'Diagnosed'}\n")
+        if s_ards: p_prob.add_run(f"• ARDS ({ards_severity if ards_severity else 'Diagnosed'})\n")
+        if s_rv_dys: p_prob.add_run("• Right Ventricular Dysfunction / Failure\n")
+        if s_arrhythmia: p_prob.add_run(f"• Cardiac Arrhythmia: {arrhythmia_detail if arrhythmia_detail else 'Diagnosed'}\n")
+        if s_stroke: p_prob.add_run(f"• Stroke (Secondary){f': {s_stroke_detail}' if s_stroke_detail else ''}\n")
+        if s_pe_sec: p_prob.add_run(f"• Pulmonary Embolism (Secondary){f': {s_pe_detail}' if s_pe_detail else ''}\n")
+        if c_ckd: p_prob.add_run(f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n")
+        if c_hf: p_prob.add_run(f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n")
+        if c_cad: p_prob.add_run(f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n")
+        if c_dm: p_prob.add_run(f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n")
+        if c_htn: p_prob.add_run("• Hypertension\n")
+        if other_comorb: p_prob.add_run(f"• Other Comorbidities: {other_comorb}\n")
 
-p_prob.add_run("\nSecondary Problems & Comorbidities:\n").bold = True
-if s_aki: p_prob.add_run(f"• AKI due to: {aki_cause}\n")
-if s_ards: p_prob.add_run(f"• ARDS ({ards_severity})\n")
-if s_rv_dys: p_prob.add_run("• Right Ventricular Dysfunction / Failure\n")
-if s_arrhythmia: p_prob.add_run(f"• Cardiac Arrhythmia: {arrhythmia_detail}\n")
-if c_ckd: p_prob.add_run(f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n")
-if c_hf: p_prob.add_run(f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n")
-if c_cad: p_prob.add_run(f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n")
-if c_dm: p_prob.add_run(f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n")
-if c_htn: p_prob.add_run("• Hypertension\n")
-if other_comorb: p_prob.add_run(f"• Other Comorbidities: {other_comorb}\n")
+        p_prob.add_run("\nFunctional Status & Capacity:\n").bold = True
+        if frailty_selected: p_prob.add_run(f"• Mobility / Frailty: {', '.join(frailty_selected)}\n")
+        if nyha_mets != "Not Specified": p_prob.add_run(f"• NYHA / METS Functional Capacity: {nyha_mets}\n")
+        if func_notes: p_prob.add_run(f"• Functional / ADL Notes: {func_notes}\n")
 
-p_prob.add_run("\nFunctional Status & Capacity:\n").bold = True
-if frailty_selected: p_prob.add_run(f"• Mobility / Frailty: {', '.join(frailty_selected)}\n")
-if nyha_mets != "Not Specified": p_prob.add_run(f"• NYHA / METS Functional Capacity: {nyha_mets}\n")
-if func_notes: p_prob.add_run(f"• Functional / ADL Notes: {func_notes}\n")
+        # Section 3: Progress & Resuscitation
+        add_sec_heading("[ 3. CLINICAL PROGRESS, POCUS & CEILING OF CARE ]")
+        p_prog = doc.add_paragraph()
+        p_prog.add_run(f"Presentation: {presentation}\n")
+        p_prog.add_run(f"Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n")
+        p_prog.add_run(f"Ward Progress: Highest O2: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration}). Concentrator Needed: {o2_conc_dis} ({o2_conc_duration}).\n")
+        if inmed_lines:
+            p_prog.add_run("Inpatient Acute Medications Administered:\n").bold = True
+            for imline in inmed_lines:
+                p_prog.add_run(f"{imline}\n")
+        p_prog.add_run(f"POCUS Summary: Heart: {pocus_heart} | Lung: {pocus_lung} | Vessels: {pocus_vessels}\n")
+        p_prog.add_run(f"Interpretation: {pocus_interp}\n")
+        dial_info = f"Acute Dialysis: {dialysis_needed} {f'(Mode: {dialysis_mode}' + (f', Date: {dialysis_date}' if dialysis_date else '') + (f', Duration: {dialysis_duration}' if dialysis_duration else '') + (f', Recovery: {renal_recovery}' if renal_recovery else '') + ')' if dialysis_needed == 'Yes' else ''}\n"
+        p_prog.add_run(dial_info)
+        if proc_summary_lines:
+            p_prog.add_run("Inpatient Procedures Performed:\n").bold = True
+            for pline in proc_summary_lines:
+                p_prog.add_run(f"{pline}\n")
 
-# Section 3: Progress & Resuscitation
-add_sec_heading("[ 3. CLINICAL PROGRESS, POCUS & CEILING OF CARE ]")
-p_prog = doc.add_paragraph()
-p_prog.add_run(f"Presentation: {presentation}\n")
-p_prog.add_run(f"Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n")
-p_prog.add_run(f"Ward Progress: Highest O2: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration}). Concentrator Needed: {o2_conc_dis} ({o2_conc_duration}).\n")
-p_prog.add_run(f"POCUS Summary: Heart: {pocus_heart} | Lung: {pocus_lung} | Vessels: {pocus_vessels}\n")
-p_prog.add_run(f"Interpretation: {pocus_interp}\n")
-
-# Resuscitation Highlight Box
-t_resus = doc.add_table(rows=1, cols=1)
-t_resus.style = 'Table Grid'
-cell = t_resus.rows[0].cells[0]
+        # Resuscitation Highlight Box
+        t_resus = doc.add_table(rows=1, cols=1)
+        t_resus.style = 'Table Grid'
+        cell = t_resus.rows[0].cells[0]
         
-# Yellow shading
-shd = parse_xml(r'<w:shd {} w:fill="FFF2CC"/>'.format(nsdecls('w')))
-cell._tc.get_or_add_tcPr().append(shd)
+        # Yellow shading
+        shd = parse_xml(r'<w:shd {} w:fill="FFF2CC"/>'.format(nsdecls('w')))
+        cell._tc.get_or_add_tcPr().append(shd)
         
-p_r = cell.paragraphs[0]
-run_r_head = p_r.add_run("RESUSCITATION STATUS & CEILING OF CARE:\n")
-run_r_head.bold = True
-run_r_head.font.color.rgb = RGBColor(0x99, 0x00, 0x00)
-p_r.add_run(f"• Status: {resus_status}\n")
-p_r.add_run(f"• Directives / Notes: {resus_notes}")
+        p_r = cell.paragraphs[0]
+        run_r_head = p_r.add_run("RESUSCITATION STATUS & CEILING OF CARE:\n")
+        run_r_head.bold = True
+        run_r_head.font.color.rgb = RGBColor(0x99, 0x00, 0x00)
+        p_r.add_run(f"• Resuscitation Status: {resus_str}\n")
+        p_r.add_run(f"• Maximum Ceiling Interventions: {ceiling_str}\n")
+        p_r.add_run(f"• Directives / Notes: {resus_notes if resus_notes else 'NIL'}")
 
-# Section 4: 3-Column Lab Table
-add_sec_heading("[ 4. KEY DIAGNOSTIC & LABORATORY TRENDS ]")
+        # Section 4: 3-Column Lab Table
+        add_sec_heading("[ 4. KEY DIAGNOSTIC & LABORATORY TRENDS ]")
         
-# Calculate active lab rows
-active_labs = []
-for param, unit in lab_params:
-    v1, v2, v3 = lab_inputs[param]
-    if v1 or v2 or v3:
-        active_labs.append((param, unit, v1, v2, v3))
-num_rows = len(active_labs) + 1
-t_labs = doc.add_table(rows=num_rows, cols=4)
-t_labs.style = 'Table Grid'
+        # Calculate active lab rows
+        active_labs = []
+        for param, unit in lab_params:
+            v1, v2, v3 = lab_inputs[param]
+            if v1 or v2 or v3:
+                active_labs.append((param, unit, v1, v2, v3))
         
-headers = ["Parameter", f"Admission ({date_adm_str})", f"Midway ({date_mid_str})", f"Discharge ({date_dis_str})"]
-for i, h in enumerate(headers):
-    cell = t_labs.rows[0].cells[i]
-    cell.text = h
-    cell.paragraphs[0].runs[0].font.bold = True
-    shd = parse_xml(r'<w:shd {} w:fill="1B365D"/>'.format(nsdecls('w')))
-    cell._tc.get_or_add_tcPr().append(shd)
-    cell.paragraphs[0].runs[0].font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+        num_rows = len(active_labs) + 1
+        t_labs = doc.add_table(rows=num_rows, cols=4)
+        t_labs.style = 'Table Grid'
+        
+        headers = ["Parameter", f"Admission ({date_adm_str})", f"Midway ({date_mid_str})", f"Discharge ({date_dis_str})"]
+        for i, h in enumerate(headers):
+            cell = t_labs.rows[0].cells[i]
+            cell.text = h
+            cell.paragraphs[0].runs[0].font.bold = True
+            shd = parse_xml(r'<w:shd {} w:fill="1B365D"/>'.format(nsdecls('w')))
+            cell._tc.get_or_add_tcPr().append(shd)
+            cell.paragraphs[0].runs[0].font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
-for row_idx, (p_name, p_unit, v_adm, v_mid, v_dis) in enumerate(active_labs, start=1):
-    t_labs.rows[row_idx].cells[0].text = f"{p_name} ({p_unit})"
-    t_labs.rows[row_idx].cells[1].text = v_adm
-    t_labs.rows[row_idx].cells[2].text = v_mid
-    t_labs.rows[row_idx].cells[3].text = v_dis
+        for row_idx, (p_name, p_unit, v_adm, v_mid, v_dis) in enumerate(active_labs, start=1):
+            t_labs.rows[row_idx].cells[0].text = f"{p_name} ({p_unit})"
+            t_labs.rows[row_idx].cells[1].text = v_adm
+            t_labs.rows[row_idx].cells[2].text = v_mid
+            t_labs.rows[row_idx].cells[3].text = v_dis
 
-# Section 5: Meds & Plan
-add_sec_heading("[ 5. DISCHARGE MEDICATIONS & STEROID TAPER ]")
-p_meds = doc.add_paragraph()
-m_count = 1
-if m_panto: p_meds.add_run(f"{m_count}. Pantoprazole: {val_panto}\n"); m_count += 1
-if m_caco3: p_meds.add_run(f"{m_count}. Calcium Carbonate: {val_caco3}\n"); m_count += 1
-if m_rocal: p_meds.add_run(f"{m_count}. Rocaltriol: {val_rocal}\n"); m_count += 1
-if m_sglt2: p_meds.add_run(f"{m_count}. SGLT2i: {val_sglt2}\n"); m_count += 1
-if m_spiro: p_meds.add_run(f"{m_count}. Spironolactone: {val_spiro}\n"); m_count += 1
-if m_fruse: p_meds.add_run(f"{m_count}. Frusemide: {val_fruse}\n"); m_count += 1
-if m_glyprin: p_meds.add_run(f"{m_count}. Glyprin / Aspirin: {val_glyprin}\n"); m_count += 1
-if m_atorva: p_meds.add_run(f"{m_count}. Atorvastatin: {val_atorva}\n"); m_count += 1
-if m_insulin: p_meds.add_run(f"{m_count}. Insulin: {val_insulin}\n"); m_count += 1
-if m_oha: p_meds.add_run(f"{m_count}. OHA: {val_oha}\n"); m_count += 1
-if m_zincofer: p_meds.add_run(f"{m_count}. Zincofer: {val_zincofer}\n"); m_count += 1
-if m_vit: p_meds.add_run(f"{m_count}. Vitamins: {val_vit}\n"); m_count += 1
-if med_custom: p_meds.add_run(f"Additional Meds: {med_custom}\n")
+        # Section 5: Meds & Plan
+        add_sec_heading("[ 5. DISCHARGE MEDICATIONS & STEROID TAPER ]")
+        p_meds = doc.add_paragraph()
+        m_count = 1
+        if m_panto: p_meds.add_run(f"{m_count}. Pantoprazole: {val_panto}\n"); m_count += 1
+        if m_caco3: p_meds.add_run(f"{m_count}. Calcium Carbonate: {val_caco3}\n"); m_count
++= 1
+        if m_rocal: p_meds.add_run(f"{m_count}. Rocaltriol: {val_rocal}\n"); m_count += 1
+        if m_sglt2: p_meds.add_run(f"{m_count}. SGLT2i: {val_sglt2}\n"); m_count += 1
+        if m_spiro: p_meds.add_run(f"{m_count}. Spironolactone: {val_spiro}\n"); m_count += 1
+        if m_fruse: p_meds.add_run(f"{m_count}. Frusemide: {val_fruse}\n"); m_count += 1
+        if m_glyprin: p_meds.add_run(f"{m_count}. Glyprin / Aspirin: {val_glyprin}\n"); m_count += 1
+        if m_atorva: p_meds.add_run(f"{m_count}. Atorvastatin: {val_atorva}\n"); m_count += 1
+        if m_insulin: p_meds.add_run(f"{m_count}. Insulin: {val_insulin}\n"); m_count += 1
+        if m_oha: p_meds.add_run(f"{m_count}. OHA: {val_oha}\n"); m_count += 1
+        if m_zincofer: p_meds.add_run(f"{m_count}. Zincofer: {val_zincofer}\n"); m_count += 1
+        if m_vit: p_meds.add_run(f"{m_count}. Vitamins: {val_vit}\n"); m_count += 1
+        if med_custom: p_meds.add_run(f"Additional Meds: {med_custom}\n")
 
-if steroid_active:
-    p_meds.add_run(f"\nSteroid Tapering Plan ({steroid_ind}):\n").bold = True
-    p_meds.add_run(f"• {st1}\n• {st2}\n• {st3}\n• {st4}\n")
+        if steroid_active:
+            p_meds.add_run(f"\nSteroid Tapering Plan ({steroid_ind}):\n").bold = True
+            p_meds.add_run(f"• {st1}\n• {st2}\n• {st3}\n• {st4}\n")
 
-add_sec_heading("[ 6. FOLLOW-UP PLAN & RED FLAGS ]")
-p_plan = doc.add_paragraph()
-p_plan.add_run(f"• AIM Clinic Plan: {aim_clinic_plan}\n")
-p_plan.add_run(f"• Other Clinic Follow-ups: {other_clinic_plan}\n")
-p_plan.add_run(f"• Red Flag Warnings: {red_flags}\n\n")
-p_plan.add_run(f"Medical Officer Name: {mo_name}    Signature: _______________ Date: ________")
-
+        add_sec_heading("[ 6. FOLLOW-UP PLAN & RED FLAGS ]")
+        p_plan = doc.add_paragraph()
+        p_plan.add_run(f"• AIM Clinic Plan: {aim_clinic_plan}\n")
+        p_plan.add_run(f"• Other Clinic Follow-ups: {other_clinic_plan}\n")
+        p_plan.add_run(f"• Red Flag Warnings: {red_flags}\n\n")
+        p_plan.add_run(f"Medical Officer Name: {mo_name}    Signature: _______________ Date: ________")
+        
 target = io.BytesIO()
-doc.save(target)
-return target.getvalue()
+        doc.save(target)
+        return target.getvalue()
 
-doc_bytes = generate_docx()
-st.download_button(
-    label="📄 Download Formatted Word Document (.docx)",
-    data=doc_bytes,
-    file_name=f"AIM_Discharge_{rn_mrn if rn_mrn else 'Draft'}.docx",
-    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    doc_bytes = generate_docx()
+    st.download_button(
+        label="📄 Download Formatted Word Document (.docx)",
+        data=doc_bytes,
+        file_name=f"AIM_Discharge_{rn_mrn if rn_mrn else 'Draft'}.docx",
+        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
 
