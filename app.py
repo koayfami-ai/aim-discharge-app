@@ -207,7 +207,7 @@ other_primary = st.text_area("Others", value="")
 
 st.subheader("Secondary Problems")
 col_s1, col_s2 = st.columns(2)
-    with col_s1:
+with col_s1:
         s_aki = st.checkbox("Acute Kidney Injury (AKI)", key="chk_s_aki")
         aki_cause = ""
         if s_aki:
@@ -220,7 +220,7 @@ col_s1, col_s2 = st.columns(2)
 
         s_rv_dys = st.checkbox("Right Ventricular Dysfunction / Failure", key="chk_s_rv_dys")
 
-    with col_s2:
+with col_s2:
         s_arrhythmia = st.checkbox("Cardiac Arrhythmia", key="chk_s_arrhythmia")
         arrhythmia_detail = ""
         if s_arrhythmia:
