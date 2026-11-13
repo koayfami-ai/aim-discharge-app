@@ -296,6 +296,7 @@ with col_f2:
       "Remarks", value="", key="txt_func_notes"
   )
     
+    
 with tab3:
     st.header("3. Clinical Progress, POCUS & Resuscitation Directives")
     st.subheader("Main Presentation & Acute Interventions")
