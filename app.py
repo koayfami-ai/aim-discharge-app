@@ -206,7 +206,7 @@ if p_seizure:
 other_primary = st.text_area("Others", value="")
 
 st.subheader("Secondary Problems")
-    col_s1, col_s2 = st.columns(2)
+col_s1, col_s2 = st.columns(2)
     with col_s1:
         s_aki = st.checkbox("Acute Kidney Injury (AKI)", key="chk_s_aki")
         aki_cause = ""
