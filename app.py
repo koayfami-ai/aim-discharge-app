@@ -396,20 +396,31 @@ if dialysis_needed == "Yes":
 
 st.subheader("Resuscitation Status & Ceiling of Care Directive")
 Advance_directive = st.selectbox (" Any Advanced Directive/Patient Expressed Wish",["No", "Yes"], key = " advance_directive")
-resus_status = st.radio("Resuscitation Code", ["Full Code", "Do-Not-Intubate (DNI)", "Full Comfort / Palliative Care"], key="rad_resus_status")
-resus_notes = st.text_area("Resuscitation Details (e.g. Continue HD/inotropes, Highest NIV/HFNC ceiling, Future direction discussed with family)", value="", key="txt_resus_notes")
+resus_code_selected = st.multiselect("Resuscitation Code (Select all that apply)", ["Full Code", "Do-Not-Intubate (DNI)/CPR with Maximum Ceiling of Care", "Full Comfort/Palliative Care"], key="mult_resus_code")
+st.markdown("**Maximum Ceiling of Care Interventions Allowed (Select all applicable):**")
+col_rc1, col_rc2 = st.columns(2)
+with col_rc1:
+    resus_hfnc = st.checkbox("HFNC (High Flow Nasal Cannula)", key="chk_resus_hfnc")
+    resus_niv = st.checkbox("NIV (Non-Invasive Ventilation)", key="chk_resus_niv")
+    resus_hfmo = st.checkbox("HFM / HFMO (High Flow Mask Oxygen)", key="chk_resus_hfmo")
+with col_rc2:
+    resus_hd = st.checkbox("Acute Dialysis)", key="chk_resus_hd")
+    resus_inotropes = st.checkbox("Vasopressors/Inotropes", key="chk_resus_inotropes")
+    resus_ab = st.checkbox("Ab (Antibiotics)", key="chk_resus_ab")
+    resus_notes = st.text_area ( "Remarks/Family Discussion/Future Direction of Care", value="", key="txt_resus_notes")
+
 
 with tab4:
-    st.header("4. Concise Investigation Trend Table (3-Point Serial Format)")
-    st.caption("Compare serial values: Admission vs. Midway vs. Discharge Date")
+st.header("4. Concise Investigation Trend Table (3-Point Serial Format)")
+st.caption("Compare serial values: Admission vs. Midway vs. Discharge Date")
     
-    col_d1, col_d2, col_d3 = st.columns(3)
-    with col_d1:
-        date_adm_str = st.text_input("Admission Date Label", value="14/10/2026", key="lbl_adm_date")
-    with col_d2:
-        date_mid_str = st.text_input("Midway Date Label", value="15/10/2026", key="lbl_mid_date")
-    with col_d3:
-        date_dis_str = st.text_input("Discharge Date Label", value="16/10/2026", key="lbl_dis_date")
+col_d1, col_d2, col_d3 = st.columns(3)
+with col_d1:
+    date_adm_str = st.text_input("Admission Date Label", value="14/10/2026", key="lbl_adm_date")
+with col_d2:
+    date_mid_str = st.text_input("Midway Date Label", value="15/10/2026", key="lbl_mid_date")
+with col_d3:
+    date_dis_str = st.text_input("Discharge Date Label", value="16/10/2026", key="lbl_dis_date")
 
     st.markdown("---")
     
