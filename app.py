@@ -561,17 +561,19 @@ with tab3:
         if proc_pleural:
             cp1, cp2 = st.columns([1, 2.5])
             with cp1:
-                proc_pleural_date = st.text_input("Date Performed", value="", key="txt_proc_pl_date")
+                proc_pl_dt = st.date_input("Date Performed", value=None, format="DD/MM/YYYY", key="txt_proc_pl_date")
+            proc_pleural_date = proc_pl_dt.strftime("%d/%m/%Y") if proc_pl_dt else ""
             with cp2:
-                proc_pleural_detail = st.text_input("Details & Results (e.g. volume, appearance, biochemistry, culture)", value="", key="txt_proc_pl_detail")
-
+                proc_pleural_detail = st.text_input("Details & Results", value="", key="txt_proc_pl_detail")
+        
         proc_ascites = st.checkbox("Peritoneal Aspiration / Drainage", key="chk_proc_asc")
         proc_ascites_date = ""
         proc_ascites_detail = ""
         if proc_ascites:
             cp1, cp2 = st.columns([1, 2.5])
             with cp1:
-                proc_ascites_date = st.text_input("Date Performed", value="", key="txt_proc_asc_date")
+                proc_asc_dt = st.date_input("Date Performed", value=None, format="DD/MM/YYYY", key="txt_proc_asc_date")
+            proc_ascites_date = proc_asc_dt.strftime("%d/%m/%Y") if proc_asc_dt else ""
             with cp2:
                 proc_ascites_detail = st.text_input("Paracentesis Details & Results (e.g. SAAG, cell count, culture)", value="", key="txt_proc_asc_detail")
 
@@ -581,7 +583,8 @@ with tab3:
         if proc_lp:
             cp1, cp2 = st.columns([1, 2.5])
             with cp1:
-                proc_lp_date = st.text_input("Date Performed", value="", key="txt_proc_lp_date")
+                proc_lp_dt = st.date_input("Date Performed", value=None, format="DD/MM/YYYY", key="txt_proc_lp_date")
+            proc_lp_date = proc_lp_dt.strftime("%d/%m/%Y") if proc_lp_dt else ""
             with cp2:
                 proc_lp_detail = st.text_input("Lumbar Puncture Details & Results (e.g. opening pressure, CSF biochemistry, Gram stain)", value="", key="txt_proc_lp_detail")
 
@@ -589,7 +592,11 @@ with tab3:
         proc_cvl = st.checkbox("Central Venous Line (CVL)", key="chk_proc_cvl")
         proc_cvl_detail = ""
         if proc_cvl:
-            proc_cvl_detail = st.text_input("CVL Site & date of Insertion and Removed", value="", key="txt_proc_cvl_detail")
+            cp1, cp2 = st.columns([1, 2.5])
+            with cp1:
+                proc_cvl_dt = st.date_input("Date Inserted", value=None, format="DD/MM/YYYY", key="txt_proc_cvl_date")
+                proc_cvl_date = proc_cvl_dt.strftime("%d/%m/%Y") if proc_cvl_dt else ""
+        
 
         proc_hd_cath = st.checkbox("Acute Dialysis Catheter", key="chk_proc_hd")
         proc_hd_detail = ""
