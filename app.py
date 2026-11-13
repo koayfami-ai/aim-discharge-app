@@ -953,7 +953,7 @@ st.text_area("Copyable Plain Text Summary (For Hospital EHR)", summary_text, hei
 
 # Word Generator Function
 def generate_docx():
-    doc = docx.Document()
+doc = docx.Document()
         
 # Style page
     section = doc.sections[0]
@@ -1123,9 +1123,9 @@ p_plan.add_run(f"• Other Clinic Follow-ups: {other_clinic_plan}\n")
 p_plan.add_run(f"• Red Flag Warnings: {red_flags}\n\n")
 p_plan.add_run(f"Medical Officer Name: {mo_name}    Signature: _______________ Date: ________")
 
-        target = io.BytesIO()
-        doc.save(target)
-        return target.getvalue()
+target = io.BytesIO()
+    doc.save(target)
+    return target.getvalue()
 
 doc_bytes = generate_docx()
 st.download_button(
