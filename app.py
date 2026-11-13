@@ -701,29 +701,42 @@ with tab4:
         col_m3_hdr = f"Day 3 ({date_mid3_str})"
         col_dis_hdr = f"Discharge ({date_dis_str})"
 
-        df_init = pd.DataFrame({
+        dict_init = {
             "Parameter": [f"{p} ({u})" for p, u in lab_params],
             col_adm_hdr: [""] * len(lab_params),
             col_m1_hdr: [""] * len(lab_params),
             col_m2_hdr: [""] * len(lab_params),
             col_m3_hdr: [""] * len(lab_params),
             col_dis_hdr: [""] * len(lab_params)
-        })
+        }
 
-        edited_df = st.data_editor(
-            df_init,
+        edited_dict = st.data_editor(
+            dict_init,
             hide_index=True,
             use_container_width=True,
             key="mob_editor_labs"
         )
 
         for idx, (param, unit) in enumerate(lab_params):
-            v1 = str(edited_df.iloc[idx, 1]) if pd.notna(edited_df.iloc[idx, 1]) else ""
-            v2 = str(edited_df.iloc[idx, 2]) if pd.notna(edited_df.iloc[idx, 2]) else ""
-            v3 = str(edited_df.iloc[idx, 3]) if pd.notna(edited_df.iloc[idx, 3]) else ""
-            v4 = str(edited_df.iloc[idx, 4]) if pd.notna(edited_df.iloc[idx, 4]) else ""
-            v5 = str(edited_df.iloc[idx, 5]) if pd.notna(edited_df.iloc[idx, 5]) else ""
-            
+            if isinstance(edited_dict, dict):
+                raw_v1 = edited_dict.get(col_adm_hdr, [""]*len(lab_params))[idx]
+                raw_v2 = edited_dict.get(col_m1_hdr, [""]*len(lab_params))[idx]
+                raw_v3 = edited_dict.get(col_m2_hdr, [""]*len(lab_params))[idx]
+                raw_v4 = edited_dict.get(col_m3_hdr, [""]*len(lab_params))[idx]
+                raw_v5 = edited_dict.get(col_dis_hdr, [""]*len(lab_params))[idx]
+            else:
+                raw_v1 = edited_dict.iloc[idx, 1] if hasattr(edited_dict, "iloc") else ""
+                raw_v2 = edited_dict.iloc[idx, 2] if hasattr(edited_dict, "iloc") else ""
+                raw_v3 = edited_dict.iloc[idx, 3] if hasattr(edited_dict, "iloc") else ""
+                raw_v4 = edited_dict.iloc[idx, 4] if hasattr(edited_dict, "iloc") else ""
+                raw_v5 = edited_dict.iloc[idx, 5] if hasattr(edited_dict, "iloc") else ""
+
+            v1 = str(raw_v1) if raw_v1 is not None else ""
+            v2 = str(raw_v2) if raw_v2 is not None else ""
+            v3 = str(raw_v3) if raw_v3 is not None else ""
+            v4 = str(raw_v4) if raw_v4 is not None else ""
+            v5 = str(raw_v5) if raw_v5 is not None else ""
+
             v1 = "" if v1.lower() in ["nan", "none"] else v1
             v2 = "" if v2.lower() in ["nan", "none"] else v2
             v3 = "" if v3.lower() in ["nan", "none"] else v3
@@ -731,7 +744,7 @@ with tab4:
             v5 = "" if v5.lower() in ["nan", "none"] else v5
 
             lab_inputs[param] = (v1, v2, v3, v4, v5)
-
+            
     else:
         h1, h2, h3, h4, h5, h6 = st.columns([2.5, 3, 3, 3, 3, 3])
         h1.markdown("**Parameter**")
