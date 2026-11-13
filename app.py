@@ -537,8 +537,7 @@ with tab3:
 
     # Summary box for Inpatient Meds Regimen
     inpatient_regimen_text = "\n".join(inmed_list) if inmed_list else "Nil inpatient acute medications selected."
-    st.text_area("Inpatient Medications & Treatment Regimen Summary Box (Copyable)", value=inpatient_regimen_text, 
-        
+    st.text_area("Inpatient Medications & Treatment Regimen Summary Box (Copyable)", value=inpatient_regimen_text, height=150)
     st.subheader("POCUS & Diagnostic Investigations")
     pocus_lung = st.text_input("POCUS Lung", value="", key="txt_pocus_lung")
     pocus_heart = st.text_input("POCUS Cardiac", value="", key="txt_pocus_heart")
