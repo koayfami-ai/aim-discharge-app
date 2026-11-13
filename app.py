@@ -843,7 +843,7 @@ if p_snake: summary_text += f"• Snake Bite with Envenomation: {snake_detail}\n
 if p_acs: summary_text += f"• Acute Coronary Syndrome ({acs_type}) - TIMI: {acs_timi}\n"; has_primary = True
 if p_pe: summary_text += f"• Pulmonary Embolism (Risk: {pe_risk})\n"; has_primary = True
 if p_stroke_pri: summary_text += f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n"
-if nihss_score: summary_text += f"  - NIHSS Score: {nihss_score}\n" has_primary = True
+if nihss_score: summary_text += f" • NIHSS Score: {nihss_score}\n" has_primary = True
 if p_withdrawal: summary_text += f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n"; has_primary = True
 if p_seizure: summary_text += f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n"; has_primary = True
 if other_primary: summary_text += f"• Others: {other_primary}\n"; has_primary = True
