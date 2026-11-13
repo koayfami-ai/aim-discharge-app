@@ -900,33 +900,36 @@ RESUSCITATION DIRECTIVE & CEILING OF CARE:
 [ 4. LABORATORY & DIAGNOSTIC TRENDS ]
 Flowsheet Trend Table ({date_adm_str} vs {date_mid_str} vs {date_dis_str}):
 """
-    for param, unit in lab_params:
-        v1, v2, v3 = lab_inputs[param]
-        if v1 or v2 or v3:
-            summary_text += f"  - {param:6s} ({unit:15s}):  {v1:10s} | {v2:10s} | {v3:10s}\n"
+for param, unit in lab_params:
+    v1, v2, v3 = lab_inputs[param]
+if v1 or v2 or v3:
+    summary_text += f"  - {param:6s} ({unit:15s}):  {v1:10s} | {v2:10s} | {v3:10s}\n"
 
-    summary_text += f"""
+summary_text += f"""
+
 Imaging: CXR: {cxr_summary} | USG: {usg_summary} | CT/MRI: {ct_mri_summary} | Others: {other_img}
 
 [ 5. DISCHARGE MEDICATIONS ]
 """
-    med_idx = 1
-    if m_panto: summary_text += f"{med_idx}. Pantoprazole: {val_panto}\n"; med_idx += 1
-    if m_caco3: summary_text += f"{med_idx}. Calcium Carbonate: {val_caco3}\n"; med_idx += 1
-    if m_rocal: summary_text += f"{med_idx}. Rocaltriol: {val_rocal}\n"; med_idx += 1
-    if m_sglt2: summary_text += f"{med_idx}. SGLT2i: {val_sglt2}\n"; med_idx += 1
-    if m_spiro: summary_text += f"{med_idx}. Spironolactone: {val_spiro}\n"; med_idx += 1
-    if m_fruse: summary_text += f"{med_idx}. Frusemide: {val_fruse}\n"; med_idx += 1
-    if m_glyprin: summary_text += f"{med_idx}. Glyprin / Aspirin: {val_glyprin}\n"; med_idx += 1
-    if m_atorva: summary_text += f"{med_idx}. Atorvastatin: {val_atorva}\n"; med_idx += 1
-    if m_insulin: summary_text += f"{med_idx}. Insulin: {val_insulin}\n"; med_idx += 1
-    if m_oha: summary_text += f"{med_idx}. OHA: {val_oha}\n"; med_idx += 1
-    if m_zincofer: summary_text += f"{med_idx}. Zincofer: {val_zincofer}\n"; med_idx += 1
-    if m_vit: summary_text += f"{med_idx}. Vitamins: {val_vit}\n"; med_idx += 1
-    if med_custom: summary_text += f"Additional Meds: {med_custom}\n"
 
-    if steroid_active:
-        summary_text += f"""
+med_idx = 1
+if m_panto: summary_text += f"{med_idx}. Pantoprazole: {val_panto}\n"; med_idx += 1
+if m_caco3: summary_text += f"{med_idx}. Calcium Carbonate: {val_caco3}\n"; med_idx += 1
+if m_rocal: summary_text += f"{med_idx}. Rocaltriol: {val_rocal}\n"; med_idx += 1
+if m_sglt2: summary_text += f"{med_idx}. SGLT2i: {val_sglt2}\n"; med_idx += 1
+if m_spiro: summary_text += f"{med_idx}. Spironolactone: {val_spiro}\n"; med_idx += 1
+if m_fruse: summary_text += f"{med_idx}. Frusemide: {val_fruse}\n"; med_idx += 1
+if m_glyprin: summary_text += f"{med_idx}. Glyprin / Aspirin: {val_glyprin}\n"; med_idx += 1
+if m_atorva: summary_text += f"{med_idx}. Atorvastatin: {val_atorva}\n"; med_idx += 1
+if m_insulin: summary_text += f"{med_idx}. Insulin: {val_insulin}\n"; med_idx += 1
+if m_oha: summary_text += f"{med_idx}. OHA: {val_oha}\n"; med_idx += 1
+if m_zincofer: summary_text += f"{med_idx}. Zincofer: {val_zincofer}\n"; med_idx += 1
+if m_vit: summary_text += f"{med_idx}. Vitamins: {val_vit}\n"; med_idx += 1
+if med_custom: summary_text += f"Additional Meds: {med_custom}\n"
+
+if steroid_active:
+    summary_text += f"""
+
 Steroid Tapering Plan (Indication: {steroid_ind}):
   - {st1}
   - {st2}
@@ -934,7 +937,8 @@ Steroid Tapering Plan (Indication: {steroid_ind}):
   - {st4}
 """
 
-    summary_text += f"""
+summary_text += f"""
+
 [ 6. PLAN & SAFETY-NETTING ]
 • AIM Clinic Plan: {aim_clinic_plan}
 • Other Clinic Follow-ups: {other_clinic_plan}
@@ -944,62 +948,63 @@ Discharging MO: {mo_name}
 ================================================================================
 """
 
-    st.subheader("Generated Summary Preview")
-    st.text_area("Copyable Plain Text Summary (For Hospital EHR)", summary_text, height=350)
+st.subheader("Generated Summary Preview")
+st.text_area("Copyable Plain Text Summary (For Hospital EHR)", summary_text, height=350)
 
-    # Word Generator Function
-    def generate_docx():
-        doc = docx.Document()
+# Word Generator Function
+def generate_docx():
+    doc = docx.Document()
         
-        # Style page
-        section = doc.sections[0]
-        section.top_margin = Inches(0.8)
-        section.bottom_margin = Inches(0.8)
-        section.left_margin = Inches(0.8)
-        section.right_margin = Inches(0.8)
+# Style page
+    section = doc.sections[0]
+    section.top_margin = Inches(0.8)
+    section.bottom_margin = Inches(0.8)
+    section.left_margin = Inches(0.8)
+    section.right_margin = Inches(0.8)
 
-        # Title
-        p_title = doc.add_paragraph()
-        run_t = p_title.add_run("ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY")
-        run_t.bold = True
-        run_t.font.size = Pt(14)
-        run_t.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
-        p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
-
-        # Helper function for headings
-        def add_sec_heading(title):
-            p = doc.add_paragraph()
-            p.paragraph_format.space_before = Pt(10)
-            p.paragraph_format.space_after = Pt(4)
-            run = p.add_run(title)
-            run.bold = True
-            run.font.size = Pt(11)
-            run.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
-
-        # Section 1: Demographics
-        add_sec_heading("[ 1. PATIENT DEMOGRAPHICS & WARD METADATA ]")
-        t1 = doc.add_table(rows=5, cols=2)
-        t1.style = 'Table Grid'
-        t1.alignment = WD_TABLE_ALIGNMENT.CENTER
+# Title
+    p_title = doc.add_paragraph()
+    run_t = p_title.add_run("ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY")
+    run_t.bold = True
+    run_t.font.size = Pt(14)
+    run_t.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
         
-        row_data = [
-            (f"Patient Name: {patient_name}", f"RN / MRN: {rn_mrn}"),
-            (f"IC / Passport: {ic_passport}", f"Age / Sex: {age_sex}"),
-            (f"Admission Date: {adm_date}", f"Discharge Date: {dis_date}"),
-            (f"Referral Source: {referral_place} ({referral_other})", f"Ward / Bed: {ward_bed}"),
-            (f"Attending Doctor: {attending_dr}", f"Subspecialty Team: {subspec_team}")
+    p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+
+# Helper function for headings
+def add_sec_heading(title):
+    p = doc.add_paragraph()
+    p.paragraph_format.space_before = Pt(10)
+    p.paragraph_format.space_after = Pt(4)
+    run = p.add_run(title)
+    run.bold = True
+    run.font.size = Pt(11)
+    run.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
+
+# Section 1: Demographics
+add_sec_heading("[ 1. PATIENT DEMOGRAPHICS & WARD METADATA ]")
+t1 = doc.add_table(rows=5, cols=2)
+t1.style = 'Table Grid'
+t1.alignment = WD_TABLE_ALIGNMENT.CENTER
+    
+row_data = [
+        (f"Patient Name: {patient_name}", f"RN / MRN: {rn_mrn}"),
+        (f"IC / Passport: {ic_passport}", f"Age / Sex: {age_sex}"),
+        (f"Admission Date: {adm_date}", f"Discharge Date: {dis_date}"),
+        (f"Referral Source: {referral_place} ({referral_other})", f"Ward / Bed: {ward_bed}"),
+        (f"Attending Doctor: {attending_dr}", f"Subspecialty Team: {subspec_team}")
         ]
-        for idx, (c1, c2) in enumerate(row_data):
-            t1.rows[idx].cells[0].text = c1
-            t1.rows[idx].cells[1].text = c2
+    for idx, (c1, c2) in enumerate(row_data):
+        t1.rows[idx].cells[0].text = c1
+        t1.rows[idx].cells[1].text = c2
 
-        p_meta = doc.add_paragraph()
-        p_meta.add_run(f"Contact No: {contact_num} | Caretaker: {caretaker}\nAddress: {address}").italic = True
+    p_meta = doc.add_paragraph()
+    p_meta.add_run(f"Contact No: {contact_num} | Caretaker: {caretaker}\nAddress: {address}").italic = True
 
-        # Section 2: Problem List
-        add_sec_heading("[ 2. PROBLEM LIST & CLINICAL DIAGNOSES ]")
-        p_prob = doc.add_paragraph()
-        p_prob.add_run("Primary / Acute Discharge Diagnoses:\n").bold = True
+# Section 2: Problem List
+    add_sec_heading("[ 2. PROBLEM LIST & CLINICAL DIAGNOSES ]")
+    p_prob = doc.add_paragraph()
+    p_prob.add_run("Primary / Acute Discharge Diagnoses:\n").bold = True
         if p_ccf: p_prob.add_run("• Decompensated CCF\n")
         if p_apo: p_prob.add_run("• Acute Pulmonary Edema\n")
         if p_copd: p_prob.add_run("• Acute Exacerbation of COPD / Asthma\n")
