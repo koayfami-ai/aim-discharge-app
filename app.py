@@ -208,35 +208,35 @@ other_primary = st.text_area("Others", value="")
 st.subheader("Secondary Problems")
 col_s1, col_s2 = st.columns(2)
 with col_s1:
-        s_aki = st.checkbox("Acute Kidney Injury (AKI)", key="chk_s_aki")
-        aki_cause = ""
-        if s_aki:
-            aki_cause = st.text_input("AKI Etiology", value="", key="txt_aki_cause")
+    s_aki = st.checkbox("Acute Kidney Injury (AKI)", key="chk_s_aki")
+    aki_cause = ""
+    if s_aki:
+        aki_cause = st.text_input("AKI Etiology", value="", key="txt_aki_cause")
         
-        s_ards = st.checkbox("Acute Respiratory Distress Syndrome (ARDS)", key="chk_s_ards")
-        ards_severity = ""
-        if s_ards:
-            ards_severity = st.selectbox("ARDS Severity", ["Mild", "Moderate", "Severe"], key="sel_ards_sev")
+    s_ards = st.checkbox("Acute Respiratory Distress Syndrome (ARDS)", key="chk_s_ards")
+    ards_severity = ""
+    if s_ards:
+        ards_severity = st.selectbox("ARDS Severity", ["Mild", "Moderate", "Severe"], key="sel_ards_sev")
 
-        s_rv_dys = st.checkbox("Right Ventricular Dysfunction / Failure", key="chk_s_rv_dys")
+    s_rv_dys = st.checkbox("Right Ventricular Dysfunction / Failure", key="chk_s_rv_dys")
 
 with col_s2:
-        s_arrhythmia = st.checkbox("Cardiac Arrhythmia", key="chk_s_arrhythmia")
-        arrhythmia_detail = ""
-        if s_arrhythmia:
-            arrhythmia_detail = st.text_input("Arrhythmia type", value="", key="txt_arrhythmia_detail")
+    s_arrhythmia = st.checkbox("Cardiac Arrhythmia", key="chk_s_arrhythmia")
+    arrhythmia_detail = ""
+    if s_arrhythmia:
+        arrhythmia_detail = st.text_input("Arrhythmia type", value="", key="txt_arrhythmia_detail")
         
-        s_stroke = st.checkbox("Stroke (Ischemic/Hemorrhagic)", key="chk_s_stroke")
-        s_stroke_detail = ""
-        if s_stroke:
-            s_stroke_detail = st.text_input("Stroke details", value="", key="txt_s_stroke_detail")
+    s_stroke = st.checkbox("Stroke (Ischemic/Hemorrhagic)", key="chk_s_stroke")
+    s_stroke_detail = ""
+    if s_stroke:
+        s_stroke_detail = st.text_input("Stroke details", value="", key="txt_s_stroke_detail")
 
-        s_pe_sec = st.checkbox("Pulmonary Embolism", key="chk_s_pe_sec")
-        s_pe_detail = ""
-        if s_pe_sec:
-            s_pe_detail = st.text_input("Pulmonary Embolism details", value="", key="txt_s_pe_detail")
+    s_pe_sec = st.checkbox("Pulmonary Embolism", key="chk_s_pe_sec")
+    s_pe_detail = ""
+    if s_pe_sec:
+        s_pe_detail = st.text_input("Pulmonary Embolism details", value="", key="txt_s_pe_detail")
 
-        other_secondary = st.text_area("Additional Problems", value="", key="txt_other_secondary")
+    other_secondary = st.text_area("Additional Problems", value="", key="txt_other_secondary")
 
 st.subheader("Comorbidities")
 col_c1, col_c2 = st.columns(2)
