@@ -1113,8 +1113,7 @@ def generate_docx():
         p_meds = doc.add_paragraph()
         m_count = 1
         if m_panto: p_meds.add_run(f"{m_count}. Pantoprazole: {val_panto}\n"); m_count += 1
-        if m_caco3: p_meds.add_run(f"{m_count}. Calcium Carbonate: {val_caco3}\n"); m_count
-+= 1
+        if m_caco3: p_meds.add_run(f"{m_count}. Calcium Carbonate: {val_caco3}\n"); m_count += 1
         if m_rocal: p_meds.add_run(f"{m_count}. Rocaltriol: {val_rocal}\n"); m_count += 1
         if m_sglt2: p_meds.add_run(f"{m_count}. SGLT2i: {val_sglt2}\n"); m_count += 1
         if m_spiro: p_meds.add_run(f"{m_count}. Spironolactone: {val_spiro}\n"); m_count += 1
