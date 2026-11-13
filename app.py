@@ -223,20 +223,80 @@ other_secondary = st.text_area("Additional Problems", value="")
 
 st.subheader("Comorbidities")
 col_c1, col_c2 = st.columns(2)
-with col_c1:
-        c_ckd = st.checkbox("CKD / ESRF")
-        ckd_stage = st.text_input("CKD Stage & Baseline Creatinine", value="")
-        c_hf = st.checkbox("HFrEF / HFpEF/HFimpEF")
-        hf_detail = st.text_input("LVEF % & Etiology (Ischemic/Non-Ischemic/htn)", value="")
-        c_cad = st.checkbox("Coronary Artery Disease")
-        cad_detail = st.text_input("3VD/CAD / ASCVD Details", value="")
-with col_c2:
-        c_dm = st.checkbox("Diabetes Mellitus")
-        dm_detail = st.text_input("HbA1c % & Target Organ Damage", value="")
-        c_htn = st.checkbox("Hypertension")
-        c_frailty = st.selectbox("Baseline Mobility & Frailty", ["Independent", "Wheelchair-bound", "Bedridden"])
-other_comorb = st.text_area("Other Comorbidities", value="")
 
+with col_c1:
+  c_ckd = st.checkbox("CKD / ESRF", key="chk_c_ckd")
+  ckd_stage = ""
+  if c_ckd:
+    ckd_stage = st.text_input(
+        "CKD Stage & Baseline Creatinine", value="", key="txt_ckd_stage"
+    )
+
+  c_hf = st.checkbox("HFrEF / HFpEF / HFimpEF", key="chk_c_hf")
+  hf_detail = ""
+  if c_hf:
+    hf_detail = st.text_input(
+        "LVEF % & Etiology (Ischemic/Non-Ischemic/HTN)",
+        value="",
+        key="txt_hf_detail",
+    )
+
+  c_cad = st.checkbox(
+      "Coronary Artery Disease (3VD / CAD / ASCVD)", key="chk_c_cad"
+  )
+  cad_detail = ""
+  if c_cad:
+    cad_detail = st.text_input(
+        "3VD / CAD / ASCVD Details", value="", key="txt_cad_detail"
+    )
+
+with col_c2:
+  c_dm = st.checkbox("Diabetes Mellitus", key="chk_c_dm")
+  dm_detail = ""
+  if c_dm:
+    dm_detail = st.text_input(
+        "HbA1c % & Target Organ Damage", value="", key="txt_dm_detail"
+    )
+
+  c_htn = st.checkbox("Hypertension", key="chk_c_htn")
+
+other_comorb = st.text_area(
+    "Other Comorbidities", value="", key="txt_other_comorb"
+)
+st.subheader("Functional Status & Functional Capacity")
+col_f1, col_f2 = st.columns(2)
+
+with col_f1:
+  # Multi-select allows checking multiple statuses (e.g. Homebound + Wheelchair-bound)
+  frailty_selected = st.multiselect(
+      "Frailty / Baseline Mobility Status (Select all that apply)",
+      [
+          "Independent",
+          "Partially dependent",
+          "Homebound",
+          "Wheelchair-bound",
+          "Fully bedridden",
+      ],
+      key="mult_frailty",
+  )
+
+with col_f2:
+  nyha_mets = st.selectbox(
+      "Functional Capacity (NYHA / METS)",
+      [
+          "Not Specified",
+          "NYHA Class I (No limitation / > 4 METS)",
+          "NYHA Class II (Slight limitation / ~4 METS)",
+          "NYHA Class III (Marked limitation / < 4 METS)",
+          "NYHA Class IV (Severe limitation / Symptoms at rest / < 2 METS)",
+          "Independent > 4 METS",
+          "Limited < 4 METS",
+      ],
+      key="sel_nyha_mets",
+  )
+  func_notes = st.text_input(
+      "Additional Functional / ADL Notes", value="", key="txt_func_notes"
+  )
 with tab3:
     st.header("3. Clinical Progress, POCUS & Resuscitation Directives")
     st.subheader("Main Presentation & Acute Interventions")
