@@ -952,8 +952,8 @@ st.subheader("Generated Summary Preview")
 st.text_area("Copyable Plain Text Summary (For Hospital EHR)", summary_text, height=350)
 
     # Word Generator Function
-    def generate_docx():
-        doc = docx.Document()
+def generate_docx():
+    doc = docx.Document()
         
         # Style page
         section = doc.sections[0]
