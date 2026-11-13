@@ -596,13 +596,16 @@ with tab3:
             with cp1:
                 proc_cvl_dt = st.date_input("Date Inserted", value=None, format="DD/MM/YYYY", key="txt_proc_cvl_date")
                 proc_cvl_date = proc_cvl_dt.strftime("%d/%m/%Y") if proc_cvl_dt else ""
-        
+            with cp2:
+                proc_cvl_detail = st.text_input("CVL Site & Insertion/Removal Details", value="", key="txt_proc_cvl_detail")      
 
         proc_hd_cath = st.checkbox("Acute Dialysis Catheter", key="chk_proc_hd")
         proc_hd_detail = ""
         if proc_hd_cath:
-            proc_hd_detail = st.text_input("Insertion Site, Date of Insertion and Removed & Line Status", value="", key="txt_proc_hd_detail")
-
+            cp1, cp2 = st.columns([1, 2.5])
+            with cp1:
+                proc_hd_dt = st.date_input("Date Inserted", value=None, format="DD/MM/YYYY", key="txt_proc_hd_date")
+                proc_hd_date = proc_hd_dt.strftime("%d/%m/%Y") if proc_hd_dt else ""
         proc_others_chk = st.checkbox("Other Procedures", key="chk_proc_others")
         proc_others_detail = ""
         if proc_others_chk:
