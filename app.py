@@ -711,15 +711,15 @@ with col_m1:
 
 st.subheader("Steroid Tapering Schedule (e.g. Prednisolone)")
 steroid_active = st.checkbox("Patient Discharged on Steroid Tapering Plan", value=False, key="chk_steroid_active")
-    if steroid_active:
-        steroid_ind = st.text_input("Indication for Steroid Taper", value="COPD / Asthma Exacerbation", key="txt_steroid_ind")
-        st1 = st.text_input("Step 1: Dose & Duration", value="Prednisolone 30mg OD for 5 days", key="txt_st1")
-        st2 = st.text_input("Step 2: Dose & Duration", value="Then 20mg OD for 5 days", key="txt_st2")
-        st3 = st.text_input("Step 3: Dose & Duration", value="Then 10mg OD for 5 days", key="txt_st3")
-        st4 = st.text_input("Step 4: Dose & Off Date", value="Then 5mg OD for 5 days, then OFF", key="txt_st4")
-    else:
-        steroid_ind = ""
-        st1 = st2 = st3 = st4 = ""
+if steroid_active:
+    steroid_ind = st.text_input("Indication for Steroid Taper", value="COPD / Asthma Exacerbation", key="txt_steroid_ind")
+    st1 = st.text_input("Step 1: Dose & Duration", value="Prednisolone 30mg OD for 5 days", key="txt_st1")
+    st2 = st.text_input("Step 2: Dose & Duration", value="Then 20mg OD for 5 days", key="txt_st2")
+    st3 = st.text_input("Step 3: Dose & Duration", value="Then 10mg OD for 5 days", key="txt_st3")
+    st4 = st.text_input("Step 4: Dose & Off Date", value="Then 5mg OD for 5 days, then OFF", key="txt_st4")
+else:
+    steroid_ind = ""
+    st1 = st2 = st3 = st4 = ""
 
 with tab4: 
     st.header("5. Discharge Plan & Medications")
