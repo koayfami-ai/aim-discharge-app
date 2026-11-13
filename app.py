@@ -1,6 +1,4 @@
-import sys
-
-code = '''import streamlit as st
+import streamlit as st
 import docx
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -1107,15 +1105,3 @@ with tab6:
         file_name=f"AIM_Discharge_{rn_mrn if rn_mrn else 'Draft'}.docx",
         mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
-'''
-
-with open('/workspace/scratch/aim_discharge_app_v21.py', 'w') as f:
-    f.write(code)
-
-with open('/workspace/out/aim_discharge_app_v21.py', 'w') as f:
-    f.write(code)
-
-import shutil
-shutil.copy('/workspace/scratch/aim_discharge_app_v21.py', '/workspace/out/aim_discharge_app_v21.py')
-
-print("Published clean v21 to /workspace/out/!")
