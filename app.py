@@ -236,18 +236,18 @@ with col_c1:
   hf_detail = ""
   if c_hf:
     hf_detail = st.text_input(
-        "LVEF % & Etiology (Ischemic/Non-Ischemic/HTN)",
+        "LVEF/Etiology/Echo",
         value="",
         key="txt_hf_detail",
     )
 
   c_cad = st.checkbox(
-      "Coronary Artery Disease (3VD / CAD / ASCVD)", key="chk_c_cad"
+      "Coronary Artery Disease", key="chk_c_cad"
   )
   cad_detail = ""
   if c_cad:
     cad_detail = st.text_input(
-        "3VD / CAD / ASCVD Details", value="", key="txt_cad_detail"
+        "ASCVD Risk Score", value="", key="txt_cad_detail"
     )
 
 with col_c2:
@@ -282,21 +282,20 @@ with col_f1:
 
 with col_f2:
   nyha_mets = st.selectbox(
-      "Functional Capacity (NYHA / METS)",
+      "Functional Capacity",
       [
           "Not Specified",
           "NYHA Class I (No limitation / > 4 METS)",
           "NYHA Class II (Slight limitation / ~4 METS)",
           "NYHA Class III (Marked limitation / < 4 METS)",
           "NYHA Class IV (Severe limitation / Symptoms at rest / < 2 METS)",
-          "Independent > 4 METS",
-          "Limited < 4 METS",
       ],
       key="sel_nyha_mets",
   )
   func_notes = st.text_input(
-      "Additional Functional / ADL Notes", value="", key="txt_func_notes"
+      "Remarks", value="", key="txt_func_notes"
   )
+    
 with tab3:
     st.header("3. Clinical Progress, POCUS & Resuscitation Directives")
     st.subheader("Main Presentation & Acute Interventions")
