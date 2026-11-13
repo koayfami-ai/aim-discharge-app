@@ -644,15 +644,20 @@ with tab4:
         
     col_d1, col_d2, col_d3, col_d4, col_d5 = st.columns(5)
     with col_d1:
-        date_adm_str = st.text_input("Admission Date", value="14/10/2026", key="lbl_adm_date")
+        dt_adm = st.date_input("Admission Date", value=None, format="DD/MM/YYYY", key="lbl_adm_date")
+        date_adm_str = dt_adm.strftime("%d/%m/%Y") if dt_adm else "Admission"
     with col_d2:
-        date_mid1_str = st.text_input("Ward Day 1", value="15/10/2026", key="lbl_mid1_date")
+        dt_m1 = st.date_input("Ward Day 1", value=None, format="DD/MM/YYYY", key="lbl_mid1_date")
+        date_mid1_str = dt_m1.strftime("%d/%m/%Y") if dt_m1 else "Ward Day 1"
     with col_d3:
-        date_mid2_str = st.text_input("Ward Day 2", value="16/10/2026", key="lbl_mid2_date")
+        dt_m2 = st.date_input("Ward Day 2", value=None, format="DD/MM/YYYY", key="lbl_mid2_date")
+        date_mid2_str = dt_m2.strftime("%d/%m/%Y") if dt_m2 else "Ward Day 2"
     with col_d4:
-        date_mid3_str = st.text_input("Ward Day 3", value="17/10/2026", key="lbl_mid3_date")
+        dt_m3 = st.date_input("Ward Day 3", value=None, format="DD/MM/YYYY", key="lbl_mid3_date")
+        date_mid3_str = dt_m3.strftime("%d/%m/%Y") if dt_m3 else "Ward Day 3"
     with col_d5:
-        date_dis_str = st.text_input("Predischarge Date", value="19/10/2026", key="lbl_dis_date")
+        dt_dis = st.date_input("Predischarge Date", value=None, format="DD/MM/YYYY", key="lbl_dis_date")
+        date_dis_str = dt_dis.strftime("%d/%m/%Y") if dt_dis else "Predischarge"
 
     st.markdown("---")
         
