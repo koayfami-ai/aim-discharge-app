@@ -416,7 +416,7 @@ with tab3:
         if chk_dexa_in:
             c_d, c_f = st.columns(2)
             dexain_dose = c_d.selectbox("Dose", ["2 mg", "4 mg", "6 mg", "8 mg"], key="sel_in_dexain_d")
-            dexain_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID", key="sel_in_dexain_f")
+            dexain_freq = c_f.selectbox("Freq", ["OD", "BD", "TDS", "QID"], key="sel_in_dexain_f")
             c_s, c_c = st.columns(2)
             dexain_start = c_s.text_input("Date Start", value="", key="txt_in_dexain_s")
             dexain_comp = c_c.text_input("Date Complete", value="", key="txt_in_dexain_c")
