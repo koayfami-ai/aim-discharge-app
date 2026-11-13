@@ -829,10 +829,10 @@ summary_text += f"Address: {address}\n"
 summary_text += "\n[ 2. PROBLEM LIST & DIAGNOSES ]\nPrimary Diagnoses:\n"
 has_primary = False
 
-if p_ccf: summary_text += "• 
-Decompensated CCF\n"; has_primary = True
-if p_apo: summary_text += "• 
-Acute Pulmonary Edema\n"; has_primary = True
+if p_ccf: summary_text += "• Decompensated CCF\n"; 
+    has_primary = True
+if p_apo: summary_text += "• Acute Pulmonary Edema\n"; 
+    has_primary = True
 if p_copd: summary_text += "• Acute Exacerbation of COPD / Asthma\n"; has_primary = True
     if p_bronch: summary_text += f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n"; has_primary = True
     if p_ild: summary_text += f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n"; has_primary = True
