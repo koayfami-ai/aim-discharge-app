@@ -459,8 +459,7 @@ with tab3:
     cn1, cn2 = st.columns(2)
     with cn1:
         # Combivent
-        chk_comb = st.checkbox("Neb Combivent (Ipratopium bromide 0.5 mg/albuterol 2.5 mg per 3 mL vial) 4 hrly"), 
-        key="chk_in_comb")
+        chk_comb = st.checkbox("Neb Combivent (Ipratopium bromide 0.5 mg/albuterol 2.5 mg per 3 mL vial) 4 hrly", key="chk_in_comb")
         if chk_comb:
             c_s, c_c = st.columns(2)
             comb_start = c_s.text_input("Date Start", value="", key="txt_in_comb_s")
