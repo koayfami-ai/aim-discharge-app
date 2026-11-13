@@ -531,29 +531,14 @@ with tab3:
             gtn_comp = gtn_c_dt.strftime("%d/%m/%Y") if gtn_c_dt else ""
             inmed_list.append(f"• Neb GTN 5 mg [Started: {gtn_start if gtn_start else 'N/A'} | Completed: {gtn_comp if gtn_comp else 'N/A'}]")
 
-    inmed_custom = st.text_input("Other Inpatient Medications / Infusions", value="", key="txt_inmed_custom")
+    inmed_custom = st.text_input("Other Medications", value="", key="txt_inmed_custom")
     if inmed_custom:
         inmed_list.append(f"• Others: {inmed_custom}")
 
     # Summary box for Inpatient Meds Regimen
     inpatient_regimen_text = "\n".join(inmed_list) if inmed_list else "Nil inpatient acute medications selected."
     st.text_area("Inpatient Medications & Treatment Regimen Summary Box (Copyable)", value=inpatient_regimen_text, 
-        # Neb GTN
-        chk_gtn = st.checkbox("Neb GTN (5 mg)", key="chk_in_gtn")
-        if chk_gtn:
-            c_s, c_c = st.columns(2)
-            gtn_start = c_s.text_input("Date Start", value="", key="txt_in_gtn_s")
-            gtn_comp = c_c.text_input("Date Complete", value="", key="txt_in_gtn_c")
-            inmed_list.append(f"• Neb GTN 5 mg QID/PRN [Started: {gtn_start if gtn_start else 'N/A'} | Completed: {gtn_comp if gtn_comp else 'N/A'}]")
-
-    inmed_custom = st.text_input("Other Inpatient Medications / Infusions", value="", key="txt_inmed_custom")
-    if inmed_custom:
-        inmed_list.append(f"• Others: {inmed_custom}")
-
-    # Summary box for Inpatient Meds Regimen
-    inpatient_regimen_text = "\n".join(inmed_list) if inmed_list else "Nil inpatient acute medications selected."
-    st.text_area("Inpatient Medications & Treatment Regimen Summary Box (Copyable)", value=inpatient_regimen_text, height=150)
-
+        
     st.subheader("POCUS & Diagnostic Investigations")
     pocus_lung = st.text_input("POCUS Lung", value="", key="txt_pocus_lung")
     pocus_heart = st.text_input("POCUS Cardiac", value="", key="txt_pocus_heart")
