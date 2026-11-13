@@ -60,8 +60,8 @@ with tab2:
         bronch_type = ""
         bronch_detail = ""
         if p_bronch:
-        bronch_type = st.selectbox("Bronchiectasis Status", ["Infective", "Non-Infective"], key="sel_bronch_type")
-        bronch_detail = st.text_input("Organism/source", value="", key="txt_bronch_detail")
+            bronch_type = st.selectbox("Bronchiectasis Status", ["Infective", "Non-Infective"], key="sel_bronch_type")
+            bronch_detail = st.text_input("Organism/source", value="", key="txt_bronch_detail")
 
         p_ild = st.checkbox("Acute Exacerbation of Interstitial Lung Disease (ILD)", key="chk_p_ild")
         ild_type = ""
