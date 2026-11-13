@@ -148,23 +148,20 @@ with col_p2:
         nihss_score = ""
 
         if p_stroke_pri:
-        stroke_type = st.selectbox(
-        "Stroke Classification",
-        ["Ischemic", "Hemorrhagic"],
-        key="sel_stroke_type_pri",)
+            stroke_type = st.selectbox(
+                "Stroke Classification",
+                ["Ischemic", "Hemorrhagic"], key="sel_stroke_type_pri",)
 
         # Ischemic -> Oxford/BAMFORD Dropdown | Hemorrhagic -> Direct Text Input
         if stroke_type == "Ischemic":
-        stroke_subtype = st.selectbox(
-        "Ischemic Subtype (Oxford / BAMFORD)",
-        [
-            "LACI (Lacunar Infarct)",
-            "PACI (Partial Anterior Circulation Infarct)",
-            "TACI (Total Anterior Circulation Infarct)",
-            "POCI (Posterior Circulation Infarct)",
-        ],
-        key="sel_stroke_ischemic_sub",)
-       else:
+            stroke_subtype = st.selectbox(
+                "Ischemic Subtype (Oxford / BAMFORD)",
+                ["LACI (Lacunar Infarct)",
+                 "PACI (Partial Anterior Circulation Infarct)",
+                 "TACI (Total Anterior Circulation Infarct)",
+                 "POCI (Posterior Circulation Infarct)",],
+                key="sel_stroke_ischemic_sub",)
+        else:
            stroke_subtype = st.text_input("Hemorrhagic Stroke Details", value="", key="txt_stroke_hem_detail")
 
        # Presentation NIHSS Score
