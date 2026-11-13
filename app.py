@@ -973,17 +973,17 @@ def generate_docx():
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
         # Helper function for headings
-        def add_sec_heading(title):
-            p = doc.add_paragraph()
-            p.paragraph_format.space_before = Pt(10)
-            p.paragraph_format.space_after = Pt(4)
-            run = p.add_run(title)
-            run.bold = True
-            run.font.size = Pt(11)
-            run.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
+    def add_sec_heading(title):
+        p = doc.add_paragraph()
+        p.paragraph_format.space_before = Pt(10)
+        p.paragraph_format.space_after = Pt(4)
+        run = p.add_run(title)
+        run.bold = True
+        run.font.size = Pt(11)
+        run.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
 
         # Section 1: Demographics
-        add_sec_heading("[ 1. PATIENT DEMOGRAPHICS & WARD METADATA ]")
+    add_sec_heading("[ 1. PATIENT DEMOGRAPHICS & WARD METADATA ]")
         t1 = doc.add_table(rows=5, cols=2)
         t1.style = 'Table Grid'
         t1.alignment = WD_TABLE_ALIGNMENT.CENTER
