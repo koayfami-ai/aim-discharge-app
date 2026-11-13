@@ -296,172 +296,202 @@ with col_f2:
       "Remarks", value="", key="txt_func_notes"
   )
     
-    
 with tab3:
     st.header("3. Clinical Progress, POCUS & Resuscitation Directives")
     st.subheader("Main Presentation & Acute Interventions")
-    presentation = st.text_area("Main Presentation & Associated Symptoms/Signs", value="")
+    presentation = st.text_area("Main Presentation & Associated Symptoms/Signs", value="", key="txt_presentation")
     
-col_int1, col_int2 = st.columns(2)
-with col_int1:
-        int_o2 = st.text_input("Acute Oxygen Therapy Given", value="")
-        int_fluid = st.text_input("Fluid Resuscitation / Restriction", value="")
-        int_inotropes = st.text_input("Inotropic Support Given", value="")
-with col_int2:
-        int_scan_by = st.text_input("Bedside Scan Performed By", value="")
-        int_scan_findings = st.text_area("Initial Scan Findings", value="")
+    col_int1, col_int2 = st.columns(2)
+    with col_int1:
+        int_o2 = st.text_input("Acute Oxygen Therapy Given", value="", key="txt_int_o2")
+        int_fluid = st.text_input("Fluid Resuscitation / Restriction", value="", key="txt_int_fluid")
+        int_inotropes = st.text_input("Inotropic Support Given", value="", key="txt_int_inotropes")
+    with col_int2:
+        int_scan_by = st.text_input("Bedside Scan Performed By", value="", key="txt_int_scan_by")
+        int_scan_findings = st.text_area("Initial Scan Findings", value="", key="txt_int_scan_findings")
 
-st.subheader("Ward Progress & Respiratory Support")
-col_prog1, col_prog2 = st.columns(2)
-with col_prog1:
-        max_o2_modality = st.selectbox("Highest Oxygen Modality Required", ["Room Air", "Nasal Cannula", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"])
-        max_fio2 = st.text_input("Highest FiO2 / Flow Rate (%)", value="")
-        o2_duration = st.text_input("Duration of Advanced Oxygen Support", value="")
-with col_prog2:
-        o2_conc_dis = st.selectbox("Need Temporary Oxygen Concentrator at Discharge?", ["No", "Yes"])
-        o2_conc_duration = st.text_input("If Yes, Duration Needed", value="")
-        inotropes_ward = st.text_input("Ward Inotropic Support Details", value="")
+    st.subheader("Ward Progress & Respiratory Support")
+    col_prog1, col_prog2 = st.columns(2)
+    with col_prog1:
+        max_o2_modality = st.selectbox("Highest Oxygen Modality Required", ["Room Air", "Nasal Cannula", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"], key="sel_max_o2")
+        max_fio2 = st.text_input("Highest FiO2 / Flow Rate (%)", value="", key="txt_max_fio2")
+        o2_duration = st.text_input("Duration of Advanced Oxygen Support", value="", key="txt_o2_duration")
+    with col_prog2:
+        o2_conc_dis = st.selectbox("Need Temporary Oxygen Concentrator at Discharge?", ["No", "Yes"], key="sel_o2_conc")
+        o2_conc_duration = ""
+        if o2_conc_dis == "Yes":
+            o2_conc_duration = st.text_input("If Yes, Duration Needed", value="", key="txt_o2_conc_dur")
+        
+        inotropes_ward = st.text_input("Ward Inotropic Support Details", value="", key="txt_inotropes_ward")
 
-st.subheader("POCUS & Diagnostic Investigations")
-pocus_lung = st.text_input("POCUS Lung (e.g. B-lines, pleural effusion, sliding)", value="")
-pocus_heart = st.text_input("POCUS Heart (EF, RV strain, pericardial fluid)", value="")
-pocus_plr = st.text_input("POCUS Passive Leg Raise (PLR) / Fluid Responsiveness", value="")
-pocus_vessels = st.text_input("POCUS Vessels (IVC collapsibility, DVT scan)", value="")
-pocus_others = st.text_input("POCUS Others", value="")
-pocus_interp = st.text_area("Overall POCUS & Clinical Interpretation", value="")
-ecg_findings = st.text_area("ECG Findings & Evolution", value="")
+    st.subheader("POCUS & Diagnostic Investigations")
+    pocus_lung = st.text_input("POCUS Lung (e.g. B-lines, pleural effusion, sliding)", value="", key="txt_pocus_lung")
+    pocus_heart = st.text_input("POCUS Heart (EF, RV strain, pericardial fluid)", value="", key="txt_pocus_heart")
+    pocus_plr = st.text_input("POCUS Passive Leg Raise (PLR) / Fluid Responsiveness", value="", key="txt_pocus_plr")
+    pocus_vessels = st.text_input("POCUS Vessels (IVC collapsibility, DVT scan)", value="", key="txt_pocus_vessels")
+    pocus_others = st.text_input("POCUS Others", value="", key="txt_pocus_others")
+    pocus_interp = st.text_area("Overall POCUS & Clinical Interpretation", value="", key="txt_pocus_interp")
+    ecg_findings = st.text_area("ECG Findings & Evolution", value="", key="txt_ecg_findings")
 
-st.subheader("Inpatient Procedures Performed")
-col_proc1, col_proc2 = st.columns(2)
-with col_proc1:
-        proc_pleural = st.checkbox("Pleural Aspiration / Drainage")
-        proc_ascites = st.checkbox("Peritoneal Aspiration / Paracentesis")
-        proc_lp = st.checkbox("Lumbar Puncture")
-with col_proc2:
-        proc_cvl = st.checkbox("Central Venous Line (CVL)")
-        proc_hd_cath = st.checkbox("Acute Dialysis Catheter (VasCath)")
-        proc_others = st.text_input("Other Procedures", value="")
+    st.subheader("Inpatient Procedures Performed")
+    col_proc1, col_proc2 = st.columns(2)
+    with col_proc1:
+        proc_pleural = st.checkbox("Pleural Aspiration / Drainage", key="chk_proc_pl")
+        proc_ascites = st.checkbox("Peritoneal Aspiration / Paracentesis", key="chk_proc_asc")
+        proc_lp = st.checkbox("Lumbar Puncture", key="chk_proc_lp")
+    with col_proc2:
+        proc_cvl = st.checkbox("Central Venous Line (CVL)", key="chk_proc_cvl")
+        proc_hd_cath = st.checkbox("Acute Dialysis Catheter (VasCath)", key="chk_proc_hd")
+        proc_others = st.text_input("Other Procedures", value="", key="txt_proc_others")
     
-        dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"])
-        dialysis_duration = st.text_input("If Yes, Dialysis Duration & Sessions", value="")
-        renal_recovery = st.text_input("Renal Recovery Status at Discharge", value="")
+    dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"], key="sel_dialysis")
+    dialysis_duration = ""
+    renal_recovery = ""
+    if dialysis_needed == "Yes":
+        dialysis_duration = st.text_input("Dialysis Duration & Sessions", value="", key="txt_dialysis_dur")
+        renal_recovery = st.text_input("Renal Recovery Status at Discharge", value="", key="txt_renal_rec")
 
-st.subheader("Resuscitation Status & Ceiling of Care Directive")
-resus_status = st.radio("Resuscitation Code", ["Full Code", "Do-Not-Intubate (DNI)", "Full Comfort / Palliative Care"])
-resus_notes = st.text_area("Resuscitation Details (e.g. Continue HD/inotropes, Highest NIV/HFNC ceiling, Future direction discussed with family)", value="")
+    st.subheader("Resuscitation Status & Ceiling of Care Directive")
+    resus_status = st.radio("Resuscitation Code", ["Full Code", "Do-Not-Intubate (DNI)", "Full Comfort / Palliative Care"], key="rad_resus_status")
+    resus_notes = st.text_area("Resuscitation Details (e.g. Continue HD/inotropes, Highest NIV/HFNC ceiling, Future direction discussed with family)", value="", key="txt_resus_notes")
 
 with tab4:
-    st.header("4. Key Diagnostic & Laboratory Trends (3-Point Comparison)")
-    st.caption("Compare Initial (Admission), Midway, and Pre-Discharge Lab Values")
+    st.header("4. Concise Investigation Trend Table (3-Point Serial Format)")
+    st.caption("Compare serial values: Admission vs. Midway vs. Discharge Date")
     
-    st.subheader("Arterial / Venous Blood Gas (ABG/VBG)")
-    col_abg1, col_abg2, col_abg3 = st.columns(3)
-    with col_abg1:
-        st.markdown("**Admission / Initial**")
-        abg_adm_ph = st.text_input("pH (Adm)", value="")
-        abg_adm_pco2 = st.text_input("pCO2 (Adm)", value="")
-        abg_adm_po2 = st.text_input("pO2 (Adm)", value="")
-        abg_adm_hco3 = st.text_input("HCO3 (Adm)", value="")
-        abg_adm_lac = st.text_input("Lactate (Adm)", value="")
-    with col_abg2:
-        st.markdown("**Midway Trend**")
-        abg_mid_ph = st.text_input("pH (Mid)", value="")
-        abg_mid_pco2 = st.text_input("pCO2 (Mid)", value="")
-        abg_mid_po2 = st.text_input("pO2 (Mid)", value="")
-        abg_mid_hco3 = st.text_input("HCO3 (Mid)", value="")
-        abg_mid_lac = st.text_input("Lactate (Mid)", value="")
-    with col_abg3:
-        st.markdown("**Pre-Discharge / Latest**")
-        abg_dis_ph = st.text_input("pH (Dis)", value="")
-        abg_dis_pco2 = st.text_input("pCO2 (Dis)", value="")
-        abg_dis_po2 = st.text_input("pO2 (Dis)", value="")
-        abg_dis_hco3 = st.text_input("HCO3 (Dis)", value="")
-        abg_dis_lac = st.text_input("Lactate (Dis)", value="")
+    col_d1, col_d2, col_d3 = st.columns(3)
+    with col_d1:
+        date_adm_str = st.text_input("Admission Date Label", value="14/10/2026", key="lbl_adm_date")
+    with col_d2:
+        date_mid_str = st.text_input("Midway Date Label", value="15/10/2026", key="lbl_mid_date")
+    with col_d3:
+        date_dis_str = st.text_input("Discharge Date Label", value="16/10/2026", key="lbl_dis_date")
 
-    st.subheader("Renal & Electrolytes Profile")
-    col_r1, col_r2, col_r3 = st.columns(3)
-    with col_r1:
-        st.markdown("**Admission**")
-        r_adm_urea = st.text_input("Urea (Adm)", value="")
-        r_adm_creat = st.text_input("Creatinine (Adm)", value="")
-        r_adm_k = st.text_input("K+ (Adm)", value="")
-        r_adm_na = st.text_input("Na+ (Adm)", value="")
-    with col_r2:
-        st.markdown("**Midway**")
-        r_mid_urea = st.text_input("Urea (Mid)", value="")
-        r_mid_creat = st.text_input("Creatinine (Mid)", value="")
-        r_mid_k = st.text_input("K+ (Mid)", value="")
-        r_mid_na = st.text_input("Na+ (Mid)", value="")
-    with col_r3:
-        st.markdown("**Pre-Discharge**")
-        r_dis_urea = st.text_input("Urea (Dis)", value="")
-        r_dis_creat = st.text_input("Creatinine (Dis)", value="")
-        r_dis_k = st.text_input("K+ (Dis)", value="")
-        r_dis_na = st.text_input("Na+ (Dis)", value="")
+    st.markdown("---")
+    
+    # Headers
+    h1, h2, h3, h4 = st.columns([2.5, 3, 3, 3])
+    h1.markdown("**Parameter**")
+    h2.markdown(f"**Admission ({date_adm_str})**")
+    h3.markdown(f"**Midway ({date_mid_str})**")
+    h4.markdown(f"**Discharge ({date_dis_str})**")
 
-    st.subheader("Full Blood Count (FBC)")
-    col_f1, col_f2, col_f3 = st.columns(3)
-    with col_f1:
-        st.markdown("**Admission**")
-        f_adm_wbc = st.text_input("WBC (Adm)", value="")
-        f_adm_lym = st.text_input("Lymphocyte Count & % (Adm)", value="")
-        f_adm_hb = st.text_input("Hb (Adm)", value="")
-        f_adm_plt = st.text_input("Platelets (Adm)", value="")
-    with col_f2:
-        st.markdown("**Midway**")
-        f_mid_wbc = st.text_input("WBC (Mid)", value="")
-        f_mid_lym = st.text_input("Lymphocyte Count & % (Mid)", value="")
-        f_mid_hb = st.text_input("Hb (Mid)", value="")
-        f_mid_plt = st.text_input("Platelets (Mid)", value="")
-    with col_f3:
-        st.markdown("**Pre-Discharge**")
-        f_dis_wbc = st.text_input("WBC (Dis)", value="")
-        f_dis_lym = st.text_input("Lymphocyte Count & % (Dis)", value="")
-        f_dis_hb = st.text_input("Hb (Dis)", value="")
-        f_dis_plt = st.text_input("Platelets (Dis)", value="")
+    # Lab Dict
+    lab_params = [
+        ("Hb", "g/dL"),
+        ("Hct", "%"),
+        ("Wcc", "x10^9/L"),
+        ("Lymp", "% / count"),
+        ("Plt", "x10^9/L"),
+        ("Urea", "mmol/L"),
+        ("Creat", "umol/L"),
+        ("Na", "mmol/L"),
+        ("K", "mmol/L"),
+        ("LDH", "U/L"),
+        ("ALT", "U/L"),
+        ("Coag", "PT/aPTT/INR"),
+        ("CRP", "mg/L"),
+        ("HbA1c", "%"),
+        ("Trop I", "ug/L"),
+        ("ProBNP", "pg/mL"),
+        ("Others", "ABG/POCUS/Notes")
+    ]
 
-    st.subheader("Cardiac & Inflammatory Markers")
-    col_m1, col_m2 = st.columns(2)
-    with col_m1:
-        trop_i = st.text_input("Troponin I / T", value="")
-        pro_bnp = st.text_input("NT-proBNP / BNP", value="")
-    with col_m2:
-        crp_esr = st.text_input("CRP / ESR", value="")
-        other_markers = st.text_input("Other Biomarkers (PCT, LFT, etc.)", value="")
+    lab_inputs = {}
+    for param, unit in lab_params:
+        c1, c2, c3, c4 = st.columns([2.5, 3, 3, 3])
+        c1.markdown(f"**{param}** <small>({unit})</small>", unsafe_allow_html=True)
+        val_adm = c2.text_input(f"{param} Adm", value="", key=f"inp_{param}_adm", label_visibility="collapsed")
+        val_mid = c3.text_input(f"{param} Mid", value="", key=f"inp_{param}_mid", label_visibility="collapsed")
+        val_dis = c4.text_input(f"{param} Dis", value="", key=f"inp_{param}_dis", label_visibility="collapsed")
+        lab_inputs[param] = (val_adm, val_mid, val_dis)
 
+    st.markdown("---")
     st.subheader("Imaging & Modality Summaries")
-    cxr_summary = st.text_area("Chest X-Ray (CXR) Findings & Evolution", value="")
-    usg_summary = st.text_area("Ultrasound (USG Abdomen/KUB/Vessels)", value="")
-    ct_mri_summary = st.text_area("CT / MRI Scans", value="")
-    other_img = st.text_area("Other Imaging / Microbiology", value="")
+    cxr_summary = st.text_area("Chest X-Ray (CXR) Findings & Evolution", value="", key="txt_cxr")
+    usg_summary = st.text_area("Ultrasound (USG Abdomen/KUB/Vessels)", value="", key="txt_usg")
+    ct_mri_summary = st.text_area("CT / MRI Scans", value="", key="txt_ct_mri")
+    other_img = st.text_area("Other Imaging / Microbiology", value="", key="txt_other_img")
 
 with tab5:
     st.header("5. Discharge Medication Regimen & Steroid Tapering")
-    st.caption("Reconcile Routine Discharge Medications & Complex Tapering Schedules")
+    st.caption("Check ONLY the medications prescribed at discharge.")
     
-    st.subheader("Standard Discharge Medications")
-    med_pantoprazole = st.text_input("Pantoprazole (Dose & Freq)", value="40mg OD")
-    med_caco3 = st.text_input("Calcium Carbonate (Dose & Freq)", value="500mg BD")
-    med_rocaltriol = st.text_input("Rocaltriol / Calcitriol", value="0.25mcg OD")
-    med_sglt2 = st.text_input("SGLT2i (Dapagliflozin / Empagliflozin)", value="Dapagliflozin 10mg OD")
-    med_spiro = st.text_input("Spironolactone", value="25mg OD")
-    med_frusemide = st.text_input("Frusemide / Loop Diuretic", value="40mg OD")
-    med_glyprin = st.text_input("Aspirin / Glyprin", value="100mg OD")
-    med_atorva = st.text_input("Atorvastatin", value="40mg ON")
-    med_insulin = st.text_input("Insulin Regimen", value="")
-    med_oha = st.text_input("Oral Hypoglycemic Agents (OHA)", value="")
-    med_zincofer = st.text_input("Zincofer", value="1 tab OD")
-    med_vitamins = st.text_input("Multivitamins / Supplements", value="")
-    med_custom = st.text_area("Additional Discharge Medications", value="")
+    st.subheader("Select Prescribed Discharge Medications")
+    
+    col_m1, col_m2 = st.columns(2)
+    with col_m1:
+        m_panto = st.checkbox("Pantoprazole", value=True, key="chk_m_panto")
+        val_panto = ""
+        if m_panto:
+            val_panto = st.text_input("Pantoprazole Dose & Freq", value="40mg OD", key="txt_m_panto")
+            
+        m_caco3 = st.checkbox("Calcium Carbonate", value=False, key="chk_m_caco3")
+        val_caco3 = ""
+        if m_caco3:
+            val_caco3 = st.text_input("CaCO3 Dose & Freq", value="500mg BD", key="txt_m_caco3")
+            
+        m_rocal = st.checkbox("Rocaltriol / Calcitriol", value=False, key="chk_m_rocal")
+        val_rocal = ""
+        if m_rocal:
+            val_rocal = st.text_input("Rocaltriol Dose & Freq", value="0.25mcg OD", key="txt_m_rocal")
+
+        m_sglt2 = st.checkbox("SGLT2i (Dapagliflozin / Empagliflozin)", value=True, key="chk_m_sglt2")
+        val_sglt2 = ""
+        if m_sglt2:
+            val_sglt2 = st.text_input("SGLT2i Dose & Freq", value="Dapagliflozin 10mg OD", key="txt_m_sglt2")
+
+        m_spiro = st.checkbox("Spironolactone", value=False, key="chk_m_spiro")
+        val_spiro = ""
+        if m_spiro:
+            val_spiro = st.text_input("Spironolactone Dose & Freq", value="25mg OD", key="txt_m_spiro")
+
+        m_fruse = st.checkbox("Frusemide", value=True, key="chk_m_fruse")
+        val_fruse = ""
+        if m_fruse:
+            val_fruse = st.text_input("Frusemide Dose & Freq", value="40mg OD", key="txt_m_fruse")
+
+    with col_m2:
+        m_glyprin = st.checkbox("Aspirin / Glyprin", value=True, key="chk_m_glyprin")
+        val_glyprin = ""
+        if m_glyprin:
+            val_glyprin = st.text_input("Glyprin Dose & Freq", value="100mg OD", key="txt_m_glyprin")
+
+        m_atorva = st.checkbox("Atorvastatin", value=True, key="chk_m_atorva")
+        val_atorva = ""
+        if m_atorva:
+            val_atorva = st.text_input("Atorvastatin Dose & Freq", value="40mg ON", key="txt_m_atorva")
+
+        m_insulin = st.checkbox("Insulin Regimen", value=False, key="chk_m_insulin")
+        val_insulin = ""
+        if m_insulin:
+            val_insulin = st.text_input("Insulin Details", value="Mixtard 12u BD", key="txt_m_insulin")
+
+        m_oha = st.checkbox("Oral Hypoglycemic Agents (OHA)", value=False, key="chk_m_oha")
+        val_oha = ""
+        if m_oha:
+            val_oha = st.text_input("OHA Details", value="Metformin 500mg BD", key="txt_m_oha")
+
+        m_zincofer = st.checkbox("Zincofer", value=False, key="chk_m_zincofer")
+        val_zincofer = ""
+        if m_zincofer:
+            val_zincofer = st.text_input("Zincofer Dose & Freq", value="1 tab OD", key="txt_m_zincofer")
+
+        m_vit = st.checkbox("Multivitamins / Supplements", value=False, key="chk_m_vit")
+        val_vit = ""
+        if m_vit:
+            val_vit = st.text_input("Vitamins Dose & Freq", value="1 tab OD", key="txt_m_vit")
+
+    med_custom = st.text_area("Additional Prescribed Discharge Medications", value="", key="txt_med_custom")
 
     st.subheader("Steroid Tapering Schedule (e.g. Prednisolone)")
-    steroid_active = st.checkbox("Patient Discharged on Steroid Tapering Plan", value=False)
+    steroid_active = st.checkbox("Patient Discharged on Steroid Tapering Plan", value=False, key="chk_steroid_active")
     if steroid_active:
-        steroid_ind = st.text_input("Indication for Steroid Taper", value="COPD / Asthma Exacerbation / Vasculitis / Glomerulonephritis")
-        st1 = st.text_input("Step 1: Dose & Duration", value="Prednisolone 30mg OD for 5 days")
-        st2 = st.text_input("Step 2: Dose & Duration", value="Then 20mg OD for 5 days")
-        st3 = st.text_input("Step 3: Dose & Duration", value="Then 10mg OD for 5 days")
-        st4 = st.text_input("Step 4: Dose & Off Date", value="Then 5mg OD for 5 days, then OFF")
+        steroid_ind = st.text_input("Indication for Steroid Taper", value="COPD / Asthma Exacerbation", key="txt_steroid_ind")
+        st1 = st.text_input("Step 1: Dose & Duration", value="Prednisolone 30mg OD for 5 days", key="txt_st1")
+        st2 = st.text_input("Step 2: Dose & Duration", value="Then 20mg OD for 5 days", key="txt_st2")
+        st3 = st.text_input("Step 3: Dose & Duration", value="Then 10mg OD for 5 days", key="txt_st3")
+        st4 = st.text_input("Step 4: Dose & Off Date", value="Then 5mg OD for 5 days, then OFF", key="txt_st4")
     else:
         steroid_ind = ""
         st1 = st2 = st3 = st4 = ""
@@ -470,58 +500,73 @@ with tab6:
     st.header("6. Review & Export Options")
     
     st.subheader("AIM Review Clinic & Follow-Up Plan")
-    aim_clinic_plan = st.text_area("AIM Clinic Appointment & Issues to Review/Plan", value="Review symptoms, fluid balance, repeat renal profile & electrolyte monitoring.")
-    other_clinic_plan = st.text_area("Other Subspecialty Clinic Follow-Ups (Nephro/Cardio/Resp)", value="")
-    red_flags = st.text_area("Red Flag Warning Signs Provided to Patient", value="Severe dyspnea, chest discomfort, acute syncope, marked decrease in urine output, or sudden swelling.")
-    mo_name = st.text_input("Discharging Medical Officer Name", value="")
+    aim_clinic_plan = st.text_area("AIM Clinic Appointment & Issues to Review/Plan", value="Review symptoms, fluid balance, repeat renal profile & electrolyte monitoring.", key="txt_aim_clinic_plan")
+    other_clinic_plan = st.text_area("Other Subspecialty Clinic Follow-Ups (Nephro/Cardio/Resp)", value="", key="txt_other_clinic_plan")
+    red_flags = st.text_area("Red Flag Warning Signs Provided to Patient", value="Severe dyspnea, chest discomfort, acute syncope, marked decrease in urine output, or sudden swelling.", key="txt_red_flags")
+    mo_name = st.text_input("Discharging Medical Officer Name", value="", key="txt_mo_name")
 
-    # Build document string preview
+    # Build Dynamic Plain Text Summary (ONLY CHECKED ITEMS ARE ADDED)
     summary_text = f"""
 ================================================================================
  ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY
 ================================================================================
 
 [ 1. PATIENT DEMOGRAPHICS & METADATA ]
-Patient Name: {patient_name}    RN/MRN: {rn_mrn}
-IC/Passport: {ic_passport}    Age/Sex: {age_sex}
-Admission Date: {adm_date}    Discharge Date: {dis_date}
-Referral Source: {referral_place} {f'({referral_other})' if referral_other else ''}
-Ward/Bed: {ward_bed}    Attending Team: {attending_dr}
-Subspecialty Team: {subspec_team}
-Contact No: {contact_num}    Caretaker: {caretaker}
-Address: {address}
-
-[ 2. PROBLEM LIST & DIAGNOSES ]
-Primary Diagnoses:
 """
-    if p_ccf: summary_text += "• Decompensated CCF\n"
-    if p_apo: summary_text += "• Acute Pulmonary Edema\n"
-    if p_copd: summary_text += "• Acute Exacerbation of COPD / Asthma\n"
-    if p_sepsis: summary_text += f"• Severe Sepsis secondary to: {sepsis_source}\n"
-    if p_poisoning: summary_text += f"• Poisoning: {poisoning_detail}\n"
-    if p_pneu: summary_text += f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n"
-    if p_snake: summary_text += f"• Snake Bite with Envenomation: {snake_detail}\n"
-    if p_acs: summary_text += f"• Acute Coronary Syndrome ({acs_type}) - TIMI: {acs_timi}\n"
-    if p_pe_primary: summary_text += f"• Pulmonary Embolism (Risk: {pe_risk})\n"
-    if other_primary: summary_text += f"• Others: {other_primary}\n"
+    summary_text += f"Patient Name: {patient_name}    RN/MRN: {rn_mrn}\n"
+    summary_text += f"IC/Passport: {ic_passport}    Age/Sex: {age_sex}\n"
+    summary_text += f"Admission Date: {adm_date}    Discharge Date: {dis_date}\n"
+    summary_text += f"Referral Source: {referral_place} {f'({referral_other})' if referral_other else ''}\n"
+    summary_text += f"Ward/Bed: {ward_bed}    Attending Team: {attending_dr}\n"
+    summary_text += f"Subspecialty Team: {subspec_team}\n"
+    summary_text += f"Contact No: {contact_num}    Caretaker: {caretaker}\n"
+    summary_text += f"Address: {address}\n"
+
+    summary_text += "\n[ 2. PROBLEM LIST & DIAGNOSES ]\nPrimary Diagnoses:\n"
+    has_primary = False
+    if p_ccf: summary_text += "• Decompensated CCF\n"; has_primary = True
+    if p_apo: summary_text += "• Acute Pulmonary Edema\n"; has_primary = True
+    if p_copd: summary_text += "• Acute Exacerbation of COPD / Asthma\n"; has_primary = True
+    if p_bronch: summary_text += f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n"; has_primary = True
+    if p_ild: summary_text += f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n"; has_primary = True
+    if p_sepsis: summary_text += f"• Severe Sepsis secondary to: {sepsis_source}\n"; has_primary = True
+    if p_poisoning: summary_text += f"• Poisoning: {poisoning_detail}\n"; has_primary = True
+    if p_pneu: summary_text += f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n"; has_primary = True
+    if p_snake: summary_text += f"• Snake Bite with Envenomation: {snake_detail}\n"; has_primary = True
+    if p_acs: summary_text += f"• Acute Coronary Syndrome ({acs_type}) - TIMI: {acs_timi}\n"; has_primary = True
+    if p_pe_primary: summary_text += f"• Pulmonary Embolism (Risk: {pe_risk})\n"; has_primary = True
+    if p_stroke_pri:
+        summary_text += f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n"
+        if nihss_score: summary_text += f"  - NIHSS Score: {nihss_score}\n"
+        has_primary = True
+    if p_withdrawal: summary_text += f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n"; has_primary = True
+    if p_seizure: summary_text += f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n"; has_primary = True
+    if other_primary: summary_text += f"• Others: {other_primary}\n"; has_primary = True
+    if not has_primary: summary_text += "• Nil acute primary diagnoses selected.\n"
 
     summary_text += "\nSecondary Problems:\n"
-    if s_aki: summary_text += f"• AKI due to: {aki_cause}\n"
-    if s_ards: summary_text += f"• ARDS ({ards_severity})\n"
-    if s_rv_dys: summary_text += "• Right Ventricular Dysfunction / Failure\n"
-    if s_arrhythmia: summary_text += f"• Cardiac Arrhythmia: {arrhythmia_detail}\n"
-    if s_stroke: summary_text += "• Stroke\n"
-    if s_pe_sec: summary_text += "• Secondary Pulmonary Embolism\n"
-    if other_secondary: summary_text += f"• Others: {other_secondary}\n"
+    has_sec = False
+    if s_aki: summary_text += f"• AKI due to: {aki_cause}\n"; has_sec = True
+    if s_ards: summary_text += f"• ARDS ({ards_severity})\n"; has_sec = True
+    if s_rv_dys: summary_text += "• Right Ventricular Dysfunction / Failure\n"; has_sec = True
+    if s_arrhythmia: summary_text += f"• Cardiac Arrhythmia: {arrhythmia_detail}\n"; has_sec = True
+    if s_stroke: summary_text += "• Stroke\n"; has_sec = True
+    if s_pe_sec: summary_text += "• Secondary Pulmonary Embolism\n"; has_sec = True
+    if other_secondary: summary_text += f"• Others: {other_secondary}\n"; has_sec = True
+    if not has_sec: summary_text += "• Nil acute secondary problems.\n"
 
     summary_text += "\nComorbidities:\n"
-    if c_ckd: summary_text += f"• CKD Stage / Baseline: {ckd_stage}\n"
-    if c_hf: summary_text += f"• Heart Failure: {hf_detail}\n"
-    if c_cad: summary_text += f"• CAD / ASCVD: {cad_detail}\n"
-    if c_dm: summary_text += f"• Diabetes Mellitus: {dm_detail}\n"
+    if c_ckd: summary_text += f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n"
+    if c_hf: summary_text += f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n"
+    if c_cad: summary_text += f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n"
+    if c_dm: summary_text += f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n"
     if c_htn: summary_text += "• Hypertension\n"
-    summary_text += f"• Baseline Mobility: {c_frailty}\n"
     if other_comorb: summary_text += f"• Other Comorbidities: {other_comorb}\n"
+
+    summary_text += "\nFunctional Status & Capacity:\n"
+    if frailty_selected: summary_text += f"• Mobility / Frailty: {', '.join(frailty_selected)}\n"
+    if nyha_mets != "Not Specified": summary_text += f"• NYHA / METS Functional Capacity: {nyha_mets}\n"
+    if func_notes: summary_text += f"• Functional / ADL Notes: {func_notes}\n"
 
     summary_text += f"""
 [ 3. CLINICAL PROGRESS & RESUSCITATION DIRECTIVE ]
@@ -531,10 +576,10 @@ Initial Bedside Scan by {int_scan_by}: {int_scan_findings}
 
 Ward Progress:
 • Highest Oxygen Modality: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration})
-• Concentrator Needed at Discharge: {o2_conc_dis} (Duration: {o2_conc_duration})
+• Concentrator Needed at Discharge: {o2_conc_dis} {f'(Duration: {o2_conc_duration})' if o2_conc_duration else ''}
 • Inotropic Support: {inotropes_ward}
 • Procedures: {'Pleural Aspiration ' if proc_pleural else ''}{'Paracentesis ' if proc_ascites else ''}{'LP ' if proc_lp else ''}{'CVL ' if proc_cvl else ''}{'VasCath ' if proc_hd_cath else ''}{proc_others}
-• Acute Dialysis: {dialysis_needed} (Duration: {dialysis_duration}, Recovery: {renal_recovery})
+• Acute Dialysis: {dialysis_needed} {f'(Duration: {dialysis_duration}, Recovery: {renal_recovery})' if dialysis_needed == 'Yes' else ''}
 
 POCUS & Diagnostics:
 • Lung: {pocus_lung} | Heart: {pocus_heart}
@@ -547,39 +592,33 @@ RESUSCITATION DIRECTIVE & CEILING OF CARE:
 • Notes / Ceiling Rules: {resus_notes}
 
 [ 4. LABORATORY & DIAGNOSTIC TRENDS ]
-ABG/VBG:
-  - Adm: pH {abg_adm_ph}, pCO2 {abg_adm_pco2}, pO2 {abg_adm_po2}, HCO3 {abg_adm_hco3}, Lac {abg_adm_lac}
-  - Mid: pH {abg_mid_ph}, pCO2 {abg_mid_pco2}, pO2 {abg_mid_po2}, HCO3 {abg_mid_hco3}, Lac {abg_mid_lac}
-  - Dis: pH {abg_dis_ph}, pCO2 {abg_dis_pco2}, pO2 {abg_dis_po2}, HCO3 {abg_dis_hco3}, Lac {abg_dis_lac}
+Flowsheet Trend Table ({date_adm_str} vs {date_mid_str} vs {date_dis_str}):
+"""
+    for param, unit in lab_params:
+        v1, v2, v3 = lab_inputs[param]
+        if v1 or v2 or v3:
+            summary_text += f"  - {param:6s} ({unit:15s}):  {v1:10s} | {v2:10s} | {v3:10s}\n"
 
-Renal Profile & Electrolytes:
-  - Adm: Urea {r_adm_urea}, Creat {r_adm_creat}, K+ {r_adm_k}, Na+ {r_adm_na}
-  - Mid: Urea {r_mid_urea}, Creat {r_mid_creat}, K+ {r_mid_k}, Na+ {r_mid_na}
-  - Dis: Urea {r_dis_urea}, Creat {r_dis_creat}, K+ {r_dis_k}, Na+ {r_dis_na}
-
-FBC:
-  - Adm: WBC {f_adm_wbc}, Lymph {f_adm_lym}, Hb {f_adm_hb}, Plt {f_adm_plt}
-  - Mid: WBC {f_mid_wbc}, Lymph {f_mid_lym}, Hb {f_mid_hb}, Plt {f_mid_plt}
-  - Dis: WBC {f_dis_wbc}, Lymph {f_dis_lym}, Hb {f_dis_hb}, Plt {f_dis_plt}
-
-Cardiac & Biomarkers: Trop I: {trop_i} | ProBNP: {pro_bnp} | CRP: {crp_esr} | Others: {other_markers}
+    summary_text += f"""
 Imaging: CXR: {cxr_summary} | USG: {usg_summary} | CT/MRI: {ct_mri_summary} | Others: {other_img}
 
 [ 5. DISCHARGE MEDICATIONS ]
-1. Pantoprazole: {med_pantoprazole}
-2. Calcium Carbonate: {med_caco3}
-3. Rocaltriol: {med_rocaltriol}
-4. SGLT2i: {med_sglt2}
-5. Spironolactone: {med_spiro}
-6. Frusemide: {med_frusemide}
-7. Glyprin: {med_glyprin}
-8. Atorvastatin: {med_atorva}
-9. Insulin: {med_insulin}
-10. OHA: {med_oha}
-11. Zincofer: {med_zincofer}
-12. Vitamins: {med_vitamins}
-Other Meds: {med_custom}
 """
+    med_idx = 1
+    if m_panto: summary_text += f"{med_idx}. Pantoprazole: {val_panto}\n"; med_idx += 1
+    if m_caco3: summary_text += f"{med_idx}. Calcium Carbonate: {val_caco3}\n"; med_idx += 1
+    if m_rocal: summary_text += f"{med_idx}. Rocaltriol: {val_rocal}\n"; med_idx += 1
+    if m_sglt2: summary_text += f"{med_idx}. SGLT2i: {val_sglt2}\n"; med_idx += 1
+    if m_spiro: summary_text += f"{med_idx}. Spironolactone: {val_spiro}\n"; med_idx += 1
+    if m_fruse: summary_text += f"{med_idx}. Frusemide: {val_fruse}\n"; med_idx += 1
+    if m_glyprin: summary_text += f"{med_idx}. Glyprin / Aspirin: {val_glyprin}\n"; med_idx += 1
+    if m_atorva: summary_text += f"{med_idx}. Atorvastatin: {val_atorva}\n"; med_idx += 1
+    if m_insulin: summary_text += f"{med_idx}. Insulin: {val_insulin}\n"; med_idx += 1
+    if m_oha: summary_text += f"{med_idx}. OHA: {val_oha}\n"; med_idx += 1
+    if m_zincofer: summary_text += f"{med_idx}. Zincofer: {val_zincofer}\n"; med_idx += 1
+    if m_vit: summary_text += f"{med_idx}. Vitamins: {val_vit}\n"; med_idx += 1
+    if med_custom: summary_text += f"Additional Meds: {med_custom}\n"
+
     if steroid_active:
         summary_text += f"""
 Steroid Tapering Plan (Indication: {steroid_ind}):
@@ -658,12 +697,19 @@ Discharging MO: {mo_name}
         if p_ccf: p_prob.add_run("• Decompensated CCF\n")
         if p_apo: p_prob.add_run("• Acute Pulmonary Edema\n")
         if p_copd: p_prob.add_run("• Acute Exacerbation of COPD / Asthma\n")
+        if p_bronch: p_prob.add_run(f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n")
+        if p_ild: p_prob.add_run(f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n")
         if p_sepsis: p_prob.add_run(f"• Severe Sepsis secondary to: {sepsis_source}\n")
         if p_poisoning: p_prob.add_run(f"• Poisoning: {poisoning_detail}\n")
         if p_pneu: p_prob.add_run(f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n")
         if p_snake: p_prob.add_run(f"• Snake Bite with Envenomation: {snake_detail}\n")
         if p_acs: p_prob.add_run(f"• ACS ({acs_type}) - TIMI: {acs_timi}\n")
         if p_pe_primary: p_prob.add_run(f"• Pulmonary Embolism (Risk: {pe_risk})\n")
+        if p_stroke_pri:
+            p_prob.add_run(f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n")
+            if nihss_score: p_prob.add_run(f"  - NIHSS Score: {nihss_score}\n")
+        if p_withdrawal: p_prob.add_run(f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n")
+        if p_seizure: p_prob.add_run(f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n")
         if other_primary: p_prob.add_run(f"• Others: {other_primary}\n")
 
         p_prob.add_run("\nSecondary Problems & Comorbidities:\n").bold = True
@@ -671,12 +717,17 @@ Discharging MO: {mo_name}
         if s_ards: p_prob.add_run(f"• ARDS ({ards_severity})\n")
         if s_rv_dys: p_prob.add_run("• Right Ventricular Dysfunction / Failure\n")
         if s_arrhythmia: p_prob.add_run(f"• Cardiac Arrhythmia: {arrhythmia_detail}\n")
-        if c_ckd: p_prob.add_run(f"• CKD Stage / Baseline: {ckd_stage}\n")
-        if c_hf: p_prob.add_run(f"• Heart Failure: {hf_detail}\n")
-        if c_cad: p_prob.add_run(f"• CAD / ASCVD: {cad_detail}\n")
-        if c_dm: p_prob.add_run(f"• Diabetes Mellitus: {dm_detail}\n")
+        if c_ckd: p_prob.add_run(f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n")
+        if c_hf: p_prob.add_run(f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n")
+        if c_cad: p_prob.add_run(f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n")
+        if c_dm: p_prob.add_run(f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n")
         if c_htn: p_prob.add_run("• Hypertension\n")
-        p_prob.add_run(f"• Baseline Mobility: {c_frailty}\n")
+        if other_comorb: p_prob.add_run(f"• Other Comorbidities: {other_comorb}\n")
+
+        p_prob.add_run("\nFunctional Status & Capacity:\n").bold = True
+        if frailty_selected: p_prob.add_run(f"• Mobility / Frailty: {', '.join(frailty_selected)}\n")
+        if nyha_mets != "Not Specified": p_prob.add_run(f"• NYHA / METS Functional Capacity: {nyha_mets}\n")
+        if func_notes: p_prob.add_run(f"• Functional / ADL Notes: {func_notes}\n")
 
         # Section 3: Progress & Resuscitation
         add_sec_heading("[ 3. CLINICAL PROGRESS, POCUS & CEILING OF CARE ]")
@@ -705,10 +756,19 @@ Discharging MO: {mo_name}
 
         # Section 4: 3-Column Lab Table
         add_sec_heading("[ 4. KEY DIAGNOSTIC & LABORATORY TRENDS ]")
-        t_labs = doc.add_table(rows=5, cols=4)
+        
+        # Calculate active lab rows
+        active_labs = []
+        for param, unit in lab_params:
+            v1, v2, v3 = lab_inputs[param]
+            if v1 or v2 or v3:
+                active_labs.append((param, unit, v1, v2, v3))
+        
+        num_rows = len(active_labs) + 1
+        t_labs = doc.add_table(rows=num_rows, cols=4)
         t_labs.style = 'Table Grid'
         
-        headers = ["Parameter", "Admission / Initial", "Midway Trend", "Pre-Discharge / Latest"]
+        headers = ["Parameter", f"Admission ({date_adm_str})", f"Midway ({date_mid_str})", f"Discharge ({date_dis_str})"]
         for i, h in enumerate(headers):
             cell = t_labs.rows[0].cells[i]
             cell.text = h
@@ -717,41 +777,29 @@ Discharging MO: {mo_name}
             cell._tc.get_or_add_tcPr().append(shd)
             cell.paragraphs[0].runs[0].font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
-        lab_rows = [
-            ("ABG/VBG (pH / pCO2 / pO2 / HCO3)", f"{abg_adm_ph} / {abg_adm_pco2} / {abg_adm_po2} / {abg_adm_hco3}", f"{abg_mid_ph} / {abg_mid_pco2} / {abg_mid_po2} / {abg_mid_hco3}", f"{abg_dis_ph} / {abg_dis_pco2} / {abg_dis_po2} / {abg_dis_hco3}"),
-            ("Renal (Urea / Creat / K+ / Na+)", f"{r_adm_urea} / {r_adm_creat} / {r_adm_k} / {r_adm_na}", f"{r_mid_urea} / {r_mid_creat} / {r_mid_k} / {r_mid_na}", f"{r_dis_urea} / {r_dis_creat} / {r_dis_k} / {r_dis_na}"),
-            ("FBC (WBC / Lymph% / Hb / Plt)", f"{f_adm_wbc} / {f_adm_lym} / {f_adm_hb} / {f_adm_plt}", f"{f_mid_wbc} / {f_mid_lym} / {f_mid_hb} / {f_mid_plt}", f"{f_dis_wbc} / {f_dis_lym} / {f_dis_hb} / {f_dis_plt}"),
-            ("Biomarkers & Imaging", f"Trop I: {trop_i}", f"ProBNP: {pro_bnp} | CRP: {crp_esr}", f"CXR: {cxr_summary}")
-        ]
-        for row_idx, data in enumerate(lab_rows, start=1):
-            for col_idx, text in enumerate(data):
-                t_labs.rows[row_idx].cells[col_idx].text = text
+        for row_idx, (p_name, p_unit, v_adm, v_mid, v_dis) in enumerate(active_labs, start=1):
+            t_labs.rows[row_idx].cells[0].text = f"{p_name} ({p_unit})"
+            t_labs.rows[row_idx].cells[1].text = v_adm
+            t_labs.rows[row_idx].cells[2].text = v_mid
+            t_labs.rows[row_idx].cells[3].text = v_dis
 
         # Section 5: Meds & Plan
         add_sec_heading("[ 5. DISCHARGE MEDICATIONS & STEROID TAPER ]")
         p_meds = doc.add_paragraph()
-        p_meds.add_run("1. Pantoprazole: ").bold = True
-        p_meds.add_run(f"{med_pantoprazole}\n")
-        p_meds.add_run("2. Calcium Carbonate: ").bold = True
-        p_meds.add_run(f"{med_caco3}\n")
-        p_meds.add_run("3. Rocaltriol: ").bold = True
-        p_meds.add_run(f"{med_rocaltriol}\n")
-        p_meds.add_run("4. SGLT2i: ").bold = True
-        p_meds.add_run(f"{med_sglt2}\n")
-        p_meds.add_run("5. Spironolactone: ").bold = True
-        p_meds.add_run(f"{med_spiro}\n")
-        p_meds.add_run("6. Frusemide: ").bold = True
-        p_meds.add_run(f"{med_frusemide}\n")
-        p_meds.add_run("7. Glyprin / Aspirin: ").bold = True
-        p_meds.add_run(f"{med_glyprin}\n")
-        p_meds.add_run("8. Atorvastatin: ").bold = True
-        p_meds.add_run(f"{med_atorva}\n")
-        p_meds.add_run("9. Insulin / OHA: ").bold = True
-        p_meds.add_run(f"{med_insulin} | {med_oha}\n")
-        p_meds.add_run("10. Zincofer / Vitamins: ").bold = True
-        p_meds.add_run(f"{med_zincofer} | {med_vitamins}\n")
-        if med_custom:
-            p_meds.add_run(f"Additional Meds: {med_custom}\n")
+        m_count = 1
+        if m_panto: p_meds.add_run(f"{m_count}. Pantoprazole: {val_panto}\n"); m_count += 1
+        if m_caco3: p_meds.add_run(f"{m_count}. Calcium Carbonate: {val_caco3}\n"); m_count += 1
+        if m_rocal: p_meds.add_run(f"{m_count}. Rocaltriol: {val_rocal}\n"); m_count += 1
+        if m_sglt2: p_meds.add_run(f"{m_count}. SGLT2i: {val_sglt2}\n"); m_count += 1
+        if m_spiro: p_meds.add_run(f"{m_count}. Spironolactone: {val_spiro}\n"); m_count += 1
+        if m_fruse: p_meds.add_run(f"{m_count}. Frusemide: {val_fruse}\n"); m_count += 1
+        if m_glyprin: p_meds.add_run(f"{m_count}. Glyprin / Aspirin: {val_glyprin}\n"); m_count += 1
+        if m_atorva: p_meds.add_run(f"{m_count}. Atorvastatin: {val_atorva}\n"); m_count += 1
+        if m_insulin: p_meds.add_run(f"{m_count}. Insulin: {val_insulin}\n"); m_count += 1
+        if m_oha: p_meds.add_run(f"{m_count}. OHA: {val_oha}\n"); m_count += 1
+        if m_zincofer: p_meds.add_run(f"{m_count}. Zincofer: {val_zincofer}\n"); m_count += 1
+        if m_vit: p_meds.add_run(f"{m_count}. Vitamins: {val_vit}\n"); m_count += 1
+        if med_custom: p_meds.add_run(f"Additional Meds: {med_custom}\n")
 
         if steroid_active:
             p_meds.add_run(f"\nSteroid Tapering Plan ({steroid_ind}):\n").bold = True
@@ -775,3 +823,4 @@ Discharging MO: {mo_name}
         file_name=f"AIM_Discharge_{rn_mrn if rn_mrn else 'Draft'}.docx",
         mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
+
