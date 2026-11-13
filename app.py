@@ -411,25 +411,29 @@ with col_rc2:
 
 
 with tab4:
-st.header("4. Concise Investigation Trend Table (3-Point Serial Format)")
-st.caption("Compare serial values: Admission vs. Midway vs. Discharge Date")
+st.header("4. Investigations Trend Table")
+st.caption("Admission/Ward/Predischarge Date")
     
-col_d1, col_d2, col_d3 = st.columns(3)
+col_d1, col_d2, col_d3, col_d4, col_d5 = st.columns(5)
 with col_d1:
-    date_adm_str = st.text_input("Admission Date Label", value="14/10/2026", key="lbl_adm_date")
+    date_adm_str = st.text_input("Admission Date", value="14/10/2026", key="lbl_adm_date")
 with col_d2:
-    date_mid_str = st.text_input("Midway Date Label", value="15/10/2026", key="lbl_mid_date")
+    date_mid1_str = st.text_input("Date", value="15/10/2026", key="lbl_mid1_date")
 with col_d3:
-    date_dis_str = st.text_input("Discharge Date Label", value="16/10/2026", key="lbl_dis_date")
+    date_mid2_str = st.text_input("Date", value="16/10/2026", key="lbl_mid2_date")
+with col_d4:
+    date_mid3_str = st.text_input("Date", value="17/10/2026", key="lbl_mid3_date" 
+with col_d5:
+    date_dis_str = st.text_input("Predischarge Date", value="19/10/2026", key="lbl_dis_date")
 
-    st.markdown("---")
+st.markdown("---")
     
-    # Headers
-    h1, h2, h3, h4 = st.columns([2.5, 3, 3, 3])
-    h1.markdown("**Parameter**")
-    h2.markdown(f"**Admission ({date_adm_str})**")
-    h3.markdown(f"**Midway ({date_mid_str})**")
-    h4.markdown(f"**Discharge ({date_dis_str})**")
+# Headers
+h1, h2, h3, h4 = st.columns([2.5, 3, 3, 3])
+h1.markdown("**Parameter**")
+h2.markdown(f"**Admission ({date_adm_str})**")
+h3.markdown(f"**Midway ({date_mid_str})**")
+h4.markdown(f"**Discharge ({date_dis_str})**")
 
     # Lab Dict
     lab_params = [
