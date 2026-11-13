@@ -1003,82 +1003,81 @@ for idx, (c1, c2) in enumerate(row_data):
     p_meta.add_run(f"Contact No: {contact_num} | Caretaker: {caretaker}\nAddress: {address}").italic = True
 
 # Section 2: Problem List
-    add_sec_heading("[ 2. PROBLEM LIST & CLINICAL DIAGNOSES ]")
-    p_prob = doc.add_paragraph()
-    p_prob.add_run("Primary / Acute Discharge Diagnoses:\n").bold = True
-        if p_ccf: p_prob.add_run("• Decompensated CCF\n")
-        if p_apo: p_prob.add_run("• Acute Pulmonary Edema\n")
-        if p_copd: p_prob.add_run("• Acute Exacerbation of COPD / Asthma\n")
-        if p_bronch: p_prob.add_run(f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n")
-        if p_ild: p_prob.add_run(f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n")
-        if p_sepsis: p_prob.add_run(f"• Severe Sepsis secondary to: {sepsis_source}\n")
-        if p_poisoning: p_prob.add_run(f"• Poisoning: {poisoning_detail}\n")
-        if p_pneu: p_prob.add_run(f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n")
-        if p_snake: p_prob.add_run(f"• Snake Bite with Envenomation: {snake_detail}\n")
-        if p_acs: p_prob.add_run(f"• ACS ({acs_type}) - TIMI: {acs_timi}\n")
-        if p_pe: p_prob.add_run(f"• Pulmonary Embolism (Risk: {pe_risk})\n")
-        if p_stroke_pri:
-            p_prob.add_run(f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n")
-            if nihss_score: p_prob.add_run(f"  - NIHSS Score: {nihss_score}\n")
-        if p_withdrawal: p_prob.add_run(f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n")
-        if p_seizure: p_prob.add_run(f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n")
-        if other_primary: p_prob.add_run(f"• Others: {other_primary}\n")
+add_sec_heading("[ 2. PROBLEM LIST & CLINICAL DIAGNOSES ]")
+p_prob = doc.add_paragraph()
+p_prob.add_run("Primary / Acute Discharge Diagnoses:\n").bold = True
+if p_ccf: p_prob.add_run("• Decompensated CCF\n")
+if p_apo: p_prob.add_run("• Acute Pulmonary Edema\n")
+if p_copd: p_prob.add_run("• Acute Exacerbation of COPD / Asthma\n")
+if p_bronch: p_prob.add_run(f"• Bronchiectasis ({bronch_type}): {bronch_detail}\n")
+if p_ild: p_prob.add_run(f"• Interstitial Lung Disease ({ild_type}): {ild_detail}\n")
+if p_sepsis: p_prob.add_run(f"• Severe Sepsis secondary to: {sepsis_source}\n")
+if p_poisoning: p_prob.add_run(f"• Poisoning: {poisoning_detail}\n")
+if p_pneu: p_prob.add_run(f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n")
+if p_snake: p_prob.add_run(f"• Snake Bite with Envenomation: {snake_detail}\n")
+if p_acs: p_prob.add_run(f"• ACS ({acs_type}) - TIMI: {acs_timi}\n")
+if p_pe: p_prob.add_run(f"• Pulmonary Embolism (Risk: {pe_risk})\n")
+if p_stroke_pri:
+    p_prob.add_run(f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n")
+if nihss_score: p_prob.add_run(f"  - NIHSS Score: {nihss_score}\n")
+if p_withdrawal: p_prob.add_run(f"• Drug Withdrawal ({withdrawal_type} - Toxidrome: {withdrawal_toxidrome}){f': {withdrawal_detail}' if withdrawal_detail else ''}\n")
+if p_seizure: p_prob.add_run(f"• Seizures ({seizure_type}){f': {seizure_detail}' if seizure_detail else ''}\n")
+if other_primary: p_prob.add_run(f"• Others: {other_primary}\n")
 
-        p_prob.add_run("\nSecondary Problems & Comorbidities:\n").bold = True
-        if s_aki: p_prob.add_run(f"• AKI due to: {aki_cause}\n")
-        if s_ards: p_prob.add_run(f"• ARDS ({ards_severity})\n")
-        if s_rv_dys: p_prob.add_run("• Right Ventricular Dysfunction / Failure\n")
-        if s_arrhythmia: p_prob.add_run(f"• Cardiac Arrhythmia: {arrhythmia_detail}\n")
-        if c_ckd: p_prob.add_run(f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n")
-        if c_hf: p_prob.add_run(f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n")
-        if c_cad: p_prob.add_run(f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n")
-        if c_dm: p_prob.add_run(f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n")
-        if c_htn: p_prob.add_run("• Hypertension\n")
-        if other_comorb: p_prob.add_run(f"• Other Comorbidities: {other_comorb}\n")
+p_prob.add_run("\nSecondary Problems & Comorbidities:\n").bold = True
+    if s_aki: p_prob.add_run(f"• AKI due to: {aki_cause}\n")
+    if s_ards: p_prob.add_run(f"• ARDS ({ards_severity})\n")
+    if s_rv_dys: p_prob.add_run("• Right Ventricular Dysfunction / Failure\n")
+    if s_arrhythmia: p_prob.add_run(f"• Cardiac Arrhythmia: {arrhythmia_detail}\n")
+    if c_ckd: p_prob.add_run(f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n")
+    if c_hf: p_prob.add_run(f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n")
+    if c_cad: p_prob.add_run(f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n")
+    if c_dm: p_prob.add_run(f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n")
+    if c_htn: p_prob.add_run("• Hypertension\n")
+    if other_comorb: p_prob.add_run(f"• Other Comorbidities: {other_comorb}\n")
 
-        p_prob.add_run("\nFunctional Status & Capacity:\n").bold = True
-        if frailty_selected: p_prob.add_run(f"• Mobility / Frailty: {', '.join(frailty_selected)}\n")
-        if nyha_mets != "Not Specified": p_prob.add_run(f"• NYHA / METS Functional Capacity: {nyha_mets}\n")
-        if func_notes: p_prob.add_run(f"• Functional / ADL Notes: {func_notes}\n")
+p_prob.add_run("\nFunctional Status & Capacity:\n").bold = True
+    if frailty_selected: p_prob.add_run(f"• Mobility / Frailty: {', '.join(frailty_selected)}\n")
+    if nyha_mets != "Not Specified": p_prob.add_run(f"• NYHA / METS Functional Capacity: {nyha_mets}\n")
+    if func_notes: p_prob.add_run(f"• Functional / ADL Notes: {func_notes}\n")
 
-        # Section 3: Progress & Resuscitation
-        add_sec_heading("[ 3. CLINICAL PROGRESS, POCUS & CEILING OF CARE ]")
-        p_prog = doc.add_paragraph()
-        p_prog.add_run(f"Presentation: {presentation}\n")
-        p_prog.add_run(f"Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n")
-        p_prog.add_run(f"Ward Progress: Highest O2: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration}). Concentrator Needed: {o2_conc_dis} ({o2_conc_duration}).\n")
-        p_prog.add_run(f"POCUS Summary: Heart: {pocus_heart} | Lung: {pocus_lung} | Vessels: {pocus_vessels}\n")
-        p_prog.add_run(f"Interpretation: {pocus_interp}\n")
+# Section 3: Progress & Resuscitation
+add_sec_heading("[ 3. CLINICAL PROGRESS, POCUS & CEILING OF CARE ]")
+p_prog = doc.add_paragraph()
+    p_prog.add_run(f"Presentation: {presentation}\n")
+    p_prog.add_run(f"Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n")
+    p_prog.add_run(f"Ward Progress: Highest O2: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration}). Concentrator Needed: {o2_conc_dis} ({o2_conc_duration}).\n")
+    p_prog.add_run(f"POCUS Summary: Heart: {pocus_heart} | Lung: {pocus_lung} | Vessels: {pocus_vessels}\n")
+    p_prog.add_run(f"Interpretation: {pocus_interp}\n")
 
-        # Resuscitation Highlight Box
-        t_resus = doc.add_table(rows=1, cols=1)
-        t_resus.style = 'Table Grid'
-        cell = t_resus.rows[0].cells[0]
+# Resuscitation Highlight Box
+t_resus = doc.add_table(rows=1, cols=1)
+t_resus.style = 'Table Grid'
+cell = t_resus.rows[0].cells[0]
         
-        # Yellow shading
-        shd = parse_xml(r'<w:shd {} w:fill="FFF2CC"/>'.format(nsdecls('w')))
-        cell._tc.get_or_add_tcPr().append(shd)
+# Yellow shading
+shd = parse_xml(r'<w:shd {} w:fill="FFF2CC"/>'.format(nsdecls('w')))
+cell._tc.get_or_add_tcPr().append(shd)
         
-        p_r = cell.paragraphs[0]
-        run_r_head = p_r.add_run("RESUSCITATION STATUS & CEILING OF CARE:\n")
-        run_r_head.bold = True
-        run_r_head.font.color.rgb = RGBColor(0x99, 0x00, 0x00)
-        p_r.add_run(f"• Status: {resus_status}\n")
-        p_r.add_run(f"• Directives / Notes: {resus_notes}")
+p_r = cell.paragraphs[0]
+run_r_head = p_r.add_run("RESUSCITATION STATUS & CEILING OF CARE:\n")
+run_r_head.bold = True
+run_r_head.font.color.rgb = RGBColor(0x99, 0x00, 0x00)
+p_r.add_run(f"• Status: {resus_status}\n")
+p_r.add_run(f"• Directives / Notes: {resus_notes}")
 
-        # Section 4: 3-Column Lab Table
-        add_sec_heading("[ 4. KEY DIAGNOSTIC & LABORATORY TRENDS ]")
+# Section 4: 3-Column Lab Table
+add_sec_heading("[ 4. KEY DIAGNOSTIC & LABORATORY TRENDS ]")
         
-        # Calculate active lab rows
-        active_labs = []
-        for param, unit in lab_params:
-            v1, v2, v3 = lab_inputs[param]
-            if v1 or v2 or v3:
-                active_labs.append((param, unit, v1, v2, v3))
-        
-        num_rows = len(active_labs) + 1
-        t_labs = doc.add_table(rows=num_rows, cols=4)
-        t_labs.style = 'Table Grid'
+# Calculate active lab rows
+active_labs = []
+for param, unit in lab_params:
+    v1, v2, v3 = lab_inputs[param]
+    if v1 or v2 or v3:
+        active_labs.append((param, unit, v1, v2, v3))
+num_rows = len(active_labs) + 1
+    t_labs = doc.add_table(rows=num_rows, cols=4)
+    t_labs.style = 'Table Grid'
         
         headers = ["Parameter", f"Admission ({date_adm_str})", f"Midway ({date_mid_str})", f"Discharge ({date_dis_str})"]
         for i, h in enumerate(headers):
