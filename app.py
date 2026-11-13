@@ -1025,30 +1025,30 @@ if p_seizure: p_prob.add_run(f"• Seizures ({seizure_type}){f': {seizure_detail
 if other_primary: p_prob.add_run(f"• Others: {other_primary}\n")
 
 p_prob.add_run("\nSecondary Problems & Comorbidities:\n").bold = True
-    if s_aki: p_prob.add_run(f"• AKI due to: {aki_cause}\n")
-    if s_ards: p_prob.add_run(f"• ARDS ({ards_severity})\n")
-    if s_rv_dys: p_prob.add_run("• Right Ventricular Dysfunction / Failure\n")
-    if s_arrhythmia: p_prob.add_run(f"• Cardiac Arrhythmia: {arrhythmia_detail}\n")
-    if c_ckd: p_prob.add_run(f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n")
-    if c_hf: p_prob.add_run(f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n")
-    if c_cad: p_prob.add_run(f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n")
-    if c_dm: p_prob.add_run(f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n")
-    if c_htn: p_prob.add_run("• Hypertension\n")
-    if other_comorb: p_prob.add_run(f"• Other Comorbidities: {other_comorb}\n")
+if s_aki: p_prob.add_run(f"• AKI due to: {aki_cause}\n")
+if s_ards: p_prob.add_run(f"• ARDS ({ards_severity})\n")
+if s_rv_dys: p_prob.add_run("• Right Ventricular Dysfunction / Failure\n")
+if s_arrhythmia: p_prob.add_run(f"• Cardiac Arrhythmia: {arrhythmia_detail}\n")
+if c_ckd: p_prob.add_run(f"• CKD Stage / Baseline: {ckd_stage if ckd_stage else 'Diagnosed'}\n")
+if c_hf: p_prob.add_run(f"• Heart Failure: {hf_detail if hf_detail else 'HFrEF/HFpEF/HFimpEF'}\n")
+if c_cad: p_prob.add_run(f"• CAD / ASCVD: {cad_detail if cad_detail else 'Diagnosed'}\n")
+if c_dm: p_prob.add_run(f"• Diabetes Mellitus: {dm_detail if dm_detail else 'Diagnosed'}\n")
+if c_htn: p_prob.add_run("• Hypertension\n")
+if other_comorb: p_prob.add_run(f"• Other Comorbidities: {other_comorb}\n")
 
 p_prob.add_run("\nFunctional Status & Capacity:\n").bold = True
-    if frailty_selected: p_prob.add_run(f"• Mobility / Frailty: {', '.join(frailty_selected)}\n")
-    if nyha_mets != "Not Specified": p_prob.add_run(f"• NYHA / METS Functional Capacity: {nyha_mets}\n")
-    if func_notes: p_prob.add_run(f"• Functional / ADL Notes: {func_notes}\n")
+if frailty_selected: p_prob.add_run(f"• Mobility / Frailty: {', '.join(frailty_selected)}\n")
+if nyha_mets != "Not Specified": p_prob.add_run(f"• NYHA / METS Functional Capacity: {nyha_mets}\n")
+if func_notes: p_prob.add_run(f"• Functional / ADL Notes: {func_notes}\n")
 
 # Section 3: Progress & Resuscitation
 add_sec_heading("[ 3. CLINICAL PROGRESS, POCUS & CEILING OF CARE ]")
 p_prog = doc.add_paragraph()
-    p_prog.add_run(f"Presentation: {presentation}\n")
-    p_prog.add_run(f"Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n")
-    p_prog.add_run(f"Ward Progress: Highest O2: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration}). Concentrator Needed: {o2_conc_dis} ({o2_conc_duration}).\n")
-    p_prog.add_run(f"POCUS Summary: Heart: {pocus_heart} | Lung: {pocus_lung} | Vessels: {pocus_vessels}\n")
-    p_prog.add_run(f"Interpretation: {pocus_interp}\n")
+p_prog.add_run(f"Presentation: {presentation}\n")
+p_prog.add_run(f"Interventions: O2: {int_o2} | Fluid: {int_fluid} | Inotropes: {int_inotropes}\n")
+p_prog.add_run(f"Ward Progress: Highest O2: {max_o2_modality} (FiO2: {max_fio2}, Duration: {o2_duration}). Concentrator Needed: {o2_conc_dis} ({o2_conc_duration}).\n")
+p_prog.add_run(f"POCUS Summary: Heart: {pocus_heart} | Lung: {pocus_lung} | Vessels: {pocus_vessels}\n")
+p_prog.add_run(f"Interpretation: {pocus_interp}\n")
 
 # Resuscitation Highlight Box
 t_resus = doc.add_table(rows=1, cols=1)
