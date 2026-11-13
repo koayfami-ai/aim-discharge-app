@@ -382,8 +382,8 @@ with col_proc2:
     if proc_others_chk:
         proc_others_detail = st.text_input("Other Procedures Types and Results", value="", key="txt_proc_others_detail")
     
-
-    dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"], key="sel_dialysis")
+st.subheader("Acute Dialysis Support")
+dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"], key="sel_dialysis")
     dialysis_duration = ""
     renal_recovery = ""
     if dialysis_needed == "Yes":
