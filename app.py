@@ -291,7 +291,7 @@ with col_f2:
   )
     
 with tab3:
-st.header("3. Ward Clinical Progress, POCUS & Resuscitation Directives")
+    st.header("3. Ward Clinical Progress, POCUS & Resuscitation Directives")
 st.subheader("Main Presentation & Acute Interventions")
 presentation = st.text_area("Main Presentation & Associated Symptoms/Signs", value="", key="txt_presentation")
     
@@ -302,8 +302,8 @@ with col_int1:
     int_inotropes = st.text_input("Inotropes/Vasopressors", value="", key="txt_int_inotropes")
 
 with col_int2:
-        int_scan_by = st.text_input("Admission Bedside Scan Performed By", value="", key="txt_int_scan_by")
-        int_scan_findings = st.text_area("Scan Findings", value="", key="txt_int_scan_findings")
+    int_scan_by = st.text_input("Admission Bedside Scan Performed By", value="", key="txt_int_scan_by")
+    int_scan_findings = st.text_area("Scan Findings", value="", key="txt_int_scan_findings")
 
 st.subheader("Ward Clinical Progress & Hemodynamic Monitoring")
 col_prog1, col_prog2 = st.columns(2)
