@@ -236,7 +236,7 @@ with col_s2:
         if s_pe_sec:
             s_pe_detail = st.text_input("Pulmonary Embolism details", value="", key="txt_s_pe_detail")
 
-    other_secondary = st.text_area("Additional Problems", value="", key="txt_other_secondary")
+        other_secondary = st.text_area("Additional Problems", value="", key="txt_other_secondary")
 
 st.subheader("Comorbidities")
 col_c1, col_c2 = st.columns(2)
