@@ -534,7 +534,7 @@ with tab6:
     if p_pneu: summary_text += f"• Severe Pneumonia ({pneu_type}): {pneu_detail}\n"; has_primary = True
     if p_snake: summary_text += f"• Snake Bite with Envenomation: {snake_detail}\n"; has_primary = True
     if p_acs: summary_text += f"• Acute Coronary Syndrome ({acs_type}) - TIMI: {acs_timi}\n"; has_primary = True
-    if p_pe_primary: summary_text += f"• Pulmonary Embolism (Risk: {pe_risk})\n"; has_primary = True
+    if p_pe: summary_text += f"• Pulmonary Embolism (Risk: {pe_risk})\n"; has_primary = True
     if p_stroke_pri:
         summary_text += f"• Acute Stroke ({stroke_type}): {stroke_subtype}\n"
         if nihss_score: summary_text += f"  - NIHSS Score: {nihss_score}\n"
