@@ -148,24 +148,23 @@ if p_pe:
       ],
       key="sel_pe_resp_mod_2026",
   )
-
+    
 p_stroke_pri = st.checkbox("Acute Stroke", key="chk_p_stroke_pri")
 stroke_type = ""
 stroke_subtype = ""
-stroke_nihss = ""
+nihss_score = ""
+
 if p_stroke_pri:
-  # First dropdown: Ischemic vs Hemorrhagic
   stroke_type = st.selectbox(
       "Stroke Classification",
       ["Ischemic", "Hemorrhagic"],
-      key="sel_stroke_type",
+      key="sel_stroke_type_pri",
   )
 
-if p_stroke_pri:
-    stroke_nihss = st.text_input ("NIHSS/Neurological Deficit", value = "", key="txt_stroke_nihss"),
-if stroke_type == "Ischemic":
+  # Ischemic -> Oxford/BAMFORD Dropdown | Hemorrhagic -> Direct Text Input
+  if stroke_type == "Ischemic":
     stroke_subtype = st.selectbox(
-        "Ischemic Subtype",
+        "Ischemic Subtype (Oxford / BAMFORD)",
         [
             "LACI (Lacunar Infarct)",
             "PACI (Partial Anterior Circulation Infarct)",
@@ -174,9 +173,18 @@ if stroke_type == "Ischemic":
         ],
         key="sel_stroke_ischemic_sub",
     )
-else:
-    stroke_subtype = st.text_input ("Type", value= "", key="sel_stroke_hem_sub"),
- 
+  else:
+    stroke_subtype = st.text_input(
+        "Hemorrhagic Stroke Details", value="", key="txt_stroke_hem_detail"
+    )
+
+  # Presentation NIHSS Score
+  nihss_score = st.text_input(
+      "NIHSS Score / Severity at Presentation",
+      value="",
+      key="txt_nihss_score",
+  )
+
 p_seizure = st.checkbox("Seizures / Status Epilepticus", key="chk_p_seizure")
 seizure_type = ""
 seizure_detail = ""
