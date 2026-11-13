@@ -953,7 +953,7 @@ st.text_area("Copyable Plain Text Summary (For Hospital EHR)", summary_text, hei
 
 # Word Generator Function
 def generate_docx():
-doc = docx.Document()
+    doc = docx.Document()
         
 # Style page
     section = doc.sections[0]
