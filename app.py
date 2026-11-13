@@ -473,7 +473,7 @@ with tab3:
             inmed_list.append(f"• IV Azithromycin {azith_dose} OD ({azith_dur}) [Started: {azith_start if azith_start else 'N/A'} | Completed: {azith_comp if azith_comp else 'N/A'}]")
 
         # 15. Oral Tamiflu
-        chk_tami = st.checkbox("Oral Tamiflu (oseltamivir)"), key="chk_in_tami")
+        chk_tami = st.checkbox("Oral Tamiflu (oseltamivir)", key="chk_in_tami")
         if chk_tami:
             c_d, c_f = st.columns(2)
             tami_dose = c_d.selectbox("Dose", ["75 mg", "150 mg"], key="sel_in_tami_d")
