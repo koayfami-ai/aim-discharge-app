@@ -1076,62 +1076,62 @@ for param, unit in lab_params:
     if v1 or v2 or v3:
         active_labs.append((param, unit, v1, v2, v3))
 num_rows = len(active_labs) + 1
-    t_labs = doc.add_table(rows=num_rows, cols=4)
-    t_labs.style = 'Table Grid'
+t_labs = doc.add_table(rows=num_rows, cols=4)
+t_labs.style = 'Table Grid'
         
-        headers = ["Parameter", f"Admission ({date_adm_str})", f"Midway ({date_mid_str})", f"Discharge ({date_dis_str})"]
-        for i, h in enumerate(headers):
-            cell = t_labs.rows[0].cells[i]
-            cell.text = h
-            cell.paragraphs[0].runs[0].font.bold = True
-            shd = parse_xml(r'<w:shd {} w:fill="1B365D"/>'.format(nsdecls('w')))
-            cell._tc.get_or_add_tcPr().append(shd)
-            cell.paragraphs[0].runs[0].font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+headers = ["Parameter", f"Admission ({date_adm_str})", f"Midway ({date_mid_str})", f"Discharge ({date_dis_str})"]
+for i, h in enumerate(headers):
+    cell = t_labs.rows[0].cells[i]
+    cell.text = h
+    cell.paragraphs[0].runs[0].font.bold = True
+    shd = parse_xml(r'<w:shd {} w:fill="1B365D"/>'.format(nsdecls('w')))
+    cell._tc.get_or_add_tcPr().append(shd)
+    cell.paragraphs[0].runs[0].font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 
-        for row_idx, (p_name, p_unit, v_adm, v_mid, v_dis) in enumerate(active_labs, start=1):
-            t_labs.rows[row_idx].cells[0].text = f"{p_name} ({p_unit})"
-            t_labs.rows[row_idx].cells[1].text = v_adm
-            t_labs.rows[row_idx].cells[2].text = v_mid
-            t_labs.rows[row_idx].cells[3].text = v_dis
+for row_idx, (p_name, p_unit, v_adm, v_mid, v_dis) in enumerate(active_labs, start=1):
+    t_labs.rows[row_idx].cells[0].text = f"{p_name} ({p_unit})"
+    t_labs.rows[row_idx].cells[1].text = v_adm
+    t_labs.rows[row_idx].cells[2].text = v_mid
+    t_labs.rows[row_idx].cells[3].text = v_dis
 
-        # Section 5: Meds & Plan
-        add_sec_heading("[ 5. DISCHARGE MEDICATIONS & STEROID TAPER ]")
-        p_meds = doc.add_paragraph()
-        m_count = 1
-        if m_panto: p_meds.add_run(f"{m_count}. Pantoprazole: {val_panto}\n"); m_count += 1
-        if m_caco3: p_meds.add_run(f"{m_count}. Calcium Carbonate: {val_caco3}\n"); m_count += 1
-        if m_rocal: p_meds.add_run(f"{m_count}. Rocaltriol: {val_rocal}\n"); m_count += 1
-        if m_sglt2: p_meds.add_run(f"{m_count}. SGLT2i: {val_sglt2}\n"); m_count += 1
-        if m_spiro: p_meds.add_run(f"{m_count}. Spironolactone: {val_spiro}\n"); m_count += 1
-        if m_fruse: p_meds.add_run(f"{m_count}. Frusemide: {val_fruse}\n"); m_count += 1
-        if m_glyprin: p_meds.add_run(f"{m_count}. Glyprin / Aspirin: {val_glyprin}\n"); m_count += 1
-        if m_atorva: p_meds.add_run(f"{m_count}. Atorvastatin: {val_atorva}\n"); m_count += 1
-        if m_insulin: p_meds.add_run(f"{m_count}. Insulin: {val_insulin}\n"); m_count += 1
-        if m_oha: p_meds.add_run(f"{m_count}. OHA: {val_oha}\n"); m_count += 1
-        if m_zincofer: p_meds.add_run(f"{m_count}. Zincofer: {val_zincofer}\n"); m_count += 1
-        if m_vit: p_meds.add_run(f"{m_count}. Vitamins: {val_vit}\n"); m_count += 1
-        if med_custom: p_meds.add_run(f"Additional Meds: {med_custom}\n")
+# Section 5: Meds & Plan
+add_sec_heading("[ 5. DISCHARGE MEDICATIONS & STEROID TAPER ]")
+p_meds = doc.add_paragraph()
+m_count = 1
+if m_panto: p_meds.add_run(f"{m_count}. Pantoprazole: {val_panto}\n"); m_count += 1
+if m_caco3: p_meds.add_run(f"{m_count}. Calcium Carbonate: {val_caco3}\n"); m_count += 1
+if m_rocal: p_meds.add_run(f"{m_count}. Rocaltriol: {val_rocal}\n"); m_count += 1
+if m_sglt2: p_meds.add_run(f"{m_count}. SGLT2i: {val_sglt2}\n"); m_count += 1
+if m_spiro: p_meds.add_run(f"{m_count}. Spironolactone: {val_spiro}\n"); m_count += 1
+if m_fruse: p_meds.add_run(f"{m_count}. Frusemide: {val_fruse}\n"); m_count += 1
+if m_glyprin: p_meds.add_run(f"{m_count}. Glyprin / Aspirin: {val_glyprin}\n"); m_count += 1
+if m_atorva: p_meds.add_run(f"{m_count}. Atorvastatin: {val_atorva}\n"); m_count += 1
+if m_insulin: p_meds.add_run(f"{m_count}. Insulin: {val_insulin}\n"); m_count += 1
+if m_oha: p_meds.add_run(f"{m_count}. OHA: {val_oha}\n"); m_count += 1
+if m_zincofer: p_meds.add_run(f"{m_count}. Zincofer: {val_zincofer}\n"); m_count += 1
+if m_vit: p_meds.add_run(f"{m_count}. Vitamins: {val_vit}\n"); m_count += 1
+if med_custom: p_meds.add_run(f"Additional Meds: {med_custom}\n")
 
-        if steroid_active:
-            p_meds.add_run(f"\nSteroid Tapering Plan ({steroid_ind}):\n").bold = True
-            p_meds.add_run(f"• {st1}\n• {st2}\n• {st3}\n• {st4}\n")
+if steroid_active:
+    p_meds.add_run(f"\nSteroid Tapering Plan ({steroid_ind}):\n").bold = True
+    p_meds.add_run(f"• {st1}\n• {st2}\n• {st3}\n• {st4}\n")
 
-        add_sec_heading("[ 6. FOLLOW-UP PLAN & RED FLAGS ]")
-        p_plan = doc.add_paragraph()
-        p_plan.add_run(f"• AIM Clinic Plan: {aim_clinic_plan}\n")
-        p_plan.add_run(f"• Other Clinic Follow-ups: {other_clinic_plan}\n")
-        p_plan.add_run(f"• Red Flag Warnings: {red_flags}\n\n")
-        p_plan.add_run(f"Medical Officer Name: {mo_name}    Signature: _______________ Date: ________")
+add_sec_heading("[ 6. FOLLOW-UP PLAN & RED FLAGS ]")
+p_plan = doc.add_paragraph()
+p_plan.add_run(f"• AIM Clinic Plan: {aim_clinic_plan}\n")
+p_plan.add_run(f"• Other Clinic Follow-ups: {other_clinic_plan}\n")
+p_plan.add_run(f"• Red Flag Warnings: {red_flags}\n\n")
+p_plan.add_run(f"Medical Officer Name: {mo_name}    Signature: _______________ Date: ________")
 
-        target = io.BytesIO()
-        doc.save(target)
-        return target.getvalue()
+target = io.BytesIO()
+doc.save(target)
+return target.getvalue()
 
-    doc_bytes = generate_docx()
-    st.download_button(
-        label="📄 Download Formatted Word Document (.docx)",
-        data=doc_bytes,
-        file_name=f"AIM_Discharge_{rn_mrn if rn_mrn else 'Draft'}.docx",
-        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+doc_bytes = generate_docx()
+st.download_button(
+    label="📄 Download Formatted Word Document (.docx)",
+    data=doc_bytes,
+    file_name=f"AIM_Discharge_{rn_mrn if rn_mrn else 'Draft'}.docx",
+    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
 
