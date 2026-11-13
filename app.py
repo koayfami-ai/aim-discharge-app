@@ -381,18 +381,23 @@ with col_proc2:
     proc_others_detail = ""
     if proc_others_chk:
         proc_others_detail = st.text_input("Other Procedures Types and Results", value="", key="txt_proc_others_detail")
-    
-st.subheader("Acute Dialysis Support")
-dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"], key="sel_dialysis")
-    dialysis_duration = ""
-    renal_recovery = ""
-    if dialysis_needed == "Yes":
-        dialysis_duration = st.text_input("Dialysis Duration & Sessions", value="", key="txt_dialysis_dur")
-        renal_recovery = st.text_input("Renal Recovery Status at Discharge", value="", key="txt_renal_rec")
 
-    st.subheader("Resuscitation Status & Ceiling of Care Directive")
-    resus_status = st.radio("Resuscitation Code", ["Full Code", "Do-Not-Intubate (DNI)", "Full Comfort / Palliative Care"], key="rad_resus_status")
-    resus_notes = st.text_area("Resuscitation Details (e.g. Continue HD/inotropes, Highest NIV/HFNC ceiling, Future direction discussed with family)", value="", key="txt_resus_notes")
+dialysis_needed = st.selectbox("Acute Dialysis Required During Admission?", ["No", "Yes"], key="sel_dialysis")
+dialysis_mode = ""
+dialysis_date = ""
+renal_recovery = ""
+if dialysis_needed == "Yes":
+    dialysis_mode = st.selectbox("Mode of Dialysis Support", ["Intermittent HD", "SLED / SCUF", "CVVH", "CVVHD", "CVVHDF", "PD"], key="sel_dialysis_mode")
+    col_dial1, col_dial2 = st.columns(2)
+    with col_dial1:
+        dialysis_date = st.text_input("Indication & Date Commenced & Stopped", value="", key="txt_dialysis_date")
+    with col_dial2:
+        renal_recovery = st.selectbox("Any Renal Recovery at Discharge", ["No", "Yes"], key="txt_renal_rec")    
+
+st.subheader("Resuscitation Status & Ceiling of Care Directive")
+Advance_directive = st.selectbox (" Any Advanced Directive/Patient Expressed Wish",["No", "Yes"], key = " advance_directive")
+resus_status = st.radio("Resuscitation Code", ["Full Code", "Do-Not-Intubate (DNI)", "Full Comfort / Palliative Care"], key="rad_resus_status")
+resus_notes = st.text_area("Resuscitation Details (e.g. Continue HD/inotropes, Highest NIV/HFNC ceiling, Future direction discussed with family)", value="", key="txt_resus_notes")
 
 with tab4:
     st.header("4. Concise Investigation Trend Table (3-Point Serial Format)")
