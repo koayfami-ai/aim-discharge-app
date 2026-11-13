@@ -219,7 +219,7 @@ with col_s2:
         arrhythmia_detail = st.text_input("Arrhythmia type", value="")
         s_stroke = st.checkbox("Stroke (Ischemic/Hemorrhagic)")
         s_pe_sec = st.checkbox("Pulmonary Embolism")
-other_secondary = st.text_area("Additional Secondary Problems", value="")
+other_secondary = st.text_area("Others", value="")
 
 st.subheader("Comorbidities")
 col_c1, col_c2 = st.columns(2)
