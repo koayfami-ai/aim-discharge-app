@@ -132,30 +132,28 @@ with col_p2:
                     "Category E1: Cardiopulmonary Failure — Recurrent/persistent hypotension with cardiogenic shock",
                     "Category E2: Cardiopulmonary Failure — Refractory cardiogenic shock or cardiac arrest",
                 ],key="sel_pe_cat_2026",)
-
-  # Tiered Respiratory Modifier (+/- R)
-  pe_resp_mod = st.selectbox(
+            
+       # Tiered Respiratory Modifier (+/- R)
+       pe_resp_mod = st.selectbox(
       "Respiratory Modifier (+/- R)",
-      [
+           [
           "None / Not Applicable",
           "Modifier R (Category C: SpO2 <90%, RR ≥30, need supplemental O2)",
           "Modifier R (Category D: >6L NC or NRB mask)",
           "Modifier R (Category E: Hypoxemic or ventilatory failure)",
-      ],
-      key="sel_pe_resp_mod_2026",
-  )
+           ], key="sel_pe_resp_mod_2026",
+       )
     
-p_stroke_pri = st.checkbox("Acute Stroke", key="chk_p_stroke_pri")
-stroke_type = ""
-stroke_subtype = ""
-nihss_score = ""
+       p_stroke_pri = st.checkbox("Acute Stroke", key="chk_p_stroke_pri")
+       stroke_type = ""
+       stroke_subtype = ""
+       nihss_score = ""
 
 if p_stroke_pri:
-  stroke_type = st.selectbox(
-      "Stroke Classification",
-      ["Ischemic", "Hemorrhagic"],
-      key="sel_stroke_type_pri",
-  )
+    stroke_type = st.selectbox(
+        "Stroke Classification",
+        ["Ischemic", "Hemorrhagic"],
+        key="sel_stroke_type_pri",)
 
   # Ischemic -> Oxford/BAMFORD Dropdown | Hemorrhagic -> Direct Text Input
   if stroke_type == "Ischemic":
