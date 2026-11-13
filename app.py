@@ -258,7 +258,7 @@ with tab3:
     st.subheader("Ward Clinical Progress & Hemodynamic Monitoring")
     col_prog1, col_prog2 = st.columns(2)
     with col_prog1:
-        max_o2_modality = st.selectbox("Highest Oxygenation", ["Room Air", "Nasal Cannula", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"], key="sel_max_o2")
+        max_o2_modality = st.selectbox("Highest Oxygenation", ["Room Air", "Nasal Cannula", "Face Mask", "Venturi Mask", "High Flow Mask (HFM)", "HFNC", "CPAP / BiPAP", "Invasive Mechanical Ventilation"], key="sel_max_o2")
         max_fio2 = st.text_input("Highest FiO2 %", value="", key="txt_max_fio2")
         o2_duration = st.text_input("Duration of High Flow Oxygenation (HFNC/NIV/IMV)", value="", key="txt_o2_duration")
 
