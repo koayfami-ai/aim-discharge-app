@@ -165,9 +165,9 @@ with col_p2:
            stroke_subtype = st.text_input("Hemorrhagic Stroke Details", value="", key="txt_stroke_hem_detail")
 
         # Presentation NIHSS Score
-            nihss_score = st.text_input(
-            "NIHSS Score / Severity at Presentation", value="",
-            key="txt_nihss_score",)
+        nihss_score = st.text_input(
+        "NIHSS Score / Severity at Presentation", value="",
+        key="txt_nihss_score",)
 
         p_seizure = st.checkbox("Seizures / Status Epilepticus", key="chk_p_seizure")
         seizure_type = ""
