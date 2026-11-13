@@ -958,17 +958,19 @@ def generate_docx():
         # Style page
     section = doc.sections[0]
     section.top_margin = Inches(0.8)
-        section.bottom_margin = Inches(0.8)
-        section.left_margin = Inches(0.8)
-        section.right_margin = Inches(0.8)
+    section.bottom_margin = Inches(0.8)
+    section.left_margin = Inches(0.8)
+    section.right_margin = Inches(0.8)
 
         # Title
-        p_title = doc.add_paragraph()
-        run_t = p_title.add_run("ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY")
-        run_t.bold = True
-        run_t.font.size = Pt(14)
-        run_t.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
-        p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p_title = doc.add_paragraph()
+        
+    run_t = p_title.add_run("ACUTE INTERNAL MEDICINE — RAPID REVIEW CLINIC DISCHARGE SUMMARY")
+        
+    run_t.bold = True
+    run_t.font.size = Pt(14)
+    run_t.font.color.rgb = RGBColor(0x1B, 0x36, 0x5D)
+    p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
         # Helper function for headings
         def add_sec_heading(title):
