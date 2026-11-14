@@ -717,35 +717,58 @@ with tab4:
         col_m3_hdr = f"Day 3 ({date_mid3_str})"
         col_dis_hdr = f"Discharge ({date_dis_str})"
 
-        df_init = pd.DataFrame({
+        dict_init = {
             "Parameter": [f"{p} ({u})" if u != "Custom" else p for p, u in lab_params],
             col_adm_hdr: [""] * len(lab_params),
             col_m1_hdr: [""] * len(lab_params),
             col_m2_hdr: [""] * len(lab_params),
             col_m3_hdr: [""] * len(lab_params),
             col_dis_hdr: [""] * len(lab_params)
-        })
+        }
 
-        edited_df = st.data_editor(
-            df_init,
+        edited_data = st.data_editor(
+            dict_init,
             hide_index=True,
             use_container_width=True,
             key="mob_editor_labs"
         )
 
+        def _get_cell(data, row_i, col_name, col_i, default_val=""):
+            try:
+                if hasattr(data, 'iloc'):
+                    val = data.iloc[row_i, col_i]
+                elif isinstance(data, dict):
+                    if col_name in data and len(data[col_name]) > row_i:
+                        val = data[col_name][row_i]
+                    else:
+                        keys = list(data.keys())
+                        val = data[keys[col_i]][row_i] if len(keys) > col_i else default_val
+                elif isinstance(data, list) and len(data) > row_i:
+                    row = data[row_i]
+                    if isinstance(row, dict):
+                        val = row.get(col_name, default_val)
+                    elif isinstance(row, (list, tuple)):
+                        val = row[col_i] if len(row) > col_i else default_val
+                    else:
+                        val = default_val
+                else:
+                    val = default_val
+                if val is None:
+                    return default_val
+                s = str(val).strip()
+                if s.lower() in ["nan", "none"]:
+                    return default_val
+                return s
+            except Exception:
+                return default_val
+
         for idx, (param, unit) in enumerate(lab_params):
-            p_col = str(edited_df.iloc[idx, 0]) if pd.notna(edited_df.iloc[idx, 0]) else param
-            v1 = str(edited_df.iloc[idx, 1]) if pd.notna(edited_df.iloc[idx, 1]) else ""
-            v2 = str(edited_df.iloc[idx, 2]) if pd.notna(edited_df.iloc[idx, 2]) else ""
-            v3 = str(edited_df.iloc[idx, 3]) if pd.notna(edited_df.iloc[idx, 3]) else ""
-            v4 = str(edited_df.iloc[idx, 4]) if pd.notna(edited_df.iloc[idx, 4]) else ""
-            v5 = str(edited_df.iloc[idx, 5]) if pd.notna(edited_df.iloc[idx, 5]) else ""
-            
-            v1 = "" if v1.lower() in ["nan", "none"] else v1
-            v2 = "" if v2.lower() in ["nan", "none"] else v2
-            v3 = "" if v3.lower() in ["nan", "none"] else v3
-            v4 = "" if v4.lower() in ["nan", "none"] else v4
-            v5 = "" if v5.lower() in ["nan", "none"] else v5
+            p_col = _get_cell(edited_data, idx, "Parameter", 0, default_val=param)
+            v1 = _get_cell(edited_data, idx, col_adm_hdr, 1)
+            v2 = _get_cell(edited_data, idx, col_m1_hdr, 2)
+            v3 = _get_cell(edited_data, idx, col_m2_hdr, 3)
+            v4 = _get_cell(edited_data, idx, col_m3_hdr, 4)
+            v5 = _get_cell(edited_data, idx, col_dis_hdr, 5)
 
             lab_inputs[param] = (p_col, unit, v1, v2, v3, v4, v5)
 
@@ -772,7 +795,7 @@ with tab4:
             val_mid2 = c4.text_input(f"{param} Mid2", value="", key=f"inp_{param}_mid2", label_visibility="collapsed")
             val_mid3 = c5.text_input(f"{param} Mid3", value="", key=f"inp_{param}_mid3", label_visibility="collapsed")
             val_dis = c6.text_input(f"{param} Dis", value="", key=f"inp_{param}_dis", label_visibility="collapsed")
-            lab_inputs[param] = (param_name, unit, val_adm, val_mid1, val_mid2, val_mid3, val_dis)   
+            lab_inputs[param] = (param_name, unit, val_adm, val_mid1, val_mid2, val_mid3, val_dis)
     
     
     st.markdown("---")
