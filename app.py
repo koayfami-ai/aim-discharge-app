@@ -688,7 +688,23 @@ with tab4:
         ("HbA1c", "%"),
         ("Trop I", "ug/L"),
         ("ProBNP", "pg/mL"),
-        ("Others", "ABG/Notes")
+        ("pH", "7.35-7.44"),
+        ("PaO2", "83-108 mmHg"),
+        ("PCO2", "35-45 mmHg"),
+        ("HCO3", "21-26 mmol/L"),
+        ("BE", "-2 - +2"),
+        ("Lactate", "> 2.0 mmol/L"),
+        ("Others", "ABG/Notes"),
+        ("Self-Add Ix 1", "Custom"),
+        ("Self-Add Ix 2", "Custom"),
+        ("Self-Add Ix 3", "Custom"),
+        ("Self-Add Ix 4", "Custom"),
+        ("Self-Add Ix 5", "Custom"),
+        ("Self-Add Ix 6", "Custom"),
+        ("Self-Add Ix 7", "Custom"),
+        ("Self-Add Ix 8", "Custom"),
+        ("Self-Add Ix 9", "Custom"),
+        ("Self-Add Ix 10", "Custom")
     ]
 
     lab_inputs = {}
@@ -696,74 +712,69 @@ with tab4:
     if "Mobile Touch Grid" in entry_mode:
         st.info("💡 **Swipe left/right** with your finger across the table below to see all 5 dates. **Tap any cell** to enter values.")
         col_adm_hdr = f"Adm ({date_adm_str})"
-        col_m1_hdr = f"W1 ({date_mid1_str})"
-        col_m2_hdr = f"W2 ({date_mid2_str})"
-        col_m3_hdr = f"W3 ({date_mid3_str})"
-        col_dis_hdr = f"Pre ({date_dis_str})"
+        col_m1_hdr = f"Day 1 ({date_mid1_str})"
+        col_m2_hdr = f"Day 2 ({date_mid2_str})"
+        col_m3_hdr = f"Day 3 ({date_mid3_str})"
+        col_dis_hdr = f"Discharge ({date_dis_str})"
 
-        dict_init = {
-            "Parameter": [f"{p} ({u})" for p, u in lab_params],
+        df_init = pd.DataFrame({
+            "Parameter": [f"{p} ({u})" if u != "Custom" else p for p, u in lab_params],
             col_adm_hdr: [""] * len(lab_params),
             col_m1_hdr: [""] * len(lab_params),
             col_m2_hdr: [""] * len(lab_params),
             col_m3_hdr: [""] * len(lab_params),
             col_dis_hdr: [""] * len(lab_params)
-        }
+        })
 
-        edited_dict = st.data_editor(
-            dict_init,
+        edited_df = st.data_editor(
+            df_init,
             hide_index=True,
             use_container_width=True,
             key="mob_editor_labs"
         )
 
         for idx, (param, unit) in enumerate(lab_params):
-            if isinstance(edited_dict, dict):
-                raw_v1 = edited_dict.get(col_adm_hdr, [""]*len(lab_params))[idx]
-                raw_v2 = edited_dict.get(col_m1_hdr, [""]*len(lab_params))[idx]
-                raw_v3 = edited_dict.get(col_m2_hdr, [""]*len(lab_params))[idx]
-                raw_v4 = edited_dict.get(col_m3_hdr, [""]*len(lab_params))[idx]
-                raw_v5 = edited_dict.get(col_dis_hdr, [""]*len(lab_params))[idx]
-            else:
-                raw_v1 = edited_dict.iloc[idx, 1] if hasattr(edited_dict, "iloc") else ""
-                raw_v2 = edited_dict.iloc[idx, 2] if hasattr(edited_dict, "iloc") else ""
-                raw_v3 = edited_dict.iloc[idx, 3] if hasattr(edited_dict, "iloc") else ""
-                raw_v4 = edited_dict.iloc[idx, 4] if hasattr(edited_dict, "iloc") else ""
-                raw_v5 = edited_dict.iloc[idx, 5] if hasattr(edited_dict, "iloc") else ""
-
-            v1 = str(raw_v1) if raw_v1 is not None else ""
-            v2 = str(raw_v2) if raw_v2 is not None else ""
-            v3 = str(raw_v3) if raw_v3 is not None else ""
-            v4 = str(raw_v4) if raw_v4 is not None else ""
-            v5 = str(raw_v5) if raw_v5 is not None else ""
-
+            p_col = str(edited_df.iloc[idx, 0]) if pd.notna(edited_df.iloc[idx, 0]) else param
+            v1 = str(edited_df.iloc[idx, 1]) if pd.notna(edited_df.iloc[idx, 1]) else ""
+            v2 = str(edited_df.iloc[idx, 2]) if pd.notna(edited_df.iloc[idx, 2]) else ""
+            v3 = str(edited_df.iloc[idx, 3]) if pd.notna(edited_df.iloc[idx, 3]) else ""
+            v4 = str(edited_df.iloc[idx, 4]) if pd.notna(edited_df.iloc[idx, 4]) else ""
+            v5 = str(edited_df.iloc[idx, 5]) if pd.notna(edited_df.iloc[idx, 5]) else ""
+            
             v1 = "" if v1.lower() in ["nan", "none"] else v1
             v2 = "" if v2.lower() in ["nan", "none"] else v2
             v3 = "" if v3.lower() in ["nan", "none"] else v3
             v4 = "" if v4.lower() in ["nan", "none"] else v4
             v5 = "" if v5.lower() in ["nan", "none"] else v5
 
-            lab_inputs[param] = (v1, v2, v3, v4, v5)
-            
+            lab_inputs[param] = (p_col, unit, v1, v2, v3, v4, v5)
+
     else:
         h1, h2, h3, h4, h5, h6 = st.columns([2.5, 3, 3, 3, 3, 3])
         h1.markdown("**Parameter**")
-        h2.markdown(f"**Adm ({date_adm_str})**")
-        h3.markdown(f"**W1 ({date_mid1_str})**")
-        h4.markdown(f"**W2 ({date_mid2_str})**")
-        h5.markdown(f"**W3 ({date_mid3_str})**")
-        h6.markdown(f"**Pre ({date_dis_str})**")
+        h2.markdown(f"**Admission ({date_adm_str})**")
+        h3.markdown(f"**Ward Day 1 ({date_mid1_str})**")
+        h4.markdown(f"**Ward Day 2 ({date_mid2_str})**")
+        h5.markdown(f"**Ward Day 3 ({date_mid3_str})**")
+        h6.markdown(f"**Predischarge ({date_dis_str})**")
 
         for param, unit in lab_params:
             c1, c2, c3, c4, c5, c6 = st.columns([2.5, 3, 3, 3, 3, 3])
-            c1.markdown(f"**{param}** <small>({unit})</small>", unsafe_allow_html=True)
+            if param.startswith("Self-Add Ix"):
+                custom_lbl = c1.text_input(f"Name {param}", value="", placeholder=param, key=f"lbl_cust_{param}", label_visibility="collapsed")
+                param_name = custom_lbl.strip() if custom_lbl.strip() else param
+            else:
+                c1.markdown(f"**{param}** <small>({unit})</small>", unsafe_allow_html=True)
+                param_name = param
+
             val_adm = c2.text_input(f"{param} Adm", value="", key=f"inp_{param}_adm", label_visibility="collapsed")
             val_mid1 = c3.text_input(f"{param} Mid1", value="", key=f"inp_{param}_mid1", label_visibility="collapsed")
             val_mid2 = c4.text_input(f"{param} Mid2", value="", key=f"inp_{param}_mid2", label_visibility="collapsed")
             val_mid3 = c5.text_input(f"{param} Mid3", value="", key=f"inp_{param}_mid3", label_visibility="collapsed")
             val_dis = c6.text_input(f"{param} Dis", value="", key=f"inp_{param}_dis", label_visibility="collapsed")
-            lab_inputs[param] = (val_adm, val_mid1, val_mid2, val_mid3, val_dis)
-
+            lab_inputs[param] = (param_name, unit, val_adm, val_mid1, val_mid2, val_mid3, val_dis)   
+    
+    
     st.markdown("---")
 
 with tab5:
